@@ -1,12 +1,3 @@
-#
-# This is the user-interface definition of a Shiny web application. You can
-# run the application by clicking 'Run App' above.
-#
-# Find out more about building applications with Shiny here:
-#
-#    http://shiny.rstudio.com/
-#
-
 if(!require("shiny")) install.packages("shiny");library(shiny, quietly = T, verbose = F, warn.conflicts = F)
 if(!require("shinydashboard")) install.packages("shinydashboard");library(shinydashboard, quietly = T, verbose = F, warn.conflicts = F)
 if(!require("shinydashboardPlus")) install.packages("shinydashboardPlus");library(shinydashboardPlus, quietly = T, verbose = F, warn.conflicts = F)
@@ -14,9 +5,7 @@ if(!require("shinyalert")) install.packages("shinyalert");library(shinyalert, qu
 if(!require("readxl")) install.packages("readxl");library(readxl, quietly = T, verbose = F, warn.conflicts = F)
 if(!require("httr")) install.packages("httr");library(httr, quietly = T, verbose = F, warn.conflicts = F)
 if(!require("plotly")) install.packages("plotly");library(plotly, quietly = T, verbose = F, warn.conflicts = F)
-if(!require("dplyr")) install.packages("dplyr");library(dplyr, quietly = T, verbose = F, warn.conflicts = F)
 
-#source("datasource.R")
 source("functions.R")
 theme_set(theme_bw())
 realdata<-NULL
@@ -60,9 +49,6 @@ ui <- dashboardPagePlus(
                                     
                                 )
                             )
-                            # column(width = 12,
-                            #        plotlyOutput(outputId = "worldwidecases", height = "600px")
-                            # )
                         )
                     )
             ),
@@ -182,7 +168,7 @@ server <- function(input, output) {
         # -------------------------------------------------------------------------------------
         
         real<-reactive(getrealdata(realdata=realdata, country=input$selcountry, smooth = input$smoothrange))
-        #dataframe<-reactive(getrealdata(realdata=realdata, country=input$selcountry, smooth = input$smoothrange))
+        
         output$tcases<-renderText({
             as.numeric(ncases(realdata))
         })
