@@ -8,6 +8,7 @@ if(!require("utils")) install.packages("utils");library(httr, quietly = T, verbo
 if(!require("plotly")) install.packages("plotly");library(plotly, quietly = T, verbose = F, warn.conflicts = F)
 
 source("functions.R")
+
 theme_set(theme_bw())
 realdata<-NULL
 exdata<-simulation()
@@ -210,14 +211,14 @@ server <- function(input, output) {
       dflocal<-getfile(file = input$loadfile)
       print(head(dflocal))
       output$localdata_growth_curve<-renderPlotly({
-        plot_localdata_growth_curve(df = dflocal, smooth = input$smoothrange)
+        plot_localdata_growth_curve(df = dflocal, smooth = input$smoothrangel)
       })
       output$localdata_growth_rate<-renderPlotly({
-        plot_localdata_growth_rate(df = dflocal, smooth = input$smoothrange)
+        plot_localdata_growth_rate(df = dflocal, smooth = input$smoothrangel)
       })
       
       output$localdata_growth_acceleration<-renderPlotly({
-        plot_localdata_growth_acceleration(df = dflocal, smooth = input$smoothrange)
+        plot_localdata_growth_acceleration(df = dflocal, smooth = input$smoothrangel)
       })
     })
   }

@@ -18,7 +18,7 @@ output$menu<-renderMenu({
       "input.sidebarmenu === 'local'",
       fileInput(inputId = "loadfile",label = NULL,buttonLabel = "Upload",accept = c("xlsx", "xls"), multiple = F, width = "100%"),
       sliderInput(
-        inputId = "smoothrange", label = "Smooth factor", min = 3, max = 10, step = 1, value = 5)
+        inputId = "smoothrangel", label = "Smooth factor", min = 3, max = 10, step = 1, value = 5)
     )
   )
 })
