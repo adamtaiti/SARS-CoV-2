@@ -1,18 +1,15 @@
 connection <- function(){
   tryCatch(
     {
-      #create the URL where the dataset is stored with automatic updates every day
+      #download the dataset from the ECDC website to a local temporary file
+      GET("https://opendata.ecdc.europa.eu/covid19/casedistribution/csv", authenticate(":", ":", type="ntlm"), write_disk(tf <- tempfile(fileext = ".csv")))
       
-      url <- paste("https://www.ecdc.europa.eu/sites/default/files/documents/COVID-19-geographic-disbtribution-worldwide-",format(Sys.time(), "%Y-%m-%d"), ".xlsx", sep = "")
+      #read the Dataset sheet into “R”. The dataset will be called "data".
+      realdata <- read.csv(tf)
       
-      #download the dataset from the website to a local temporary file
-      #url<-"https://www.google.com"
-      
-      GET(url, authenticate(":", ":", type="ntlm"), write_disk(tf <- tempfile(fileext = ".xlsx")))
-      
-      #read the Dataset sheet into “R”
-      
-      realdata <- read_excel(tf)
+      names(realdata)<-c("DateRep","Day","Month","Year","Cases","Deaths","Countries and territories","GeoId","Code","Pop_Data.2018")
+      realdata$DateRep<-as.Date(realdata$DateRep, format = "%d/%m/%Y")
+      realdata<-realdata[order(realdata$DateRep),]
       
       return(realdata)
     },
@@ -98,7 +95,9 @@ plot_simulated_growth_acceleration <- function(exdata){
 worldwidecases <- function(realdata){
   df<-realdata[which(realdata$Cases>=1),]
   df<-as.data.frame(tapply(df$Cases, df$DateRep, sum))
+  print(head(df))
   df<-cumsum(df)
+  print(head(df))
   return(df)
 }
 worldwidedeaths <- function(realdata){
