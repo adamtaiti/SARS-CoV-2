@@ -96,9 +96,7 @@ plot_simulated_growth_acceleration <- function(exdata){
 worldwidecases <- function(realdata){
   df<-realdata[which(realdata$Cases>=1),]
   df<-as.data.frame(tapply(df$Cases, df$DateRep, sum))
-  print(head(df))
   df<-cumsum(df)
-  print(head(df))
   return(df)
 }
 worldwidedeaths <- function(realdata){

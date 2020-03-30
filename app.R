@@ -21,17 +21,32 @@ ui <- dashboardPagePlus(
     tabItems(
       tabItem(tabName = "welcome",
               fluidPage(
-                h1("Growth acceleration analysis of the COVID-19 pandemic"),
-                h2("The effect of public health measures on SARS-CoV-2 prevention in real time")
+                h1(strong("Welcome to the COVID-19 Accelerometer")),br(),
+                p("This application is designed to visualize the growth rate and acceleration of the COVID-19 pandemic."),
+                p("It automatically loads the latest cases reports from European Center for Disease Prevention and Control (ECDC)."),
+                a("https://opendata.ecdc.europa.eu/covid19/casedistribution/csv"),br(),
+                h3(strong("How to use:")),
+                p("Here we provided an easy and acessible way to interpretate the dissemination of COVID-19 via the following tabs:"),
+                tags$ul(
+                  tags$li(p(strong("Worldwide: "),"Overview of the worldwide cases, deaths and countries affected.")),
+                  tags$li(p(strong("Country: ")," Presents Growth curve, growth rate and growth acceleration for any selectable country contained on ECDC data.")),
+                  tags$li(p(strong("Local: "),"Allows user to upload their own data to visualize the growth curve, growth rate and growth acceleration of specific states, provinces, cities or aggregate data from arbitrary territory definitions."),
+                          p(em("It is necessary for the user to create an excel spreadsheet containing only two columns (date and number of cases)")))
+                ),br(),
+                h3(strong("Contact us")),
+                p("If you have any suggestions for improving the application or would like to report a bug, please send an email to", code("adamtaiti@gmail.com."))
               )
       ),
       tabItem(tabName = "worldwide",
               fluidPage(
                 fluidRow(
                   column(width = 12,
-                         infoBox(title = "Cases", value = textOutput("tcases"), fill = T, color = "yellow"),
-                         infoBox(title = "Deaths", value = textOutput("tdeaths"), fill = T, color = "red"),
-                         infoBox(title = "Countries", value = textOutput("tcountries"), fill = T, color = "teal")
+                         valueBox(subtitle = "Cases", value = textOutput("tcases"), color = "yellow", icon = icon("chart-bar")),
+                         #infoBox(title = "Cases", value = textOutput("tcases"), fill = T, color = "yellow"),
+                         valueBox(subtitle = "Deaths", value = textOutput("tdeaths"), color = "red", icon = icon("chart-line")),
+                         #infoBox(title = "Deaths", value = textOutput("tdeaths"), fill = T, color = "red"),
+                         valueBox(subtitle = "Countries", value = textOutput("tcountries"), color = "teal", icon = icon("globe")),
+                         #infoBox(title = "Countries", value = textOutput("tcountries"), fill = T, color = "teal")
                   )
                 ),
                 fluidRow(
@@ -209,7 +224,7 @@ server <- function(input, output) {
     # -----------------------------------------------------------------------------------------------
     observeEvent(input$loadfile,{
       dflocal<-getfile(file = input$loadfile)
-
+      
       output$localdata_growth_curve<-renderPlotly({
         plot_localdata_growth_curve(df = dflocal, smooth = input$smoothrangel)
       })
