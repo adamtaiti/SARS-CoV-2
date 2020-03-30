@@ -24,7 +24,7 @@ ui <- dashboardPagePlus(
                 h1(strong("Welcome to the COVID-19 Accelerometer")),br(),
                 p("This application is designed to visualize the growth rate and acceleration of the COVID-19 pandemic."),
                 p("It automatically loads the latest cases reports from European Center for Disease Prevention and Control (ECDC)."),
-                a("https://opendata.ecdc.europa.eu/covid19/casedistribution/csv"),br(),
+                a(href="https://opendata.ecdc.europa.eu/covid19/casedistribution/csv","https://opendata.ecdc.europa.eu/covid19/casedistribution/csv"),br(),
                 h3(strong("How to use:")),
                 p("Here we provided an easy and acessible way to interpretate the dissemination of COVID-19 via the following tabs:"),
                 tags$ul(
