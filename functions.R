@@ -8,10 +8,7 @@ connection <- function(){
       realdata <- read.csv(tf)
       
       names(realdata)<-c("DateRep","Day","Month","Year","Cases","Deaths","Countries and territories","GeoId","Code","Pop_Data.2018")
-<<<<<<< HEAD
-      
-=======
->>>>>>> 9902d758b83357edf19871b9f74ffaf2ff15a612
+
       realdata$DateRep<-as.Date(realdata$DateRep, format = "%d/%m/%Y")
       realdata<-realdata[order(realdata$DateRep),]
       
