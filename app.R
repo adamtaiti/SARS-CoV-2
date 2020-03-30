@@ -42,11 +42,8 @@ ui <- dashboardPagePlus(
                 fluidRow(
                   column(width = 12,
                          valueBox(subtitle = "Cases", value = textOutput("tcases"), color = "yellow", icon = icon("chart-bar")),
-                         #infoBox(title = "Cases", value = textOutput("tcases"), fill = T, color = "yellow"),
                          valueBox(subtitle = "Deaths", value = textOutput("tdeaths"), color = "red", icon = icon("chart-line")),
-                         #infoBox(title = "Deaths", value = textOutput("tdeaths"), fill = T, color = "red"),
-                         valueBox(subtitle = "Countries", value = textOutput("tcountries"), color = "teal", icon = icon("globe")),
-                         #infoBox(title = "Countries", value = textOutput("tcountries"), fill = T, color = "teal")
+                         valueBox(subtitle = "Countries", value = textOutput("tcountries"), color = "teal", icon = icon("globe"))
                   )
                 ),
                 fluidRow(
