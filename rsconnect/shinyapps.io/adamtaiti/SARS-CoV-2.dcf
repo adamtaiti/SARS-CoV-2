@@ -1,0 +1,12 @@
+name: SARS-CoV-2
+title: SARS-CoV-2
+username:
+account: adamtaiti
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 2006991
+bundleId: 2932175
+url: https://adamtaiti.shinyapps.io/SARS-CoV-2/
+when: 1585318553.86492
+asMultiple: FALSE
+asStatic: FALSE

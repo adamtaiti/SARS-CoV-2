@@ -209,7 +209,6 @@ server <- function(input, output) {
     # -----------------------------------------------------------------------------------------------
     observeEvent(input$loadfile,{
       dflocal<-getfile(file = input$loadfile)
-      print(head(dflocal))
       output$localdata_growth_curve<-renderPlotly({
         plot_localdata_growth_curve(df = dflocal, smooth = input$smoothrangel)
       })
