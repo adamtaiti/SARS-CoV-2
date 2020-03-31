@@ -6,6 +6,7 @@ if(!require("readxl")) install.packages("readxl");library(readxl, quietly = T, v
 if(!require("httr")) install.packages("httr");library(httr, quietly = T, verbose = F, warn.conflicts = F)
 if(!require("utils")) install.packages("utils");library(httr, quietly = T, verbose = F, warn.conflicts = F)
 if(!require("plotly")) install.packages("plotly");library(plotly, quietly = T, verbose = F, warn.conflicts = F)
+if(!require("HMM")) install.packages("HMM");library(HMM, quietly = T, verbose = F, warn.conflicts = F)
 
 source("functions.R")
 #source("excurve.R")
