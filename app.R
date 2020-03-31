@@ -8,6 +8,7 @@ if(!require("utils")) install.packages("utils");library(httr, quietly = T, verbo
 if(!require("plotly")) install.packages("plotly");library(plotly, quietly = T, verbose = F, warn.conflicts = F)
 
 source("functions.R")
+#source("excurve.R")
 
 theme_set(theme_bw())
 realdata<-NULL
@@ -29,9 +30,9 @@ ui <- dashboardPagePlus(
                 p("Here we provided an easy and acessible way to interpretate the dissemination of COVID-19 via the following tabs:"),
                 tags$ul(
                   tags$li(p(strong("Worldwide: "),"Overview of the worldwide cases, deaths and countries affected.")),
-                  tags$li(p(strong("Country: ")," Presents Growth curve, growth rate and growth acceleration for any selectable country contained on ECDC data.")),
+                  tags$li(p(strong("Country: ")," Presents growth curve, growth rate and growth acceleration for any selectable country contained in the ECDC data.")),
                   tags$li(p(strong("Local: "),"Allows user to upload their own data to visualize the growth curve, growth rate and growth acceleration of specific states, provinces, cities or aggregate data from arbitrary territory definitions."),
-                          p(em("It is necessary for the user to create an excel spreadsheet containing only two columns (date and number of cases)")))
+                          p(em("It is necessary for the user to create an excel spreadsheet containing only two columns, namely ",strong("date ('YYYY-mm-dd')")," and ",strong("ncases (number of cases)"))))
                 ),br(),
                 h3(strong("Contact us")),
                 p("If you have any suggestions for improving the application or would like to report a bug, please send an email to", code("adamtaiti@gmail.com."))
@@ -181,7 +182,7 @@ server <- function(input, output) {
     # Real data plots
     # -------------------------------------------------------------------------------------
     
-    real<-reactive(getrealdata(realdata=realdata, country=input$selcountry, smooth = input$smoothrange))
+    real<-reactive(getrealdata(realdata=realdata, country=input$selcountry, smooth = input$smoothrange, hmmclass = input$hmmrange))
     
     output$tcases<-renderText({
       as.numeric(ncases(realdata))

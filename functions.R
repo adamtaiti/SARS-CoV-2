@@ -8,7 +8,7 @@ connection <- function(){
       realdata <- read.csv(tf)
       
       names(realdata)<-c("DateRep","Day","Month","Year","Cases","Deaths","Countries and territories","GeoId","Code","Pop_Data.2018")
-
+      
       realdata$DateRep<-as.Date(realdata$DateRep, format = "%d/%m/%Y")
       realdata<-realdata[order(realdata$DateRep),]
       
@@ -146,7 +146,7 @@ locr <- function(x,y,offset){
 }
 
 # Filter data
-getrealdata <- function(realdata, country, smooth){
+getrealdata <- function(realdata, country, smooth, hmmclass){
   if(is.null(realdata)){
     return(NULL)
   } else{
@@ -187,7 +187,7 @@ getrealdata <- function(realdata, country, smooth){
       newrow$fitted <- round(newrow$fitted * 1000, digits = 0)
       
       df <- rbind(df, newrow)
-      
+      df$phase <- hmm(df,hmmclass)
       return(df)
     } else{
       shinyalert(title = "Error!", text = 'There is not enough data to display!', type = "error")
@@ -236,9 +236,11 @@ getfile <- function(file){
 }
 
 plot_realdata_growth_curve <- function(df){
+  
   p <- ggplot(
     data = df[-nrow(df),],
     mapping = aes(
+      x = DateRep, y = c,
       group=1,
       text = paste(
         'Date: ', DateRep,
@@ -248,11 +250,59 @@ plot_realdata_growth_curve <- function(df){
       )
     )
   )+
-    geom_line(mapping = aes(x = DateRep, y = fitted), inherit.aes = T)+
-    geom_point(mapping = aes(x = DateRep, y = c),show.legend = F,inherit.aes = T)+
+    theme(legend.position = "none")+
     xlab(label = "")+
     ylab(label = "Thousand cases")+
     ggtitle(label = "Growth curve")
+  
+  # Map phases
+  runs <- rle(as.vector(df$phase))
+  phase <- cumsum(runs$lengths)
+  names(phase) <- runs$values
+  
+  params<-ggplot_build(p)
+  yrange<-params$layout$panel_params[[1]]$y.range
+  
+  xmin<-NULL; xmax<-NULL; ymin<-NULL; ymax<-NULL; ph<-NULL;
+  
+  for(i in 1:length(phase)){
+    if(i == 1){
+      xmin<-c(xmin,as.character(min(df$DateRep)))
+      xmax<-c(xmax,as.character(df$DateRep[as.numeric(phase[i])]))
+      ymin<-c(ymin,yrange[1])
+      ymax<-c(ymax,yrange[2])
+      ph<-c(ph,names(phase[i]))
+    }else if(i < length(phase)){
+      xmin<-c(xmin,as.character(df$DateRep[as.numeric(phase[i-1])]))
+      xmax<-c(xmax,as.character(df$DateRep[as.numeric(phase[i])]))
+      ymin<-c(ymin,yrange[1])
+      ymax<-c(ymax,yrange[2])
+      ph<-c(ph,names(phase[i]))
+    }else{
+      xmin<-c(xmin,as.character(df$DateRep[as.numeric(phase[i-1])]))
+      xmax<-c(xmax,as.character(max(df$DateRep)))
+      ymin<-c(ymin,yrange[1])
+      ymax<-c(ymax,yrange[2])
+      ph<-c(ph,names(phase[i]))
+    }
+  }
+  
+  params<-data.frame(xmin,xmax,ymin,ymax,ph)
+  xmin<-as.Date(xmin)
+  xmax<-as.Date(xmax)
+  params$xmin<-as.Date(params$xmin)
+  params$xmax<-as.Date(params$xmax)
+  
+  p <- p+
+    geom_rect(
+      data = params,
+      mapping=aes(x = NULL, y = NULL, xmin = xmin, xmax = xmax, fill = ph),
+      ymin = ymin, ymax = ymax, inherit.aes = F, colour = "black", alpha = 0.3)+
+    scale_fill_manual(
+      values = c("lagging"="#7ACC9B","exponential"="#B3D1FF","deceleration"="#F0FFB3","stationary"="#FFB3B3")
+    )+
+    geom_line(mapping = aes(x = DateRep, y = fitted), inherit.aes = T)+
+    geom_point(mapping = aes(x = DateRep, y = c),show.legend = F,inherit.aes = T)
   ggplotly(p, tooltip="text")
 }
 
@@ -269,11 +319,60 @@ plot_realdata_growth_rate <- function(df){
       )
     )
   )+
-    geom_line()+
+    theme(legend.position = "none")+
     xlab(label = "")+
     ylab(label = "Thousand cases per day")+
     xlim(min(df$DateRep),max(df$DateRep))+
     ggtitle(label = "Growth rate")
+  
+  # Map phases
+  runs <- rle(as.vector(df$phase))
+  phase <- cumsum(runs$lengths)
+  names(phase) <- runs$values
+  
+  params<-ggplot_build(p)
+  yrange<-params$layout$panel_params[[1]]$y.range
+  
+  xmin<-NULL; xmax<-NULL; ymin<-NULL; ymax<-NULL; ph<-NULL;
+  
+  for(i in 1:length(phase)){
+    if(i == 1){
+      xmin<-c(xmin,as.character(min(df$DateRep)))
+      xmax<-c(xmax,as.character(df$DateRep[as.numeric(phase[i])]))
+      ymin<-c(ymin,yrange[1])
+      ymax<-c(ymax,yrange[2])
+      ph<-c(ph,names(phase[i]))
+    }else if(i < length(phase)){
+      xmin<-c(xmin,as.character(df$DateRep[as.numeric(phase[i-1])]))
+      xmax<-c(xmax,as.character(df$DateRep[as.numeric(phase[i])]))
+      ymin<-c(ymin,yrange[1])
+      ymax<-c(ymax,yrange[2])
+      ph<-c(ph,names(phase[i]))
+    }else{
+      xmin<-c(xmin,as.character(df$DateRep[as.numeric(phase[i-1])]))
+      xmax<-c(xmax,as.character(max(df$DateRep)))
+      ymin<-c(ymin,yrange[1])
+      ymax<-c(ymax,yrange[2])
+      ph<-c(ph,names(phase[i]))
+    }
+  }
+  
+  params<-data.frame(xmin,xmax,ymin,ymax,ph)
+  xmin<-as.Date(xmin)
+  xmax<-as.Date(xmax)
+  params$xmin<-as.Date(params$xmin)
+  params$xmax<-as.Date(params$xmax)
+  
+  p <- p+
+    geom_rect(
+      data = params,
+      mapping=aes(x = NULL, y = NULL, xmin = xmin, xmax = xmax, fill = ph),
+      ymin = ymin, ymax = ymax, inherit.aes = F, colour = "black", alpha = 0.3)+
+    scale_fill_manual(
+      values = c("lagging"="#7ACC9B","exponential"="#B3D1FF","deceleration"="#F0FFB3","stationary"="#FFB3B3")
+    )+
+    geom_line()
+  
   ggplotly(p, tooltip="text")
 }
 
@@ -292,12 +391,61 @@ plot_realdata_growth_acceleration <- function(df){
       )
     )
   )+
-    geom_line()+
+    theme(legend.position = "none")+
     ylim(-y,y)+
     xlim(min(df$DateRep),max(df$DateRep))+
     xlab(label = "")+
     ylab(label = "Thousand cases per day²")+
     ggtitle(label = "Growth accelaration")
+  
+  ############### Map phases
+  runs <- rle(as.vector(df$phase))
+  phase <- cumsum(runs$lengths)
+  names(phase) <- runs$values
+  
+  params<-ggplot_build(p)
+  yrange<-params$layout$panel_params[[1]]$y.range
+  
+  xmin<-NULL; xmax<-NULL; ymin<-NULL; ymax<-NULL; ph<-NULL;
+  
+  for(i in 1:length(phase)){
+    if(i == 1){
+      xmin<-c(xmin,as.character(min(df$DateRep)))
+      xmax<-c(xmax,as.character(df$DateRep[as.numeric(phase[i])]))
+      ymin<-c(ymin,yrange[1])
+      ymax<-c(ymax,yrange[2])
+      ph<-c(ph,names(phase[i]))
+    }else if(i < length(phase)){
+      xmin<-c(xmin,as.character(df$DateRep[as.numeric(phase[i-1])]))
+      xmax<-c(xmax,as.character(df$DateRep[as.numeric(phase[i])]))
+      ymin<-c(ymin,yrange[1])
+      ymax<-c(ymax,yrange[2])
+      ph<-c(ph,names(phase[i]))
+    }else{
+      xmin<-c(xmin,as.character(df$DateRep[as.numeric(phase[i-1])]))
+      xmax<-c(xmax,as.character(max(df$DateRep)))
+      ymin<-c(ymin,yrange[1])
+      ymax<-c(ymax,yrange[2])
+      ph<-c(ph,names(phase[i]))
+    }
+  }
+  
+  params<-data.frame(xmin,xmax,ymin,ymax,ph)
+  xmin<-as.Date(xmin)
+  xmax<-as.Date(xmax)
+  params$xmin<-as.Date(params$xmin)
+  params$xmax<-as.Date(params$xmax)
+  
+  p <- p+
+    geom_rect(
+      data = params,
+      mapping=aes(x = NULL, y = NULL, xmin = xmin, xmax = xmax, fill = ph),
+      ymin = ymin, ymax = ymax, inherit.aes = F, colour = "black", alpha = 0.3)+
+    scale_fill_manual(
+      values = c("lagging"="#7ACC9B","exponential"="#B3D1FF","deceleration"="#F0FFB3","stationary"="#FFB3B3")
+    )+
+    geom_line()
+  
   ggplotly(p, tooltip="text")
 }
 
@@ -489,4 +637,50 @@ plot_localdata_growth_acceleration <- function(df,smooth){
   } else{
     shinyalert(title = "Error!", text = 'There is not enough data to display!', type = "error")
   }
+}
+
+# Classification function
+hmm <- function(df, acc.cutoff = 5){
+  #require(HMM)
+  df$acceleration <- df$acceleration*1000
+  trans <- c(0.8,0.2,0.0,0.0,
+             0.0,0.8,0.2,0.0,
+             0.0,0.0,0.8,0.2,
+             0.0,0.2,0.0,0.8)
+  emiss <- c(0.40,0.25,0.25,
+             0.10,0.00,0.50,
+             0.10,0.50,0.00,
+             0.40,0.25,0.25)
+  start <- c(1.0,0.0,0.0,0.0)
+  markov <- initHMM(States = c("lagging","exponential","deceleration","stationary"),
+                    Symbols = c("0","-1","1"),
+                    startProbs = start, transProbs = matrix(trans,4,byrow = T),
+                    emissionProbs = matrix(emiss,4,byrow = T))
+  obs <- sign(df$acceleration)
+  obs[which(abs(df$acceleration) < acc.cutoff)] <- 0
+  nas <- which(is.na(obs) == T)
+  if(length(nas) > 0){
+    states <- viterbi(hmm = markov, observation = as.character(obs[-nas]))
+  }else{
+    states <- viterbi(hmm = markov, observation = as.character(obs))
+  }
+  growing <- which(states == "exponential")
+  flat <- which(states == "stationary")
+  states[flat[which(flat < min(growing))]] <- "lagging"
+  flat <- which(states == "stationary")
+  for(i in flat){
+    if(states[i-1] == "exponential"){
+      states[i] <- "exponential"
+    }
+  }
+  results <- rep(NA, times=length(obs))
+  if(length(nas) > 0){
+    results[-nas] <- states
+    for(i in nas){
+      results[i] <- results[i-1]
+    }
+  }else{
+    results <- states
+  }
+  return(results)
 }
