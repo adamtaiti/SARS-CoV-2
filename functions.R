@@ -11,6 +11,7 @@ connection <- function(){
       
       realdata$DateRep<-as.Date(realdata$DateRep, format = "%d/%m/%Y")
       realdata<-realdata[order(realdata$DateRep),]
+      realdata$`Countries and territories`<-gsub(pattern = "_", replacement = " ", x = realdata$`Countries and territories`)
       
       return(realdata)
     },
@@ -70,27 +71,165 @@ ncountries <- function(data){
 }
 
 plot_simulated_growth_curve <- function(exdata){
-  ggplot(data = exdata, mapping = aes(x = day, y = cases))+
+  exdata$phase <- hmm(exdata,5)
+  
+  p<-ggplot(data = exdata, mapping = aes(x = day, y = cases))+
     geom_line()+
     xlab(label = "Days recorded")+
     ylab(label = "Thousand cases")+
-    ggtitle(label = "Growth curve")
+    ggtitle(label = "Growth curve")+
+    theme(legend.position = "none")
+  
+  # Map phases
+  runs <- rle(as.vector(exdata$phase))
+  phase <- cumsum(runs$lengths)
+  names(phase) <- runs$values
+  
+  params<-ggplot_build(p)
+  yrange<-params$layout$panel_params[[1]]$y.range
+  
+  xmin<-NULL; xmax<-NULL; ymin<-NULL; ymax<-NULL; ph<-NULL;
+  
+  for(i in 1:length(phase)){
+    if(i == 1){
+      xmin<-c(xmin,(min(exdata$day)))
+      xmax<-c(xmax,(exdata$day[as.numeric(phase[i])]))
+      ymin<-c(ymin,yrange[1])
+      ymax<-c(ymax,yrange[2])
+      ph<-c(ph,names(phase[i]))
+    }else if(i < length(phase)){
+      xmin<-c(xmin,(exdata$day[as.numeric(phase[i-1])]))
+      xmax<-c(xmax,(exdata$day[as.numeric(phase[i])]))
+      ymin<-c(ymin,yrange[1])
+      ymax<-c(ymax,yrange[2])
+      ph<-c(ph,names(phase[i]))
+    }else{
+      xmin<-c(xmin,(exdata$day[as.numeric(phase[i-1])]))
+      xmax<-c(xmax,(max(exdata$day)))
+      ymin<-c(ymin,yrange[1])
+      ymax<-c(ymax,yrange[2])
+      ph<-c(ph,names(phase[i]))
+    }
+  }
+  
+  params<-data.frame(xmin,xmax,ymin,ymax,ph)
+  
+  p<-p+geom_rect(
+    data = params,
+    mapping=aes(x = NULL, y = NULL, xmin = xmin, xmax = xmax, fill = ph),
+    ymin = ymin, ymax = ymax, inherit.aes = F, colour = "black", alpha = 0.3)+
+    scale_fill_manual(
+      values = c("lagging"="#7ACC9B","exponential"="#FFB3B3","deceleration"="#F0FFB3","stationary"="#B3D1FF")
+    )
+  p
 }
 
 plot_simulated_growth_rate <- function(exdata){
-  ggplot(data = exdata, mapping = aes(x = day, y = growth))+
+  exdata$phase <- hmm(exdata,5)
+  
+  p<-ggplot(data = exdata, mapping = aes(x = day, y = growth))+
     geom_line()+
     xlab(label = "Days recorded")+
     ylab(label = "Thousand cases per day")+
-    ggtitle(label = "Growth rate")
+    ggtitle(label = "Growth rate")+
+    theme(legend.position = "none")
+  
+  # Map phases
+  runs <- rle(as.vector(exdata$phase))
+  phase <- cumsum(runs$lengths)
+  names(phase) <- runs$values
+  
+  params<-ggplot_build(p)
+  yrange<-params$layout$panel_params[[1]]$y.range
+  
+  xmin<-NULL; xmax<-NULL; ymin<-NULL; ymax<-NULL; ph<-NULL;
+  
+  for(i in 1:length(phase)){
+    if(i == 1){
+      xmin<-c(xmin,(min(exdata$day)))
+      xmax<-c(xmax,(exdata$day[as.numeric(phase[i])]))
+      ymin<-c(ymin,yrange[1])
+      ymax<-c(ymax,yrange[2])
+      ph<-c(ph,names(phase[i]))
+    }else if(i < length(phase)){
+      xmin<-c(xmin,(exdata$day[as.numeric(phase[i-1])]))
+      xmax<-c(xmax,(exdata$day[as.numeric(phase[i])]))
+      ymin<-c(ymin,yrange[1])
+      ymax<-c(ymax,yrange[2])
+      ph<-c(ph,names(phase[i]))
+    }else{
+      xmin<-c(xmin,(exdata$day[as.numeric(phase[i-1])]))
+      xmax<-c(xmax,(max(exdata$day)))
+      ymin<-c(ymin,yrange[1])
+      ymax<-c(ymax,yrange[2])
+      ph<-c(ph,names(phase[i]))
+    }
+  }
+  
+  params<-data.frame(xmin,xmax,ymin,ymax,ph)
+  
+  p<-p+geom_rect(
+    data = params,
+    mapping=aes(x = NULL, y = NULL, xmin = xmin, xmax = xmax, fill = ph),
+    ymin = ymin, ymax = ymax, inherit.aes = F, colour = "black", alpha = 0.3)+
+    scale_fill_manual(
+      values = c("lagging"="#7ACC9B","exponential"="#FFB3B3","deceleration"="#F0FFB3","stationary"="#B3D1FF")
+    )
+  p
 }
 
 plot_simulated_growth_acceleration <- function(exdata){
-  ggplot(data = exdata, mapping = aes(x = day, y = acceleration))+
+  exdata$phase <- hmm(exdata,5)
+  
+  p<-ggplot(data = exdata, mapping = aes(x = day, y = acceleration))+
     geom_line()+
     xlab(label = "Days recorded")+
     ylab(label = "Thousand cases per day²")+
-    ggtitle(label = "Growth accelaration")
+    ggtitle(label = "Growth accelaration")+
+    theme(legend.position = "none")
+  
+  # Map phases
+  runs <- rle(as.vector(exdata$phase))
+  phase <- cumsum(runs$lengths)
+  names(phase) <- runs$values
+  
+  params<-ggplot_build(p)
+  yrange<-params$layout$panel_params[[1]]$y.range
+  
+  xmin<-NULL; xmax<-NULL; ymin<-NULL; ymax<-NULL; ph<-NULL;
+  
+  for(i in 1:length(phase)){
+    if(i == 1){
+      xmin<-c(xmin,(min(exdata$day)))
+      xmax<-c(xmax,(exdata$day[as.numeric(phase[i])]))
+      ymin<-c(ymin,yrange[1])
+      ymax<-c(ymax,yrange[2])
+      ph<-c(ph,names(phase[i]))
+    }else if(i < length(phase)){
+      xmin<-c(xmin,(exdata$day[as.numeric(phase[i-1])]))
+      xmax<-c(xmax,(exdata$day[as.numeric(phase[i])]))
+      ymin<-c(ymin,yrange[1])
+      ymax<-c(ymax,yrange[2])
+      ph<-c(ph,names(phase[i]))
+    }else{
+      xmin<-c(xmin,(exdata$day[as.numeric(phase[i-1])]))
+      xmax<-c(xmax,(max(exdata$day)))
+      ymin<-c(ymin,yrange[1])
+      ymax<-c(ymax,yrange[2])
+      ph<-c(ph,names(phase[i]))
+    }
+  }
+  
+  params<-data.frame(xmin,xmax,ymin,ymax,ph)
+  
+  p<-p+geom_rect(
+    data = params,
+    mapping=aes(x = NULL, y = NULL, xmin = xmin, xmax = xmax, fill = ph),
+    ymin = ymin, ymax = ymax, inherit.aes = F, colour = "black", alpha = 0.3)+
+    scale_fill_manual(
+      values = c("lagging"="#7ACC9B","exponential"="#FFB3B3","deceleration"="#F0FFB3","stationary"="#B3D1FF")
+    )
+  p
 }
 
 worldwidecases <- function(realdata){
@@ -99,6 +238,7 @@ worldwidecases <- function(realdata){
   df<-cumsum(df)
   return(df)
 }
+
 worldwidedeaths <- function(realdata){
   df<-realdata[which(realdata$Deaths>=1),]
   df<-as.data.frame(tapply(df$Deaths, df$DateRep, sum))
@@ -227,6 +367,8 @@ getfile <- function(file){
       file.rename(from = inFile$datapath, to = paste(inFile$datapath, ext, sep="."))
       df <- read_excel(paste(inFile$datapath, ext, sep="."), 1)
       names(df) <- c("DateRep", "Cases")
+      df <- as.data.frame(df)
+      df$DateRep <- as.Date(df$DateRep)
       return(df)
     } else {
       shinyalert(title = "Error!", text = 'The file must have ".xlsx" or ".xls" extension!', type = "error")
@@ -244,9 +386,10 @@ plot_realdata_growth_curve <- function(df){
       group=1,
       text = paste(
         'Date: ', DateRep,
-        '<br>Fitted: ', round(fitted*1000, digits = 0),
-        '<br>Cumulative: ', c*1000,
-        '<br>New cases: ', Cases
+        '<br>Predicted prevalence: ', round(fitted*1000, digits = 0),
+        '<br>Observed prevalence: ', c*1000,
+        '<br>New cases: ', Cases,
+        '<br>New deaths: ', Deaths
       )
     )
   )+
@@ -299,7 +442,7 @@ plot_realdata_growth_curve <- function(df){
       mapping=aes(x = NULL, y = NULL, xmin = xmin, xmax = xmax, fill = ph),
       ymin = ymin, ymax = ymax, inherit.aes = F, colour = "black", alpha = 0.3)+
     scale_fill_manual(
-      values = c("lagging"="#7ACC9B","exponential"="#B3D1FF","deceleration"="#F0FFB3","stationary"="#FFB3B3")
+      values = c("lagging"="#7ACC9B","exponential"="#FFB3B3","deceleration"="#F0FFB3","stationary"="#B3D1FF")
     )+
     geom_line(mapping = aes(x = DateRep, y = fitted), inherit.aes = T)+
     geom_point(mapping = aes(x = DateRep, y = c),show.legend = F,inherit.aes = T)
@@ -313,9 +456,10 @@ plot_realdata_growth_rate <- function(df){
       x = DateRep, y = growth, group = 1,
       text = paste(
         'Date: ', DateRep,
-        '<br>Fitted: ', round(fitted*1000, digits = 0),
-        '<br>Cumulative: ', c*1000,
-        '<br>New cases: ', Cases
+        '<br>Predicted prevalence: ', round(fitted*1000, digits = 0),
+        '<br>Observed prevalence: ', c*1000,
+        '<br>New cases: ', Cases,
+        '<br>New deaths: ', Deaths
       )
     )
   )+
@@ -369,7 +513,7 @@ plot_realdata_growth_rate <- function(df){
       mapping=aes(x = NULL, y = NULL, xmin = xmin, xmax = xmax, fill = ph),
       ymin = ymin, ymax = ymax, inherit.aes = F, colour = "black", alpha = 0.3)+
     scale_fill_manual(
-      values = c("lagging"="#7ACC9B","exponential"="#B3D1FF","deceleration"="#F0FFB3","stationary"="#FFB3B3")
+      values = c("lagging"="#7ACC9B","exponential"="#FFB3B3","deceleration"="#F0FFB3","stationary"="#B3D1FF")
     )+
     geom_line()
   
@@ -385,9 +529,10 @@ plot_realdata_growth_acceleration <- function(df){
       x = DateRep, y = acceleration,group=1,
       text = paste(
         'Date: ', DateRep,
-        '<br>Fitted: ', round(fitted*1000, digits = 0),
-        '<br>Cumulative: ', c*1000,
-        '<br>New cases: ', Cases
+        '<br>Predicted prevalence: ', round(fitted*1000, digits = 0),
+        '<br>Observed prevalence: ', c*1000,
+        '<br>New cases: ', Cases,
+        '<br>New deaths: ', Deaths
       )
     )
   )+
@@ -442,14 +587,14 @@ plot_realdata_growth_acceleration <- function(df){
       mapping=aes(x = NULL, y = NULL, xmin = xmin, xmax = xmax, fill = ph),
       ymin = ymin, ymax = ymax, inherit.aes = F, colour = "black", alpha = 0.3)+
     scale_fill_manual(
-      values = c("lagging"="#7ACC9B","exponential"="#B3D1FF","deceleration"="#F0FFB3","stationary"="#FFB3B3")
+      values = c("lagging"="#7ACC9B","exponential"="#FFB3B3","deceleration"="#F0FFB3","stationary"="#B3D1FF")
     )+
     geom_line()
   
   ggplotly(p, tooltip="text")
 }
 
-plot_localdata_growth_curve <- function(df,smooth){
+plot_localdata_growth_curve <- function(df,smooth,hmmfactor){
   
   if(nrow(df)>smooth+1){
     df <- df[order(df$DateRep),]
@@ -488,9 +633,12 @@ plot_localdata_growth_curve <- function(df,smooth){
     
     df <- rbind(df, newrow)
     
+    df$phase<-hmm(df,hmmfactor)
+    
     p <- ggplot(
       data = df[-nrow(df),],
       mapping = aes(
+        x = DateRep, y = c,
         group=1,
         text = paste(
           'Date: ', DateRep,
@@ -500,11 +648,60 @@ plot_localdata_growth_curve <- function(df,smooth){
         )
       )
     )+
-      geom_line(mapping = aes(x = DateRep, y = fitted), inherit.aes = T)+
-      geom_point(mapping = aes(x = DateRep, y = c),show.legend = F,inherit.aes = T)+
       xlab(label = "")+
       ylab(label = "Thousand cases")+
       ggtitle(label = "Growth curve")
+    
+    # Map phases
+    runs <- rle(as.vector(df$phase))
+    phase <- cumsum(runs$lengths)
+    names(phase) <- runs$values
+    
+    params<-ggplot_build(p)
+    yrange<-params$layout$panel_params[[1]]$y.range
+    
+    xmin<-NULL; xmax<-NULL; ymin<-NULL; ymax<-NULL; ph<-NULL;
+    
+    for(i in 1:length(phase)){
+      if(i == 1){
+        xmin<-c(xmin,as.character(min(df$DateRep)))
+        xmax<-c(xmax,as.character(df$DateRep[as.numeric(phase[i])]))
+        ymin<-c(ymin,yrange[1])
+        ymax<-c(ymax,yrange[2])
+        ph<-c(ph,names(phase[i]))
+      }else if(i < length(phase)){
+        xmin<-c(xmin,as.character(df$DateRep[as.numeric(phase[i-1])]))
+        xmax<-c(xmax,as.character(df$DateRep[as.numeric(phase[i])]))
+        ymin<-c(ymin,yrange[1])
+        ymax<-c(ymax,yrange[2])
+        ph<-c(ph,names(phase[i]))
+      }else{
+        xmin<-c(xmin,as.character(df$DateRep[as.numeric(phase[i-1])]))
+        xmax<-c(xmax,as.character(max(df$DateRep)))
+        ymin<-c(ymin,yrange[1])
+        ymax<-c(ymax,yrange[2])
+        ph<-c(ph,names(phase[i]))
+      }
+    }
+    
+    params<-data.frame(xmin,xmax,ymin,ymax,ph)
+    
+    xmin<-as.Date(xmin)
+    xmax<-as.Date(xmax)
+    params$xmin<-as.Date(params$xmin)
+    params$xmax<-as.Date(params$xmax)
+    
+    p <- p+theme(legend.position = "none")+
+      geom_rect(
+        data = params,
+        mapping=aes(x = NULL, y = NULL, xmin = xmin, xmax = xmax, fill = ph),
+        ymin = ymin, ymax = ymax, inherit.aes = F, colour = "black", alpha = 0.3)+
+      scale_fill_manual(
+        values = c("lagging"="#7ACC9B","exponential"="#FFB3B3","deceleration"="#F0FFB3","stationary"="#B3D1FF")
+      )+
+      geom_line(mapping = aes(x = DateRep, y = fitted), inherit.aes = T)+
+      geom_point(mapping = aes(x = DateRep, y = c),show.legend = F,inherit.aes = T)
+    
     ggplotly(p, tooltip="text")
     
   } else{
@@ -512,7 +709,7 @@ plot_localdata_growth_curve <- function(df,smooth){
   }
 }
 
-plot_localdata_growth_rate <- function(df,smooth){
+plot_localdata_growth_rate <- function(df,smooth,hmmfactor){
   if(nrow(df)>smooth+1){
     df <- df[order(df$DateRep),]
     dif <- cumsum(as.vector(diff(df$DateRep)))
@@ -549,6 +746,8 @@ plot_localdata_growth_rate <- function(df,smooth){
     newrow$fitted <- round(newrow$fitted * 1000, digits = 0)
     
     df <- rbind(df, newrow)
+    
+    df$phase<-hmm(df,hmmfactor)
     
     p<-ggplot(
       data = df[-nrow(df),],
@@ -562,11 +761,60 @@ plot_localdata_growth_rate <- function(df,smooth){
         )
       )
     )+
-      geom_line()+
       xlab(label = "")+
       ylab(label = "Thousand cases per day")+
       xlim(min(df$DateRep),max(df$DateRep))+
       ggtitle(label = "Growth rate")
+    
+    # Map phases
+    runs <- rle(as.vector(df$phase))
+    phase <- cumsum(runs$lengths)
+    names(phase) <- runs$values
+    
+    params<-ggplot_build(p)
+    yrange<-params$layout$panel_params[[1]]$y.range
+    
+    xmin<-NULL; xmax<-NULL; ymin<-NULL; ymax<-NULL; ph<-NULL;
+    
+    for(i in 1:length(phase)){
+      if(i == 1){
+        xmin<-c(xmin,as.character(min(df$DateRep)))
+        xmax<-c(xmax,as.character(df$DateRep[as.numeric(phase[i])]))
+        ymin<-c(ymin,yrange[1])
+        ymax<-c(ymax,yrange[2])
+        ph<-c(ph,names(phase[i]))
+      }else if(i < length(phase)){
+        xmin<-c(xmin,as.character(df$DateRep[as.numeric(phase[i-1])]))
+        xmax<-c(xmax,as.character(df$DateRep[as.numeric(phase[i])]))
+        ymin<-c(ymin,yrange[1])
+        ymax<-c(ymax,yrange[2])
+        ph<-c(ph,names(phase[i]))
+      }else{
+        xmin<-c(xmin,as.character(df$DateRep[as.numeric(phase[i-1])]))
+        xmax<-c(xmax,as.character(max(df$DateRep)))
+        ymin<-c(ymin,yrange[1])
+        ymax<-c(ymax,yrange[2])
+        ph<-c(ph,names(phase[i]))
+      }
+    }
+    
+    params<-data.frame(xmin,xmax,ymin,ymax,ph)
+    
+    xmin<-as.Date(xmin)
+    xmax<-as.Date(xmax)
+    params$xmin<-as.Date(params$xmin)
+    params$xmax<-as.Date(params$xmax)
+    
+    p <- p+theme(legend.position = "none")+
+      geom_rect(
+        data = params,
+        mapping=aes(x = NULL, y = NULL, xmin = xmin, xmax = xmax, fill = ph),
+        ymin = ymin, ymax = ymax, inherit.aes = F, colour = "black", alpha = 0.3)+
+      scale_fill_manual(
+        values = c("lagging"="#7ACC9B","exponential"="#FFB3B3","deceleration"="#F0FFB3","stationary"="#B3D1FF")
+      )+
+      geom_line()
+    
     ggplotly(p, tooltip="text")
     
   } else{
@@ -574,7 +822,7 @@ plot_localdata_growth_rate <- function(df,smooth){
   }
 }
 
-plot_localdata_growth_acceleration <- function(df,smooth){
+plot_localdata_growth_acceleration <- function(df,smooth,hmmfactor){
   if(nrow(df)>smooth+1){
     df <- df[order(df$DateRep),]
     dif <- cumsum(as.vector(diff(df$DateRep)))
@@ -626,12 +874,61 @@ plot_localdata_growth_acceleration <- function(df,smooth){
         )
       )
     )+
-      geom_line()+
       ylim(-y,y)+
       xlim(min(df$DateRep),max(df$DateRep))+
       xlab(label = "")+
       ylab(label = "Thousand cases per day²")+
       ggtitle(label = "Growth accelaration")
+    
+    # Map phases
+    runs <- rle(as.vector(df$phase))
+    phase <- cumsum(runs$lengths)
+    names(phase) <- runs$values
+    
+    params<-ggplot_build(p)
+    yrange<-params$layout$panel_params[[1]]$y.range
+    
+    xmin<-NULL; xmax<-NULL; ymin<-NULL; ymax<-NULL; ph<-NULL;
+    
+    for(i in 1:length(phase)){
+      if(i == 1){
+        xmin<-c(xmin,as.character(min(df$DateRep)))
+        xmax<-c(xmax,as.character(df$DateRep[as.numeric(phase[i])]))
+        ymin<-c(ymin,yrange[1])
+        ymax<-c(ymax,yrange[2])
+        ph<-c(ph,names(phase[i]))
+      }else if(i < length(phase)){
+        xmin<-c(xmin,as.character(df$DateRep[as.numeric(phase[i-1])]))
+        xmax<-c(xmax,as.character(df$DateRep[as.numeric(phase[i])]))
+        ymin<-c(ymin,yrange[1])
+        ymax<-c(ymax,yrange[2])
+        ph<-c(ph,names(phase[i]))
+      }else{
+        xmin<-c(xmin,as.character(df$DateRep[as.numeric(phase[i-1])]))
+        xmax<-c(xmax,as.character(max(df$DateRep)))
+        ymin<-c(ymin,yrange[1])
+        ymax<-c(ymax,yrange[2])
+        ph<-c(ph,names(phase[i]))
+      }
+    }
+    
+    params<-data.frame(xmin,xmax,ymin,ymax,ph)
+    
+    xmin<-as.Date(xmin)
+    xmax<-as.Date(xmax)
+    params$xmin<-as.Date(params$xmin)
+    params$xmax<-as.Date(params$xmax)
+    
+    p <- p+theme(legend.position = "none")+
+      geom_rect(
+        data = params,
+        mapping=aes(x = NULL, y = NULL, xmin = xmin, xmax = xmax, fill = ph),
+        ymin = ymin, ymax = ymax, inherit.aes = F, colour = "black", alpha = 0.3)+
+      scale_fill_manual(
+        values = c("lagging"="#7ACC9B","exponential"="#FFB3B3","deceleration"="#F0FFB3","stationary"="#B3D1FF")
+      )+
+      geom_line()
+    
     ggplotly(p, tooltip="text")
     
   } else{

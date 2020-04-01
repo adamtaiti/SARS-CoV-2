@@ -94,9 +94,9 @@ ui <- dashboardPagePlus(
               width = 6,
               box(title = "Theoretical model",width = "100%",
                   fluidPage(
-                    fluidRow(plotOutput(outputId = "exdata_growth_curve")),
-                    fluidRow(plotOutput(outputId = "exdata_growth_rate")),
-                    fluidRow(plotOutput(outputId = "exdata_growth_acceleration"))
+                    fluidRow(plotlyOutput(outputId = "exdata_growth_curve")),
+                    fluidRow(plotlyOutput(outputId = "exdata_growth_rate")),
+                    fluidRow(plotlyOutput(outputId = "exdata_growth_acceleration"))
                   )
               )
             )
@@ -121,11 +121,54 @@ ui <- dashboardPagePlus(
               width = 6,
               box(title = "Theoretical model",width = "100%",
                   fluidPage(
-                    fluidRow(plotOutput(outputId = "lexdata_growth_curve")),
-                    fluidRow(plotOutput(outputId = "lexdata_growth_rate")),
-                    fluidRow(plotOutput(outputId = "lexdata_growth_acceleration"))
+                    fluidRow(plotlyOutput(outputId = "lexdata_growth_curve")),
+                    fluidRow(plotlyOutput(outputId = "lexdata_growth_rate")),
+                    fluidRow(plotlyOutput(outputId = "lexdata_growth_acceleration"))
                   )
               )
+            )
+          )
+        )
+      ),
+      tabItem(
+        tabName = "help",
+        fluidPage(
+          tags$div(
+            h1("Understanding the plots"),
+            br(),
+            h3("The behavior of the prevalence of COVID-19 over time is decomposed into three graphs (estimated via moving regression):"),
+            tags$ul(
+              tags$li(strong("Growth curve - total number of cases")),
+              p("In this graph, each point represents the cummulative number of cases in a given day. The fitted curve is approximated by moving regression and corresponds to a smoothed trend obtained from the points. The whole graph can be interpreted as the evolution of prevalence over time. Theoretical standard growth curves are typically sigmoid ('S'-shaped), but the dynamics of COVID-19 prevalence in practice may deviate substantially from that shape. In an analogy to a moving car, the growth curve could be interpreted as the travaled distance over time. For the car, we would measure growth in meters (m) or kilometers (km), whereas for prevalence growth is measured in total number of cases."),
+              tags$li(strong("Growth rate - new cases per day")),
+              p("This curve reveals the instanteneous rate of change in number of new cases over time. It is usually bell-shaped, with its peak corresponding to maximum growth. The growth rate is technically defined as the first order derivative of the growth curve, and in the moving car analogy is equivalent to speed. For the car, we would measure growth rate in meters per second (m/s) or kilometers per hour (km/h), while for prevalence we measure growth rate in cases per day (cases/day)."),
+              tags$li(strong("Growth acceleration - new cases per day per day")),
+              p("This graph shows how the growth rate changes over time, and it is technically the second order derivative of the growth curve. It consists of combinations of two bell-shaped curves: the first one with a peak and the second with a valley. The peak indicates the maximum acceleration and is the point where acceleration starts descending towards zero. The moment when acceleration is exactly zero coincides with the inflection of growth curve, which marks the beginning of growth deceleration (i.e., negative acceleration). The latter corresponds to the entire concave section of the curve, but the very bottom of the valley indicates that the prevalence is moving towards stagnation. Back to the car, we would measure acceleration in meters per second squared (m/s²) or kilometers per hour squared (km/h²), while for prevalence we express it in cases per day squared (cases/day²). When acceleration is rising, it is analagous to pressing the accelerator pedal. When it is declining, it is equivalent to releasing the accelerator pedal. When acceleration is negative, then it is similar to hitting the brakes.")
+            ),
+            br(),
+            h3("The dynamics of the COVID-19 pandemic is complex and may vary greatly across regions. However, the pandemic evolves by combination of four distinguishable stages (predicted by Hidden Markov Model):"),
+            tags$ul(
+              tags$li(strong("The lagging stage (Green - predicted via Hidden Markov Model)")),
+              p("This corresponds to the beginning of the outbreak or disease importation, where the number of cases are low and increase only marginally every day."),
+              tags$li(strong("The exponential stage (Red - predicted via Hidden Markov Model)")),
+              p("Growth is accelerated and the number of new cases increase rapidly every day."),
+              tags$li(strong("The deceleration stage (Yellow - predicted via Hidden Markov Model)")),
+              p("This is a hopeful phase, where the number of new cases reduces day-by-day."),
+              tags$li(strong("The stationary stage (Blue - predicted via Hidden Markov Model)")),
+              p("Characterized by stagnation of the prevalence with sporadic new cases occurring each day. This is the stage everyone wants to reach.")
+            ),
+            hr(),
+            h3("Below we exemplify possible scenarios for the evolution of a COVID-19 epidemic within a country or territory."),
+            tags$ul(
+              tags$li(strong("lagging -> exponential -> deceleration -> stationary")),
+              p("This is the expected scenario for most countries. The disease is introduced, grows exponentially, decelerates thanks to effective control measures and then become stationary."),
+              tags$li(strong("lagging -> exponential -> deceleration -> stationary -> exponential -> deceleration -> stationary")),
+              p("Reaching a stationary growth does not guarantee indefinite control. The disease can grow again, for example by re-introduction of the disease via importation."),
+              tags$li(strong("lagging -> N*(exponential -> deceleration) -> stationary")),
+              p("A country that is decelerating could accelerate again, generating multiple cycles of exponential and deceleration stages. This could result from relaxing control measures when deceleration is perceived.")
+            ),
+            tags$ul(
+              tags$li(p("Apart from these three likely scenarios, we anticipate that more complex permutations of these stages may take place in the evolution of some countries."))
             )
           )
         )
@@ -137,24 +180,24 @@ ui <- dashboardPagePlus(
 server <- function(input, output) {
   realdata<-connection()
   source(file.path("./", "sidebarmenu.R"),  local = TRUE)$value
-  output$exdata_growth_curve<-renderPlot({
-    plot_simulated_growth_curve(exdata)
+  output$exdata_growth_curve<-renderPlotly({
+    ggplotly(plot_simulated_growth_curve(exdata), tooltip="text")
   })
-  output$exdata_growth_rate<-renderPlot({
-    plot_simulated_growth_rate(exdata)
+  output$exdata_growth_rate<-renderPlotly({
+    ggplotly(plot_simulated_growth_rate(exdata), tooltip="text")
   })
-  output$exdata_growth_acceleration<-renderPlot({
-    plot_simulated_growth_acceleration(exdata)
+  output$exdata_growth_acceleration<-renderPlotly({
+    ggplotly(plot_simulated_growth_acceleration(exdata), tooltip="text")
   })
   
-  output$lexdata_growth_curve<-renderPlot({
-    plot_simulated_growth_curve(exdata)
+  output$lexdata_growth_curve<-renderPlotly({
+    ggplotly(plot_simulated_growth_curve(exdata), tooltip="text")
   })
-  output$lexdata_growth_rate<-renderPlot({
-    plot_simulated_growth_rate(exdata)
+  output$lexdata_growth_rate<-renderPlotly({
+    ggplotly(plot_simulated_growth_rate(exdata), tooltip="text")
   })
-  output$lexdata_growth_acceleration<-renderPlot({
-    plot_simulated_growth_acceleration(exdata)
+  output$lexdata_growth_acceleration<-renderPlotly({
+    ggplotly(plot_simulated_growth_acceleration(exdata), tooltip="text")
   })
   
   if(!is.null(realdata)){
@@ -197,26 +240,21 @@ server <- function(input, output) {
     
     output$prev<-renderText({
       as.numeric(real()[nrow(real()),"fitted"])
-      #as.numeric(dataframe$real[nrow(dataframe$real),"fitted"])
     })
     output$newc<-renderText({
       as.numeric(real()[nrow(real()),"c"])
-      #as.numeric(dataframe$real[nrow(realdataframe$real),"c"])
     })
     
     output$realdata_growth_curve<-renderPlotly({
       plot_realdata_growth_curve(df = real())
-      #plot_realdata_growth_curve(df = dataframe$real)
     })
     
     output$realdata_growth_rate<-renderPlotly({
       plot_realdata_growth_rate(df = real())
-      #plot_realdata_growth_rate(df = dataframe$real)
     })
     
     output$realdata_growth_acceleration<-renderPlotly({
       plot_realdata_growth_acceleration(df = real())
-      #plot_realdata_growth_acceleration(df = dataframe$real)
     })
     
     # Local data
@@ -225,14 +263,13 @@ server <- function(input, output) {
       dflocal<-getfile(file = input$loadfile)
       
       output$localdata_growth_curve<-renderPlotly({
-        plot_localdata_growth_curve(df = dflocal, smooth = input$smoothrangel)
+        plot_localdata_growth_curve(df = dflocal, smooth = input$smoothrangel, hmmfactor = input$hmmrangel)
       })
       output$localdata_growth_rate<-renderPlotly({
-        plot_localdata_growth_rate(df = dflocal, smooth = input$smoothrangel)
+        plot_localdata_growth_rate(df = dflocal, smooth = input$smoothrangel, hmmfactor = input$hmmrangel)
       })
-      
       output$localdata_growth_acceleration<-renderPlotly({
-        plot_localdata_growth_acceleration(df = dflocal, smooth = input$smoothrangel)
+        plot_localdata_growth_acceleration(df = dflocal, smooth = input$smoothrangel, hmmfactor = input$hmmrangel)
       })
     })
   }
