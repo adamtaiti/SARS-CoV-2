@@ -444,7 +444,7 @@ plot_realdata_growth_curve <- function(df){
       mapping=aes(x = NULL, y = NULL, xmin = xmin, xmax = xmax, fill = ph),
       ymin = ymin, ymax = ymax, inherit.aes = F, colour = "black", alpha = 0.3)+
     scale_fill_manual(
-      values = c("lagging"="#7ACC9B","exponential"="#FFB3B3","deceleration"="#F0FFB3","stationary"="#B3D1FF")
+      values = c("lagging"="#7ACC9B","exponential"="#FFB3B3","deceleration"="#F0FFB3","stationary"="#B3D1FF","linear"="#C2B3FF")
     )+
     geom_line(mapping = aes(x = DateRep, y = fitted), inherit.aes = T)+
     geom_point(mapping = aes(x = DateRep, y = c),show.legend = F,inherit.aes = T)
@@ -515,7 +515,7 @@ plot_realdata_growth_rate <- function(df){
       mapping=aes(x = NULL, y = NULL, xmin = xmin, xmax = xmax, fill = ph),
       ymin = ymin, ymax = ymax, inherit.aes = F, colour = "black", alpha = 0.3)+
     scale_fill_manual(
-      values = c("lagging"="#7ACC9B","exponential"="#FFB3B3","deceleration"="#F0FFB3","stationary"="#B3D1FF")
+      values = c("lagging"="#7ACC9B","exponential"="#FFB3B3","deceleration"="#F0FFB3","stationary"="#B3D1FF","linear"="#C2B3FF")
     )+
     geom_line()
   
@@ -589,7 +589,7 @@ plot_realdata_growth_acceleration <- function(df){
       mapping=aes(x = NULL, y = NULL, xmin = xmin, xmax = xmax, fill = ph),
       ymin = ymin, ymax = ymax, inherit.aes = F, colour = "black", alpha = 0.3)+
     scale_fill_manual(
-      values = c("lagging"="#7ACC9B","exponential"="#FFB3B3","deceleration"="#F0FFB3","stationary"="#B3D1FF")
+      values = c("lagging"="#7ACC9B","exponential"="#FFB3B3","deceleration"="#F0FFB3","stationary"="#B3D1FF","linear"="#C2B3FF")
     )+
     geom_line()
   
@@ -699,7 +699,7 @@ plot_localdata_growth_curve <- function(df,smooth,hmmfactor){
         mapping=aes(x = NULL, y = NULL, xmin = xmin, xmax = xmax, fill = ph),
         ymin = ymin, ymax = ymax, inherit.aes = F, colour = "black", alpha = 0.3)+
       scale_fill_manual(
-        values = c("lagging"="#7ACC9B","exponential"="#FFB3B3","deceleration"="#F0FFB3","stationary"="#B3D1FF")
+        values = c("lagging"="#7ACC9B","exponential"="#FFB3B3","deceleration"="#F0FFB3","stationary"="#B3D1FF","linear"="#C2B3FF")
       )+
       geom_line(mapping = aes(x = DateRep, y = fitted), inherit.aes = T)+
       geom_point(mapping = aes(x = DateRep, y = c),show.legend = F,inherit.aes = T)
@@ -813,7 +813,7 @@ plot_localdata_growth_rate <- function(df,smooth,hmmfactor){
         mapping=aes(x = NULL, y = NULL, xmin = xmin, xmax = xmax, fill = ph),
         ymin = ymin, ymax = ymax, inherit.aes = F, colour = "black", alpha = 0.3)+
       scale_fill_manual(
-        values = c("lagging"="#7ACC9B","exponential"="#FFB3B3","deceleration"="#F0FFB3","stationary"="#B3D1FF")
+        values = c("lagging"="#7ACC9B","exponential"="#FFB3B3","deceleration"="#F0FFB3","stationary"="#B3D1FF","linear"="#C2B3FF")
       )+
       geom_line()
     
@@ -863,6 +863,8 @@ plot_localdata_growth_acceleration <- function(df,smooth,hmmfactor){
     df <- rbind(df, newrow)
     y <-  c(abs(min(df$acceleration)), abs(max(df$acceleration)))
     y <- max(y)
+    
+    df$phase<-hmm(df,hmmfactor)
     
     p<-ggplot(
       data = df, 
@@ -927,7 +929,7 @@ plot_localdata_growth_acceleration <- function(df,smooth,hmmfactor){
         mapping=aes(x = NULL, y = NULL, xmin = xmin, xmax = xmax, fill = ph),
         ymin = ymin, ymax = ymax, inherit.aes = F, colour = "black", alpha = 0.3)+
       scale_fill_manual(
-        values = c("lagging"="#7ACC9B","exponential"="#FFB3B3","deceleration"="#F0FFB3","stationary"="#B3D1FF")
+        values = c("lagging"="#7ACC9B","exponential"="#FFB3B3","deceleration"="#F0FFB3","stationary"="#B3D1FF","linear"="#C2B3FF")
       )+
       geom_line()
     
@@ -939,8 +941,7 @@ plot_localdata_growth_acceleration <- function(df,smooth,hmmfactor){
 }
 
 # Classification function
-hmm <- function(df, acc.cutoff = 5){
-  #require(HMM)
+hmm <- function(df, acc.cutoff=5){
   df$acceleration <- df$acceleration*1000
   trans <- c(0.8,0.2,0.0,0.0,
              0.0,0.8,0.2,0.0,
@@ -965,8 +966,10 @@ hmm <- function(df, acc.cutoff = 5){
   }
   growing <- which(states == "exponential")
   flat <- which(states == "stationary")
-  states[flat[which(flat < min(growing))]] <- "lagging"
-  flat <- which(states == "stationary")
+  if(length(growing) > 0){
+    states[flat[which(flat < min(growing))]] <- "lagging"
+    flat <- which(states == "stationary")
+  }
   for(i in flat){
     if(states[i-1] == "exponential"){
       states[i] <- "exponential"
@@ -980,6 +983,20 @@ hmm <- function(df, acc.cutoff = 5){
     }
   }else{
     results <- states
+  }
+  runs <- rle(results)
+  runs$pos <- cumsum(runs$lengths)
+  flat <- which(runs$values == "stationary")
+  lag <- which(runs$values == "lagging")
+  if(length(flat) > 0){
+    growth.cutoff <- max(df$growth[1:runs$pos[lag]])
+    for(j in 1:length(flat)){
+      g <- df$growth[runs$pos[flat[j]-1]:runs$pos[flat[j]]]
+      dev <- median(g)
+      if(dev > growth.cutoff){
+        results[runs$pos[flat[j]-1]:runs$pos[flat[j]]] <- "linear"
+      }
+    }
   }
   return(results)
 }
