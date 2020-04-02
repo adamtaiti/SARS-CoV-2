@@ -3,13 +3,22 @@ if(!require("shinydashboard")) install.packages("shinydashboard");library(shinyd
 if(!require("shinydashboardPlus")) install.packages("shinydashboardPlus");library(shinydashboardPlus, quietly = T, verbose = F, warn.conflicts = F)
 if(!require("shinyalert")) install.packages("shinyalert");library(shinyalert, quietly = T, verbose = F, warn.conflicts = F)
 if(!require("readxl")) install.packages("readxl");library(readxl, quietly = T, verbose = F, warn.conflicts = F)
+# To install the bellow package you must have the following library installed in you machine
+# ----------------------------------------------------------------
+# * deb: libssl-dev (Debian, Ubuntu, etc)
+# * rpm: openssl-devel (Fedora, CentOS, RHEL)
+# * csw: libssl_dev (Solaris)
+# * brew: openssl@1.1 (Mac OSX)
+# ----------------------------------------------------------------
+# * deb: libcurl4-openssl-dev (Debian, Ubuntu, etc)
+# * rpm: libcurl-devel (Fedora, CentOS, RHEL)
+# * csw: libcurl_dev (Solaris)
 if(!require("httr")) install.packages("httr");library(httr, quietly = T, verbose = F, warn.conflicts = F)
-if(!require("utils")) install.packages("utils");library(httr, quietly = T, verbose = F, warn.conflicts = F)
+#if(!require("utils")) install.packages("utils");library(utils, quietly = T, verbose = F, warn.conflicts = F)
 if(!require("plotly")) install.packages("plotly");library(plotly, quietly = T, verbose = F, warn.conflicts = F)
 if(!require("HMM")) install.packages("HMM");library(HMM, quietly = T, verbose = F, warn.conflicts = F)
 
 source("functions.R")
-#source("excurve.R")
 
 theme_set(theme_bw())
 realdata<-NULL
