@@ -290,7 +290,9 @@ getrealdata <- function(realdata, country, smooth, hmmclass){
   if(is.null(realdata)){
     return(NULL)
   } else{
-    df <- realdata[which(realdata$`Countries and territories` == country & realdata$Cases >= 1),]
+    df <- realdata[which(realdata$`Countries and territories` == country),]
+    dayone<-which(df$Cases!=0)[1]
+    df <- df[dayone:nrow(df),]
     if(nrow(df)>smooth+1){
       df <- df[order(df$DateRep),]
       dif <- cumsum(as.vector(diff(df$DateRep)))
