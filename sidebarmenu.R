@@ -22,7 +22,8 @@ output$menu<-renderMenu({
       sliderInput(
         inputId = "smoothrangel", label = "Smooth factor", min = 3, max = 7, step = 1, value = 5),
       sliderInput(
-        inputId = "hmmrangel", label = "HMM classifier", min = 1, max = 10, step = 1, value = 5)
+        inputId = "hmmrangel", label = "HMM classifier", min = 1, max = 10, step = 1, value = 5),
+      tags$div(id="filters")
     ),
     menuItem(text = "Help", icon = icon("question-circle"), tabName = "help", selected = F)
   )
