@@ -1,165 +1,86 @@
-if(!require("shiny")) library(shiny, quietly = T, verbose = F, warn.conflicts = F)
-if(!require("shinydashboard")) library(shinydashboard, quietly = T, verbose = F, warn.conflicts = F)
-if(!require("shinydashboardPlus")) library(shinydashboardPlus, quietly = T, verbose = F, warn.conflicts = F)
-if(!require("shinyalert")) library(shinyalert, quietly = T, verbose = F, warn.conflicts = F)
-if(!require("readxl")) library(readxl, quietly = T, verbose = F, warn.conflicts = F)
-# To install the bellow package you must have the following library installed in you machine
-# ----------------------------------------------------------------
-# * deb: libssl-dev (Debian, Ubuntu, etc)
-# * rpm: openssl-devel (Fedora, CentOS, RHEL)
-# * csw: libssl_dev (Solaris)
-# * brew: openssl@1.1 (Mac OSX)
-# ----------------------------------------------------------------
-# * deb: libcurl4-openssl-dev (Debian, Ubuntu, etc)
-# * rpm: libcurl-devel (Fedora, CentOS, RHEL)
-# * csw: libcurl_dev (Solaris)
-if(!require("httr")) library(httr, quietly = T, verbose = F, warn.conflicts = F)
-if(!require("plotly")) library(plotly, quietly = T, verbose = F, warn.conflicts = F)
-if(!require("HMM")) library(HMM, quietly = T, verbose = F, warn.conflicts = F)
+##### File: app.R
+##### License: GPLv3 or later
+##### Modification date: 05 Apr 2020
+##### Written by: Adam Taiti Harth Utsunomiya
+##### Contact: adamtaiti@gmail.com
+##### Description: main script to run the COVID-19 accelerometer app
 
+# Required libraries -----------------------------------------------------------------------------------------------------
+source("libraries.R")
 source("functions.R")
 
+# Pre-sets for the environment -------------------------------------------------------------------------------------------
+options(shiny.maxRequestSize = 5*(1024^2))
+translate <- read.table(file = "translations.txt", header = T, sep = ",", stringsAsFactors = F)
+langchoices<-unique(sort(translate$language))
+lang <- NULL
 theme_set(theme_bw())
-realdata<-NULL
-exdata<-simulation()
+realdata <- NULL
+exdata <- simulation()
 
-ui <- dashboardPagePlus(
-  useShinyalert(),enable_preloader = T,loading_duration = 0.5,
-  header = dashboardHeader(title = "COVID-19 ACCELEROMETER"),
-  sidebar = dashboardSidebar(sidebarMenuOutput(outputId = "menu")),
-  body = dashboardBody(
-    tabItems(
-      tabItem(tabName = "welcome", uiOutput(outputId = "welcomePage")),
-      tabItem(tabName = "worldwide", uiOutput(outputId = "worldwidePage")),
-      tabItem(tabName = "country", uiOutput(outputId = "countryPage")),
-      tabItem(tabName = "local", uiOutput(outputId = "localPage")),
-      tabItem(tabName = "help", uiOutput(outputId = "helpPage"))
-    )
-  )
+#Get code for user interface ---------------------------------------------------------------------------------------------
+header <- dashboardHeaderPlus(title = "COVID-19")
+sidebar <- dashboardSidebar(sidebarMenuOutput(outputId = "sidebarmenu"), collapsed = TRUE, disable = FALSE)
+body <- dashboardBody(shinyjs::useShinyjs(),uiOutput("dashboardbody"))
+ui <- dashboardPage(
+  useShinyalert(),
+  header = header,
+  sidebar = sidebar,
+  body = body,
+  skin = "blue"
 )
 
+#Get code for server reaction --------------------------------------------------------------------------------------------
 server <- function(input, output, session) {
-  realdata<-connection()
-  source(file.path("./", "sidebarmenu.R"),  local = TRUE)$value
-  source(file.path("./", "welcomePage.R"),  local = TRUE)$value
-  source(file.path("./", "worldwidePage.R"),  local = TRUE)$value
-  source(file.path("./", "countryPage.R"),  local = TRUE)$value
-  source(file.path("./", "localPage.R"),  local = TRUE)$value
-  source(file.path("./", "helpPage.R"),  local = TRUE)$value
   
-  output$exdata_growth_curve<-renderPlotly({
-    ggplotly(plot_simulated_growth_curve(exdata), tooltip="text")
-  })
-  output$exdata_growth_rate<-renderPlotly({
-    ggplotly(plot_simulated_growth_rate(exdata), tooltip="text")
-  })
-  output$exdata_growth_acceleration<-renderPlotly({
-    ggplotly(plot_simulated_growth_acceleration(exdata), tooltip="text")
+  observeEvent(input$language,{
+    updateActionButton(session = session, inputId = "enter",label = translate$text[which(translate$item == "enter" & translate$language == input$language)])
   })
   
-  output$lexdata_growth_curve<-renderPlotly({
-    ggplotly(plot_simulated_growth_curve(exdata), tooltip="text")
-  })
-  output$lexdata_growth_rate<-renderPlotly({
-    ggplotly(plot_simulated_growth_rate(exdata), tooltip="text")
-  })
-  output$lexdata_growth_acceleration<-renderPlotly({
-    ggplotly(plot_simulated_growth_acceleration(exdata), tooltip="text")
+  # Initialize page
+  output$dashboardbody <- renderUI({
+    source(file.path("./", "ui_language.R"),  local = TRUE)$value
   })
   
-  if(!is.null(realdata)){
+  # Clicking button
+  observeEvent(input$enter,{
     
-    output$worldwidecases<-renderPlotly({
-      df<-realdata[which(realdata$Cases>=1),]
-      df<-as.data.frame(tapply(df$Cases, df$DateRep, sum))
-      df<-cumsum(df)
-      names(df)<-c("n")
-      df$n<-df$n/1000
-      df$date <- as.Date(row.names(df))
-      df<-df[order(df$date),]
-      Pandemic<-as.Date("2020-03-11")
-      plot_worldwide(df, Pandemic)
+    # Define language
+    # langs <- c("en_us","pt_br","it")
+    # names(langs) <- c("English","Português","Italiano")
+    # lang <- langs[input$language]
+    lang <- input$language
+    
+    # Clear interface
+    shinyjs::removeClass(selector = "body", class = "sidebar-collapse")
+    
+    # Get real data
+    realdata <- connection()
+    real <- reactive(getrealdata(realdata=realdata,
+                                 country=input$selcountry,
+                                 smooth = input$smoothrange,
+                                 hmmclass = input$hmmrange))
+    
+    # Render sidebarmenu
+    output$sidebarmenu <- renderMenu({
+      source(file.path("./", "sidebarmenu.R"),  local = TRUE)$value
     })
     
-    output$worldwidedeaths<-renderPlotly({
-      df<-realdata[which(realdata$Deaths>=1),]
-      df<-as.data.frame(tapply(df$Deaths, df$DateRep, sum))
-      df<-cumsum(df)
-      names(df)<-c("n")
-      df$n<-df$n/1000
-      df$date <- as.Date(row.names(df))
-      Pandemic<-as.Date("2020-03-11")
-      plot_worldwide(df, Pandemic)
+    # Render dashboard body
+    output$dashboardbody <- renderUI({
+      source(file.path("./", "dashboardbody.R"),  local = TRUE)$value
     })
     
-    
-    # Real data plots
-    # -------------------------------------------------------------------------------------
-    
-    real<-reactive(getrealdata(realdata=realdata, country=input$selcountry, smooth = input$smoothrange, hmmclass = input$hmmrange))
-    
-    output$tcases<-renderText({
-      as.numeric(ncases(realdata))
-    })
-    
-    output$tdeaths<-renderText({
-      as.numeric(ndeaths(realdata))
-    })
-    
-    output$tcountries<-renderText({
-      as.numeric(ncountries(realdata))
-    })
-    
-    output$prev<-renderText({
-      as.numeric(real()[nrow(real()),"fitted"])
-    })
-    
-    output$newc<-renderText({
-      as.numeric(real()[nrow(real()),"c"])
-    })
-    
-    output$realdata_growth_curve<-renderPlotly({
-      plot_realdata_growth_curve(df = real())
-    })
-    
-    output$realdata_growth_rate<-renderPlotly({
-      plot_realdata_growth_rate(df = real())
-    })
-    
-    output$realdata_growth_acceleration<-renderPlotly({
-      plot_realdata_growth_acceleration(df = real())
-    })
-    
-  }
-  
-  # Local data
-  # -----------------------------------------------------------------------------------------------
-  observeEvent(input$loadfile,{
-    dflocal<-getfile(file = input$loadfile)
-    if(is.null(dflocal)){
-      NULL
-    } else{
-      if(ncol(dflocal)==2){
-        output$localdata_growth_curve<-renderPlotly({
-          plot_localdata_growth_curve(df = dflocal, smooth = input$smoothrangel, hmmfactor = input$hmmrangel)
-        })
-        output$localdata_growth_rate<-renderPlotly({
-          plot_localdata_growth_rate(df = dflocal, smooth = input$smoothrangel, hmmfactor = input$hmmrangel)
-        })
-        output$localdata_growth_acceleration<-renderPlotly({
-          plot_localdata_growth_acceleration(df = dflocal, smooth = input$smoothrangel, hmmfactor = input$hmmrangel)
-        })
-      } else{
-        insertUI(
-          selector = "#loadfile",where = "beforeEnd",session = session,
-          ui = selectInput(
-            inputId = "filterColumn",label = "Choose your grouping variable",choices = colnames(dflocal)[-(1:2)]
-          )
-        ) 
-      }
+    # Run backend
+    source(file.path("./", "server_worldwide.R"),  local = TRUE)$value
+    source(file.path("./", "server_local.R"),  local = TRUE)$value
+    if(!is.null(realdata)){
+      source(file.path("./", "server_country.R"),  local = TRUE)$value
     }
+    
   })
   
 }
 
-shinyApp(ui = ui, server = server)
+#Launch app
+shinyApp(ui, server)
