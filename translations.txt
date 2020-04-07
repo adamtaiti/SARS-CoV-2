@@ -102,10 +102,10 @@
 <p align='justify'>Here we provide example data sets for download and subsequent use in the 'Local' section of the application. These are official case reports from specific countries, territories or regions. For each set, you will find a link for downloading, the date of the last update, the name of the maintainer (volunteer individual which is kindly gathering the data and formatting them) and the source (the original maintainer of the data, which is typically a website linked to local governments).</p>
 <ul>
   <li><p align='justify'><strong>States and regions of Brazil</strong>.</p>
-  <p align='justify'><a href='https://theguarani.com.br/brazil_state_region.xls'>brazil_state_region.xls</a></p>
+  <p align='justify'><a href='https://github.com/adamtaiti/SARS-CoV-2/blob/master/example_data/brazil_state_region.xls?raw=true'>brazil_state_region.xls</a></p>
   <p>Last update: 2020-04-07. Maintainer: Yuri Tani Utsunomiya. Source: <a href='https://covid.saude.gov.br/'>DATASUS</a></p></li>
   <li><p align='justify'><strong>Regions and provinces of Italy</strong>.</p>
-  <p align='justify'><a href='https://theguarani.com.br/italy_region_province.xls'>italy_region_province.xls</a></p>
+  <p align='justify'><a href='https://github.com/adamtaiti/SARS-CoV-2/blob/master/example_data/italy_region_province.xls?raw=true'>italy_region_province.xls</a></p>
   <p>Last update: 2020-04-07. Maintainer: Marco Milanesi. Source: <a href='https://github.com/pcm-dpc/COVID-19'>DATAPROTEZIONECIVILE</a></p></li>
 </ul>"
 "sidebarhome","English","Home"
@@ -240,10 +240,10 @@
 <p align='justify'>Aqui fornecemos alguns conjuntos de dados de exemplo, os quais podem ser baixados e subsequentemente utilizados na aba 'Local' do aplicativo. Estes são dados oficiais de países, territórios ou regiões específicas. Para cada conjunto, você encontrará o link para download, a data da última atualização, o nome do mantenedor (indivíduo que gentilmente se voluntariou para reunir e formatar os dados) e a fonte (o mantenedor original dos dados, tipicamente ligado a sítios de governos locais).</p>
 <ul>
   <li><p align='justify'><strong>Estados e Regiões do Brasil</strong>.</p>
-  <p align='justify'><a href='https://github.com/adamtaiti/SARS-CoV-2/raw/master/brazil_state_region.xls'>brazil_state_region.xls</a></p>
+  <p align='justify'><a href='https://github.com/adamtaiti/SARS-CoV-2/blob/master/example_data/brazil_state_region.xls?raw=true'>brazil_state_region.xls</a></p>
   <p>Última atualização: 2020-04-06. Mantenedor: Yuri Tani Utsunomiya. Fonte: <a href='https://covid.saude.gov.br/'>DATASUS</a></p></li>
   <li><p align='justify'><strong>Regiões e territórios da Itália</strong>.</p>
-  <p align='justify'><a href='https://theguarani.com.br/italy_region_province.xls'>italy_region_province.xls</a></p>
+  <p align='justify'><a href='https://github.com/adamtaiti/SARS-CoV-2/blob/master/example_data/brazil_state_region.xls?raw=true'>italy_region_province.xls</a></p>
   <p>Última atualização: 2020-04-07. Mantenedor: Marco Milanesi. Fonte: <a href='https://github.com/pcm-dpc/COVID-19'>DATAPROTEZIONECIVILE</a></p></li>
 </ul>"
 "sidebarhome","Português","Home"
@@ -378,10 +378,10 @@
 <p align='justify'>Qui forniamo dati di esempio, che possono essere scaricati e utilizzati nella sezione 'Locale' dell'applicazione. Questi sono dati ufficiali di stati, territori o regioni specifiche. Per ogni set troverai il link per il download, la data dell'ultimo aggiornamento, il nome del responsabile per il mantenimento (persona che si è gentilmente offerta come volontario per raccogliere e formattare i dati) e la fonte (il fornitore originale dei dati, che in genere è un sito web collegato alle amministrazioni locali).</p>
 <ul>
   <li><p align='justify'><strong>Stati e regioni del Brasile</strong>.</p>
-  <p align='justify'><a href='https://theguarani.com.br/brazil_state_region.xls'>brazil_state_region.xls</a></p>
+  <p align='justify'><a href='https://github.com/adamtaiti/SARS-CoV-2/blob/master/example_data/brazil_state_region.xls?raw=true'>brazil_state_region.xls</a></p>
   <p>Ultima attualizzazione: 2020-04-07. Manutentore: Yuri Tani Utsunomiya. Fonte: <a href='https://covid.saude.gov.br/'>DATASUS</a></p></li>
   <li><p align='justify'><strong>Regioni e province italiane</strong>.</p>
-  <p align='justify'><a href='https://theguarani.com.br/italy_region_province.xls'>italy_region_province.xls</a></p>
+  <p align='justify'><a href='https://github.com/adamtaiti/SARS-CoV-2/blob/master/example_data/italy_region_province.xls?raw=true'>italy_region_province.xls</a></p>
   <p>Ultimo aggiornamento: 2020-04-07. Manutentore: Marco Milanesi. Fonte: <a href='https://github.com/pcm-dpc/COVID-19'>DATAPROTEZIONECIVILE</a></p></li>
 </ul>"
 "sidebarhome","Italiano","Home"
