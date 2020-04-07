@@ -243,7 +243,7 @@
   <p align='justify'><a href='https://github.com/adamtaiti/SARS-CoV-2/blob/master/example_data/brazil_state_region.xls?raw=true'>brazil_state_region.xls</a></p>
   <p>Última atualização: 2020-04-06. Mantenedor: Yuri Tani Utsunomiya. Fonte: <a href='https://covid.saude.gov.br/'>DATASUS</a></p></li>
   <li><p align='justify'><strong>Regiões e territórios da Itália</strong>.</p>
-  <p align='justify'><a href='https://github.com/adamtaiti/SARS-CoV-2/blob/master/example_data/brazil_state_region.xls?raw=true'>italy_region_province.xls</a></p>
+  <p align='justify'><a href='https://github.com/adamtaiti/SARS-CoV-2/blob/master/example_data/italy_region_province.xls?raw=true'>italy_region_province.xls</a></p>
   <p>Última atualização: 2020-04-07. Mantenedor: Marco Milanesi. Fonte: <a href='https://github.com/pcm-dpc/COVID-19'>DATAPROTEZIONECIVILE</a></p></li>
 </ul>"
 "sidebarhome","Português","Home"
