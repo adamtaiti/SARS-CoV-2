@@ -103,10 +103,10 @@
 <ul>
   <li><p align='justify'><strong>States and regions of Brazil</strong>.</p>
   <p align='justify'><a href='https://github.com/adamtaiti/SARS-CoV-2/blob/master/example_data/brazil_state_region.xls?raw=true'>brazil_state_region.xls</a></p>
-  <p>Last update: 2020-04-07. Maintainer: Yuri Tani Utsunomiya. Source: <a href='https://covid.saude.gov.br/'>DATASUS</a></p></li>
+  <p>Last update: 2020-04-08. Maintainer: Yuri Tani Utsunomiya. Source: <a href='https://covid.saude.gov.br/'>DATASUS</a></p></li>
   <li><p align='justify'><strong>Regions and provinces of Italy</strong>.</p>
   <p align='justify'><a href='https://github.com/adamtaiti/SARS-CoV-2/blob/master/example_data/italy_region_province.xls?raw=true'>italy_region_province.xls</a></p>
-  <p>Last update: 2020-04-07. Maintainer: Marco Milanesi. Source: <a href='https://github.com/pcm-dpc/COVID-19'>DATAPROTEZIONECIVILE</a></p></li>
+  <p>Last update: 2020-04-07. Maintainer: Marco Milanesi. Source: <a href='https://github.com/pcm-dpc/COVID-19'>Dipartimento della Protezione Civile</a></p></li>
 </ul>"
 "sidebarhome","English","Home"
 "sidebarworldwide","English","Worldwide"
@@ -241,10 +241,10 @@
 <ul>
   <li><p align='justify'><strong>Estados e Regiões do Brasil</strong>.</p>
   <p align='justify'><a href='https://github.com/adamtaiti/SARS-CoV-2/blob/master/example_data/brazil_state_region.xls?raw=true'>brazil_state_region.xls</a></p>
-  <p>Última atualização: 2020-04-06. Mantenedor: Yuri Tani Utsunomiya. Fonte: <a href='https://covid.saude.gov.br/'>DATASUS</a></p></li>
+  <p>Última atualização: 2020-04-08. Mantenedor: Yuri Tani Utsunomiya. Fonte: <a href='https://covid.saude.gov.br/'>DATASUS</a></p></li>
   <li><p align='justify'><strong>Regiões e territórios da Itália</strong>.</p>
   <p align='justify'><a href='https://github.com/adamtaiti/SARS-CoV-2/blob/master/example_data/italy_region_province.xls?raw=true'>italy_region_province.xls</a></p>
-  <p>Última atualização: 2020-04-07. Mantenedor: Marco Milanesi. Fonte: <a href='https://github.com/pcm-dpc/COVID-19'>DATAPROTEZIONECIVILE</a></p></li>
+  <p>Última atualização: 2020-04-07. Mantenedor: Marco Milanesi. Fonte: <a href='https://github.com/pcm-dpc/COVID-19'>Dipartimento della Protezione Civile</a></p></li>
 </ul>"
 "sidebarhome","Português","Home"
 "sidebarworldwide","Português","Mundial"
@@ -379,10 +379,10 @@
 <ul>
   <li><p align='justify'><strong>Stati e regioni del Brasile</strong>.</p>
   <p align='justify'><a href='https://github.com/adamtaiti/SARS-CoV-2/blob/master/example_data/brazil_state_region.xls?raw=true'>brazil_state_region.xls</a></p>
-  <p>Ultima attualizzazione: 2020-04-07. Manutentore: Yuri Tani Utsunomiya. Fonte: <a href='https://covid.saude.gov.br/'>DATASUS</a></p></li>
+  <p>Ultima attualizzazione: 2020-04-08. Manutentore: Yuri Tani Utsunomiya. Fonte: <a href='https://covid.saude.gov.br/'>DATASUS</a></p></li>
   <li><p align='justify'><strong>Regioni e province italiane</strong>.</p>
   <p align='justify'><a href='https://github.com/adamtaiti/SARS-CoV-2/blob/master/example_data/italy_region_province.xls?raw=true'>italy_region_province.xls</a></p>
-  <p>Ultimo aggiornamento: 2020-04-07. Manutentore: Marco Milanesi. Fonte: <a href='https://github.com/pcm-dpc/COVID-19'>DATAPROTEZIONECIVILE</a></p></li>
+  <p>Ultimo aggiornamento: 2020-04-07. Manutentore: Marco Milanesi. Fonte: <a href='https://github.com/pcm-dpc/COVID-19'>Dipartimento della Protezione Civile</a></p></li>
 </ul>"
 "sidebarhome","Italiano","Home"
 "sidebarworldwide","Italiano","Mondiale"
