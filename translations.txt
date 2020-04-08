@@ -1,4 +1,5 @@
 "item","language","text"
+"lt","English","Select language"
 "enter","English","Enter"
 "dashboardheader","English","COVID-19 ACCELEROMETER"
 "welcome","English","<h1><strong>Welcome to the COVID-19 Accelerometer</strong></h1>
@@ -137,6 +138,7 @@
 "newcases","English","<br>New cases: "
 "newdeaths","English","<br>New deaths: "
 #pt_br
+"lt","Português","Selecione a língua"
 "enter","Português","Entrar"
 "dashboardheader","Português","COVID-19 Acelerômetro"
 "welcome","Português","<h1><strong>Bem-vindo ao Acelerômetro da COVID-19</strong></h1>
@@ -275,6 +277,7 @@
 "newcases","Português","<br>Novos casos: "
 "newdeaths","Português","<br>Novas mortes: "
 #it_it
+"lt","Italiano","Seleziona la lingua"
 "enter","Italiano","Accedere"
 "dashboardheader","Italiano","Accelerometro COVID-19"
 "welcome","Italiano","<h1><strong>Benvenuti all'accelerometro del COVID-19</strong></h1>

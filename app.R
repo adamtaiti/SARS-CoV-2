@@ -13,15 +13,25 @@ source("functions.R")
 options(shiny.maxRequestSize = 5*(1024^2))
 translate <- read.table(file = "translations.txt", header = T, sep = ",", stringsAsFactors = F)
 langchoices<-unique(sort(translate$language))
-lang <- NULL
+lang <- "English"#NULL
 theme_set(theme_bw())
 realdata <- NULL
 exdata <- simulation()
 
 #Get code for user interface ---------------------------------------------------------------------------------------------
-header <- dashboardHeaderPlus(title = "COVID-19")
-sidebar <- dashboardSidebar(sidebarMenuOutput(outputId = "sidebarmenu"), collapsed = TRUE, disable = FALSE)
-body <- dashboardBody(shinyjs::useShinyjs(),uiOutput("dashboardbody"))
+header <- dashboardHeaderPlus(
+  title = "COVID-19", 
+  left_menu = tagList(
+    dropdownBlock(
+      id = "selectlanguage",
+      title = "Select language",
+      icon = "language",
+      selectInput(inputId = "lt",label = "English",choices = langchoices, selected = langchoices[1]))
+  )
+)
+  
+sidebar <- dashboardSidebar(withSpinner(sidebarMenuOutput("sidebarmenu")), collapsed = FALSE, disable = FALSE)
+body <- dashboardBody(withSpinner(uiOutput("dashboardbody")))
 ui <- dashboardPage(
   useShinyalert(),
   header = header,
@@ -33,25 +43,15 @@ ui <- dashboardPage(
 #Get code for server reaction --------------------------------------------------------------------------------------------
 server <- function(input, output, session) {
   
-  observeEvent(input$language,{
-    updateActionButton(session = session, inputId = "enter",label = translate$text[which(translate$item == "enter" & translate$language == input$language)])
-  })
-  
-  # Initialize page
-  output$dashboardbody <- renderUI({
-    source(file.path("./", "ui_language.R"),  local = TRUE)$value
-  })
-  
   # Clicking button
-  observeEvent(input$enter,{
+  observeEvent(input$lt,{
     
+    updateSelectInput(session = session, inputId = "lt",label = translate$text[which(translate$item == "lt" & translate$language == lang)], choices = langchoices, selected = input$lt)
     # Define language
-    # langs <- c("en_us","pt_br","it")
-    # names(langs) <- c("English","Português","Italiano")
-    # lang <- langs[input$language]
-    lang <- input$language
+    #lang <- input$language
+    lang <- input$lt
     
-    # Clear interface
+    # # Clear interface
     shinyjs::removeClass(selector = "body", class = "sidebar-collapse")
     
     # Get real data
