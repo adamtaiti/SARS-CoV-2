@@ -283,7 +283,7 @@
 <p align='justify'>Carica automaticamente gli ultimi casi segnalati dal Centro Europeo per la Prevenzione e il Controllo delle malattie (ECDC - European Center for Disease Prevention and Control).</p>
 <p align='justify'><a href='https://opendata.ecdc.europa.eu/covid19/casedistribution/csv'>https://opendata.ecdc.europa.eu/covid19/casedistribution/csv</a></p>
 <h3><strong>Come usarla</strong></h3>
-<p align='justify'>Qui forniamo un modo semplice e di facile acesso per interpretare la diffusione del COVID-19 attraverso le seguenti schede:</p>
+<p align='justify'>Qui forniamo un modo semplice e di facile accesso per interpretare la diffusione del COVID-19 attraverso le seguenti schede:</p>
 <ul>
   <li><p align='justify'><strong>Mondiale</strong>: Panoramica del numero di casi confermati, decessi e di paesi colpiti a livello mondiale.</p></li>
   <li><p align='justify'><strong>Stati</strong>: Mostra la curva di crescita, il tasso di crescita e l'accelerazione nei paesi presenti nei dati dell'ECDC.</p></li>
@@ -313,7 +313,7 @@
 <ul>
   <li>
     <p align='justify'><strong>Curva di crescita - numero totale di casi</strong></p>
-    <p align='justify'>In questo grafico, ogni punto rappresenta il numero cumulativo di casi in un determinato giorno. La curva di interpolazione dei punti è stat ottenuta utilizzando la tecnica della regressione mobile, e corrisponde all'andamento interpolato dei punti. L'intero grafico può essere interpretato come l'evoluzione della prevalenza nel tempo. Le curve di crescita teoriche sono tipicamente delle sigmoidi (a forma di 'S'), tuttavia la dinamica della prevalenza del COVID-19 può deviare sostanzialmente da questa forma. In una analogia con le automobili, la curva di crescita può essere interpretata come la distanza percorsa da un'automobile nel tempo. Se si parla di automobili, la crescita è misurata in metri (m) o chilometri (km), mentre nel caso della crescita della prevalenza questa è misurata in numero totale di casi.</p>
+    <p align='justify'>In questo grafico, ogni punto rappresenta il numero cumulativo di casi in un determinato giorno. La curva di interpolazione dei punti è stata ottenuta utilizzando la tecnica della regressione mobile e corrisponde all'andamento interpolato dei punti. L'intero grafico può essere interpretato come l'evoluzione della prevalenza nel tempo. Le curve di crescita teoriche sono tipicamente delle sigmoidi (a forma di 'S'), tuttavia la dinamica della prevalenza del COVID-19 può deviare sostanzialmente da questa forma. In una analogia con le automobili, la curva di crescita può essere interpretata come la distanza percorsa da un'automobile nel tempo. Se si parla di automobili, la crescita è misurata in metri (m) o chilometri (km), mentre nel caso della crescita della prevalenza questa è misurata in numero totale di casi.</p>
   </li>
   <li>
     <p align='justify'><strong>Tasso di crescita - nuovi casi al giorno</strong></p>
@@ -331,7 +331,7 @@
 <ul>
   <li>
     <p align='justify'><strong>Fase lenta (Verde)</strong>.</p>
-    <p align='justify'>Questa corrisponde all'inizio dell'epidemia o all'importazione della malattia, nella quale il numero di casi è basso e aumenta solo in modo marginale tutti i giorni.</p>
+    <p align='justify'>Questa fase corrisponde all'inizio dell'epidemia o all'importazione della malattia. In questa fase il numero di casi è basso e aumenta solo in modo marginale tutti i giorni.</p>
   </li>
   <li>
     <p align='justify'><strong>Fase esponenziale (Rosso)</strong>.</p>
@@ -339,11 +339,11 @@
   </li>
   <li>
     <p align='justify'><strong>La fase di rallentamento (Giallo)</strong>.</p>
-    <p align='justify'>Questa è una fase di speranza, dove il numero di nuovi casi di riduce di giorno in giorno.</p>
+    <p align='justify'>Questa è una fase di speranza, dove il numero di nuovi casi si riduce di giorno in giorno.</p>
   </li>
   <li>
     <p align='justify'><strong>Fase stazionaria (Blu)</strong>.</p>
-    <p align='justify'>Caratterizzato dalla stagnazione della prevalenza, con nuovi casi sporadici ogni giorno. Questo è il palcoscenico che tutti vogliono raggiungere.</p>
+    <p align='justify'>Caratterizzata dalla stagnazione della prevalenza, con nuovi casi sporadici ogni giorno. Questo è il palcoscenico che tutti vogliono raggiungere.</p>
   </li>
   <li>
     <p align='justify'><strong>Fase lineare (Viola)</strong>.</p>
@@ -353,7 +353,7 @@
   </li>
 </ul>
 <br>
-<h3 align='justify'>Raccomandiamo agli utenti di prestare attenzione alle date vicine ai cambi di fase, poiché potrebbero essere correlate ad eventi che hanno avuto un impatto sulla dinamica della malattia. È stata implementata o interrota una misura di sanità pubblica? Queste date coincidono con qualche importante annuncio del governo?</h3>
+<h3 align='justify'>Raccomandiamo agli utenti di prestare attenzione alle date vicine ai cambi di fase, poiché potrebbero essere correlate ad eventi che hanno avuto un impatto sulla dinamica della malattia. È stata implementata o interrotta una misura di sanità pubblica? Queste date coincidono con qualche importante annuncio del governo?</h3>
 <br>
 <h3>Di seguito vengono esemplificati possibili scenari per l'evoluzione dell'epidemia di COVID-19 all'interno di un paese o territorio.</h3>
 <ul>
@@ -366,11 +366,11 @@
     <p align='justify'>Il raggiungimento della fase stazionaria non garantisce il controllo della malattia indefinitamente. La malattia può crescere di nuovo, per esempio con la reintroduzione della stessa attraverso le importazioni.</p>
   </li>
   <li>
-    <p align='justify'><strong>lagging -> N*(esponenziale -> rallentamento) -> stazionaria</strong></p>
+    <p align='justify'><strong>lenta -> N*(esponenziale -> rallentamento) -> stazionaria</strong></p>
     <p align='justify'>Uno Stato che sta rallentando potrebbe accelerare di nuovo, generando più cicli di fase esponenziale / fase di rallentamento. Ciò potrebbe derivare dall'allentamento delle misure di controllo quando viene percepito la decelerazione.</p>
   </li>
   <li>
-    <p align='justify'>Oltre a questi tre scenari, prevediamo che, in alcuni stati, durante l'evoluzione della prevalenza della malattia, possano verificarsi permutazioni più complesse di queste fasi.</strong></p>
+    <p align='justify'>Oltre a questi tre scenari, prevediamo che, in alcuni Stati, durante l'evoluzione della prevalenza della malattia, possano verificarsi permutazioni più complesse di queste fasi.</strong></p>
   </li>
 </ul>"
 "download","Italiano","<h1><strong>Scarica i dati di esempio</strong></h1>
