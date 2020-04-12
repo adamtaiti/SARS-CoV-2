@@ -47,7 +47,7 @@ server <- function(input, output, session) {
     
     # Define language
     # langs <- c("en_us","pt_br","it")
-    # names(langs) <- c("English","Português","Italiano")
+    # names(langs) <- c("English","Português","Italiano","Español")
     # lang <- langs[input$language]
     lang <- input$language
     
