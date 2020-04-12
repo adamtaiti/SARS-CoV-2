@@ -413,6 +413,7 @@
 "newcases","Italiano","<br>Nuovi casi: "
 "newdeaths","Italiano","<br>Nuovi morti: "
 #spanish
+"enter","Español","Entrar"
 "dashboardheader","Español","ACELERÓMETRO COVID-19 "
 "welcome","Español","<h1><strong>Bienvenido al Acelerómetro de COVID-19</strong></h1>
 <br>
