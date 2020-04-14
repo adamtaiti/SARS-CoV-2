@@ -41,7 +41,7 @@ tabItem(
           ),
           column(width = 8,
                  sliderInput(inputId = "leafletdates",width = "100%",
-                             label = "Select date:",
+                             label = "Epidemiological week:",
                              min = min(weeks$week), 
                              max = max(weeks$week),value = min(weeks$week),step = 1,
                              animate = T, ticks = T)

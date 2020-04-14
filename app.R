@@ -50,8 +50,6 @@ server <- function(input, output, session) {
   # Clicking button
   observeEvent(input$lt,{
     
-    updateSelectInput(session = session, inputId = "lt",label = translate$text[which(translate$item == "lt" & translate$language == lang)], choices = langchoices, selected = input$lt)
-    
     # Define language
     lang <- input$lt
 
@@ -60,7 +58,7 @@ server <- function(input, output, session) {
     
     # Get epidemiological week
     weeks <- weeks(realdata)
-
+    
     map_centre = st_centroid(worldmap %>% filter(`Countries and territories` == "Tunisia")) %>% 
       st_coordinates()
     

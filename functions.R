@@ -1220,8 +1220,7 @@ weeks<-function(df){
   if(length(weeks$color_ccases.million[which(is.na(weeks$color_ccases.million) | weeks$color_ccases.million=="#FFFFFF")])>0){
     weeks$color_ccases.million[which(is.na(weeks$color_ccases.million) | weeks$color_ccases.million=="#FFFFFF")]<-"none"
   }
-  
-  print(head(weeks))
+
   return(weeks)
 }
 
