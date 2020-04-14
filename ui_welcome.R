@@ -5,7 +5,7 @@
 ##### Contact: adamtaiti@gmail.com
 ##### Description: user interface for the 'Worldwide' page
 
-tabItem(tabName = "welcome",
+tabItem(tabName = "welcome",class = "active",
         fluidPage(
           HTML(translate$text[which(translate$item == "welcome" & translate$language == lang)])
         )

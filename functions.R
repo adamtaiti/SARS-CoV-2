@@ -9,19 +9,49 @@
 connection <- function(){
   tryCatch(
     {
-      #download the dataset from the ECDC website to a local temporary file
-      GET("https://opendata.ecdc.europa.eu/covid19/casedistribution/csv", authenticate(":", ":", type="ntlm"), write_disk(tf <- tempfile(fileext = ".csv")))
+      # Checking if the file was already exists
+      # If TRUE then load the file else download and save it to the data directory
+      # This process is repeated daily
+      file<-paste0(getwd(),"/data/ecdc-",Sys.Date(),".csv")
       
-      #read the Dataset sheet into “R”. The dataset will be called "data".
-      realdata <- read.csv(tf)
-      
-      names(realdata)<-c("DateRep","Day","Month","Year","Cases","Deaths","Countries and territories","GeoId","Code","Pop_Data.2018")
-      
-      realdata$DateRep<-as.Date(realdata$DateRep, format = "%d/%m/%Y")
-      realdata<-realdata[order(realdata$DateRep),]
-      realdata$`Countries and territories`<-gsub(pattern = "_", replacement = " ", x = realdata$`Countries and territories`)
-      
-      return(realdata)
+      if(file.exists(file)){
+        
+        #read the Dataset sheet into “R”. The dataset will be called "data".
+        realdata <- read.csv(file)
+        
+        names(realdata)<-c("DateRep","Day","Month","Year","Cases","Deaths","Countries and territories","GeoId","Code","Pop_Data.2018")
+        
+        realdata$DateRep<-as.Date(realdata$DateRep, format = "%d/%m/%Y")
+        realdata<-realdata[order(realdata$DateRep),]
+        realdata$`Countries and territories`<-gsub(pattern = "_", replacement = " ", x = realdata$`Countries and territories`)
+        
+        return(realdata)
+        
+      } else{
+        
+        oldfile<-paste0(getwd(),"/data/ecdc-",Sys.Date()-1,".csv")
+        if(file.exists(oldfile)){
+          command<-paste0("rm ", oldfile)
+          system(command = command)
+          
+        }
+        #download the dataset from the ECDC website to a local temporary file
+        GET("https://opendata.ecdc.europa.eu/covid19/casedistribution/csv", authenticate(":", ":", type="ntlm"), write_disk(tf <- tempfile(fileext = ".csv")))
+        
+        command<-paste0("mv ",tf, " ",getwd(),"/data/ecdc-",Sys.Date(),".csv")
+        system(command = command)
+        
+        #read the Dataset sheet into “R”. The dataset will be called "data".
+        realdata <- read.csv(file)
+        
+        names(realdata)<-c("DateRep","Day","Month","Year","Cases","Deaths","Countries and territories","GeoId","Code","Pop_Data.2018")
+        
+        realdata$DateRep<-as.Date(realdata$DateRep, format = "%d/%m/%Y")
+        realdata<-realdata[order(realdata$DateRep),]
+        realdata$`Countries and territories`<-gsub(pattern = "_", replacement = " ", x = realdata$`Countries and territories`)
+        
+        return(realdata)
+      }
     },
     error=function(e) {
       shinyalert("Error!", paste0(e,"\nUnable to connect to the dataset!\nPlease try it again later."), type = "error")
@@ -253,6 +283,10 @@ worldwidecases <- function(realdata){
   df <- realdata[which(realdata$Cases>=1),]
   df <- as.data.frame(tapply(df$Cases, df$DateRep, sum))
   df <- cumsum(df)
+  names(df) <- c("n")
+  df$n <- df$n/1000
+  df$date <- as.Date(row.names(df))
+  df <- df[order(df$date),]
   return(df)
 }
 
@@ -261,14 +295,21 @@ worldwidedeaths <- function(realdata){
   df <- realdata[which(realdata$Deaths>=1),]
   df <- as.data.frame(tapply(df$Deaths, df$DateRep, sum))
   df <- cumsum(df)
+  names(df) <- c("n")
+  df$n <- df$n/1000
+  df$date <- as.Date(row.names(df))
   return(df)
 }
 
 # Plot worldwide numbers
-plot_worldwide <- function(df, Pandemic, translate, lang){
-  gp<-ggplot(data = df, mapping = aes(x = date, y = n))+
+plot_worldwide <- function(df, translate, lang){
+  Pandemic <- as.Date("2020-03-11")
+  gp<-ggplot(data = df, mapping = aes(x = date, y = n, group=1, text = paste(
+    paste(translate$text[which(translate$item == "date" & translate$language == lang)],": ",sep=""), date,
+    "\nn: ", n
+  )))+
     geom_bar(stat = "identity")+
-    geom_vline(aes(xintercept = as.numeric(Pandemic) ,color="Pandemic"), show.legend = T)+
+    geom_vline(aes(xintercept = as.numeric(Pandemic) ,color="Pandemic"), show.legend = F)+
     scale_color_manual("Alert", values = c(Pandemic = "red"))+
     labs(x = translate$text[which(translate$item == "date" & translate$language == lang)], y = translate$text[which(translate$item == "thousandcases" & translate$language == lang)])+
     theme(axis.text.x = element_text(size = 12, angle = 0, hjust = 1, vjust = 1),
@@ -276,10 +317,11 @@ plot_worldwide <- function(df, Pandemic, translate, lang){
           axis.title.x = element_text(size = 16, angle = 0, hjust = 0, vjust = 0, face = "plain"),
           axis.title.y = element_text(size = 16, angle = 90, hjust = 0, vjust = 0, face = "plain"),
           legend.title=element_blank(),
-          legend.text = element_text(size = 12, face = "bold.italic"),
+          legend.text = element_text(size = 10, face = "bold.italic"),
+          legend.position = "top",
           rect = element_rect(fill = "transparent")
-    )
-  gp
+    ) 
+  ggplotly(gp, tooltip = "text") %>% layout(legend = list(orientation = "h"))
 }
 
 # Local regression function
@@ -530,7 +572,7 @@ plot_realdata_growth_rate <- function(df,translate,lang){
   xmax<-as.Date(xmax)
   params$xmin<-as.Date(params$xmin)
   params$xmax<-as.Date(params$xmax)
-
+  
   p <- p+
     geom_rect(
       data = params,
@@ -1026,3 +1068,160 @@ hmm <- function(df, acc.cutoff=5){
   }
   return(results)
 }
+
+# Epidemiological week
+weeks<-function(df){
+  # Map unique territories
+  countries <- unique(df$`Countries and territories`)
+  dates <- sort(unique(df$DateRep))
+  
+  # Map population size
+  pops <- unique(df[,c("Countries and territories","Pop_Data.2018","Code")])
+  popsize <- pops$Pop_Data.2018
+  names(popsize) <- pops$`Countries and territories`
+  
+  # Assemble output table
+  results <- matrix(data = NA, nrow = length(dates)*length(countries), ncol = 7)
+  results <- as.data.frame(results)
+  colnames(results) <- c("Countries and territories","DateRep","Pop_Data.2018",
+                         "Cases","Deaths","ccases","cdeaths")
+  results$`Countries and territories` <- rep(x = countries, each = length(dates))
+  results$DateRep <- rep(x = dates, times = length(countries))
+  results$Pop_Data.2018 <- popsize[results$`Countries and territories`]
+  
+  # Make final table
+  for(country in countries){
+    
+    # Get indices
+    idx1 <- which(df$`Countries and territories` == country)
+    idx2 <- which(results$`Countries and territories` == country)
+    
+    # Get country data
+    tmp <- df[idx1,]
+    
+    # Map cases and deaths
+    res <- rep(x = NA, times = length(dates))
+    names(res) <- dates
+    res[as.character(tmp$DateRep)] <- tmp$Cases
+    results$Cases[idx2] <- res
+    res <- rep(x = NA, times = length(dates))
+    names(res) <- dates
+    res[as.character(tmp$DateRep)] <- tmp$Deaths
+    results$Deaths[idx2] <- res
+    
+    # Compute cumulative cases
+    res <- rep(x = NA, times = length(dates))
+    names(res) <- dates
+    Cases <- results$Cases[idx2]
+    names(Cases) <- results$DateRep[idx2]
+    Cases <- Cases[which(is.na(Cases) == F)]
+    ccases <- cumsum(Cases)
+    res[names(ccases)] <- ccases
+    results$ccases[idx2] <- res
+    
+    # Compute cumulative deaths
+    res <- rep(x = NA, times = length(dates))
+    names(res) <- dates
+    Deaths <- results$Deaths[idx2]
+    names(Deaths) <- results$DateRep[idx2]
+    Deaths <- Deaths[which(is.na(Deaths) == F)]
+    cdeaths <- cumsum(Deaths)
+    res[names(cdeaths)] <- cdeaths
+    results$cdeaths[idx2] <- res
+    
+  }
+  
+  # Assemble week summary
+  idx1 <- seq(from=1, to=length(dates), by=7)
+  idx2 <- idx1 - 1
+  idx1 <- idx1[-length(idx1)]
+  idx2 <- idx2[-1]
+  weeks <- matrix(data = NA, nrow = length(idx1)*length(countries), ncol = 9)
+  weeks <- as.data.frame(weeks)
+  colnames(weeks) <- c("Countries and territories","Pop_Data.2018","week","start","end",
+                       "Cases","Deaths","ccases","cdeaths")
+  weeks$`Countries and territories` <- rep(x = countries, each = length(idx1))
+  weeks$week <- rep(x = 1:length(idx1), times = length(countries))
+  weeks$Pop_Data.2018 <- popsize[weeks$`Countries and territories`]
+  weeks$start <- rep(x = dates[idx1], times = length(countries))
+  weeks$end <- rep(x = dates[idx2], times = length(countries))
+  
+  # Make week table
+  for(country in countries){
+    
+    # Get country data
+    tmp <- results[which(results$`Countries and territories` == country),]
+    
+    # Loop through weeks
+    for(j in 1:length(idx1)){
+      line <- which(weeks$`Countries and territories` == country & weeks$week == j)
+      tmpweek <- tmp[idx1[j]:idx2[j],]
+      weeks$Cases[line] <- sum(tmpweek$Cases, na.rm = T)
+      weeks$Deaths[line] <- sum(tmpweek$Deaths, na.rm = T)
+      if(length(which(!is.na(tmpweek$ccases)))==0){
+        weeks$ccases[line] <- 0
+      } else{
+        weeks$ccases[line] <- max(tmpweek$ccases, na.rm = T)
+      }
+      if(length(which(!is.na(tmpweek$cdeaths)))==0){
+        weeks$cdeaths[line] <- 0
+      } else{
+        weeks$cdeaths[line] <- max(tmpweek$cdeaths, na.rm = T)
+      }
+    }
+  }
+  
+  weeks<-merge(pops[,-2], weeks, by = "Countries and territories")
+  code<-c("N/A")
+  weeks<-weeks[-which(weeks$Code=="N/A" | is.na(weeks$Pop_Data.2018)),]
+  
+  weeks$ccases.million<-1e6*weeks$ccases/weeks$Pop_Data.2018
+  weeks$cdeaths.million<-1e6*weeks$cdeaths/weeks$Pop_Data.2018
+  
+  weeks$`Countries and territories`[which(weeks$`Countries and territories`=="United States of America")]<-"United States"
+  weeks$`Countries and territories`[which(weeks$`Countries and territories`=="Russia")]<-"Russian Federation"
+  weeks$`Countries and territories`[which(weeks$`Countries and territories`=="Cote dIvoire")]<-"Côte d'Ivoire"
+  weeks$`Countries and territories`[which(weeks$`Countries and territories`=="Congo")]<-"Republic of the Congo"
+  weeks$`Countries and territories`[which(weeks$`Countries and territories`=="United Republic of Tanzania")]<-"Tanzania"
+  weeks$`Countries and territories`[which(weeks$`Countries and territories`=="North Macedonia")]<-"Macedonia"
+  weeks$`Countries and territories`[which(weeks$`Countries and territories`=="South Korea")]<-"Republic of Korea"
+  weeks$`Countries and territories`[which(weeks$`Countries and territories`=="Laos")]<-"Lao PDR"
+  weeks$`Countries and territories`[which(weeks$`Countries and territories`=="Czechia")]<-"Czech Republic"
+  
+  weeks<-weeks[order(weeks$Cases),]
+  weeks$Cases.log <- log10(weeks$Cases)
+  weeks$Cases.log[which(weeks$Cases.log<0)]<-0
+  
+  weeks<-weeks[order(weeks$ccases),]
+  weeks$ccases.log <- log10(weeks$ccases)
+  weeks$ccases.log[which(weeks$ccases.log<0)]<-0
+  
+  weeks<-weeks[order(weeks$ccases.million),]
+  weeks$ccases.million.log <- log10(weeks$ccases.million)
+  weeks$ccases.million.log[which(weeks$ccases.million.log<0)]<-0
+  
+  pallete<-colorRamp(c('white', '#ff1e1e'))
+  
+  pal <- colorNumeric(palette = pallete, domain=c(min(weeks$Cases.log),max(weeks$Cases.log)))
+  weeks$color_Cases<-pal(weeks$Cases.log)
+  
+  pal <- colorNumeric(palette = pallete, domain=c(min(weeks$ccases.log),max(weeks$ccases.log)))
+  weeks$color_ccases<-pal(weeks$ccases.log)
+  
+  pal <- colorNumeric(palette = pallete, domain=c(min(weeks$ccases.million.log),max(weeks$ccases.million.log)))
+  weeks$color_ccases.million<-pal(weeks$ccases.million.log)
+  
+  if(length(weeks$color_ccases[which(is.na(weeks$color_ccases) | weeks$color_ccases=="#FFFFFF")])>0){
+    weeks$color_ccases[which(is.na(weeks$color_ccases) | weeks$color_ccases=="#FFFFFF")]<-"none"
+  }
+  if(length(weeks$color_Cases[which(is.na(weeks$color_Cases) | weeks$color_Cases=="#FFFFFF")])>0){
+    weeks$color_Cases[which(is.na(weeks$color_Cases) | weeks$color_Cases=="#FFFFFF")]<-"none"
+  }
+  if(length(weeks$color_ccases.million[which(is.na(weeks$color_ccases.million) | weeks$color_ccases.million=="#FFFFFF")])>0){
+    weeks$color_ccases.million[which(is.na(weeks$color_ccases.million) | weeks$color_ccases.million=="#FFFFFF")]<-"none"
+  }
+  
+  print(head(weeks))
+  return(weeks)
+}
+

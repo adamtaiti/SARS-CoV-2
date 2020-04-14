@@ -18,6 +18,10 @@ theme_set(theme_bw())
 realdata <- NULL
 exdata <- simulation()
 
+# Get countries shapes
+worldmap<-world
+names(worldmap)[2]<-"Countries and territories"
+
 #Get code for user interface ---------------------------------------------------------------------------------------------
 header <- dashboardHeaderPlus(
   title = "COVID-19", 
@@ -29,11 +33,11 @@ header <- dashboardHeaderPlus(
       selectInput(inputId = "lt",label = "English",choices = langchoices, selected = langchoices[1]))
   )
 )
-  
+
 sidebar <- dashboardSidebar(withSpinner(sidebarMenuOutput("sidebarmenu")), collapsed = FALSE, disable = FALSE)
-body <- dashboardBody(withSpinner(uiOutput("dashboardbody")))
+body <- dashboardBody(useShinyalert(),withSpinner(uiOutput("dashboardbody")))
 ui <- dashboardPage(
-  useShinyalert(),
+  title = "Covid-19 Accelerometer",
   header = header,
   sidebar = sidebar,
   body = body,
@@ -47,15 +51,19 @@ server <- function(input, output, session) {
   observeEvent(input$lt,{
     
     updateSelectInput(session = session, inputId = "lt",label = translate$text[which(translate$item == "lt" & translate$language == lang)], choices = langchoices, selected = input$lt)
+    
     # Define language
-    #lang <- input$language
     lang <- input$lt
-    
-    # # Clear interface
-    shinyjs::removeClass(selector = "body", class = "sidebar-collapse")
-    
+
     # Get real data
     realdata <- connection()
+    
+    # Get epidemiological week
+    weeks <- weeks(realdata)
+
+    map_centre = st_centroid(worldmap %>% filter(`Countries and territories` == "Tunisia")) %>% 
+      st_coordinates()
+    
     real <- reactive(getrealdata(realdata=realdata,
                                  country=input$selcountry,
                                  smooth = input$smoothrange,

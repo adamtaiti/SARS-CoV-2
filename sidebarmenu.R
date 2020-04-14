@@ -6,13 +6,10 @@
 ##### Description: sidebar menu for COVID-19 accelerometer app
 
 sidebarMenu(id = "sidebarmenu",
-            menuItem(text = "",
-                     tabName = "phantom",
-                     selected = TRUE),
             menuItem(text = translate$text[which(translate$item == "sidebarhome" & translate$language == lang)],
                      icon = icon("info-circle"),
                      tabName = "welcome",
-                     selected = FALSE),
+                     selected = TRUE),
             menuItem(text = translate$text[which(translate$item == "sidebarworldwide" & translate$language == lang)],
                      icon = icon("globe"),
                      tabName = "worldwide",

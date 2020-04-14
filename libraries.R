@@ -15,3 +15,10 @@ if(!require("httr")) library(httr, quietly = T, verbose = F, warn.conflicts = F)
 if(!require("plotly")) library(plotly, quietly = T, verbose = F, warn.conflicts = F)
 if(!require("HMM")) library(HMM, quietly = T, verbose = F, warn.conflicts = F)
 if(!require("shinycssloaders")) library(shinycssloaders, quietly = T, verbose = F, warn.conflicts = F)
+if(!require("leaflet")) library(leaflet, quietly = T, verbose = F, warn.conflicts = F)
+if(!require("rgdal")) library(rgdal, quietly = T, verbose = F, warn.conflicts = F)
+if(!require("jsonlite")) library(jsonlite, quietly = T, verbose = F, warn.conflicts = F)
+if(!require("spData")) library(spData, quietly = T, verbose = F, warn.conflicts = F) # object world
+if(!require("spDataLarge")) library(spDataLarge, quietly = T, verbose = F, warn.conflicts = F) # object world
+if(!require("sf")) library(sf, quietly = T, verbose = F, warn.conflicts = F)
+if(!require("tidyverse")) library(tidyverse, quietly = T, verbose = F, warn.conflicts = F)

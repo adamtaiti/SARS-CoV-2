@@ -22,5 +22,15 @@ install.packages("HMM")
 # * deb: libcurl4-openssl-dev (Debian, Ubuntu, etc)
 # * rpm: libcurl-devel (Fedora, CentOS, RHEL)
 # * csw: libcurl_dev (Solaris)
-install.packages("httr")
+#--------------------------------------------------------------------------------------------------
+# > sudo apt install libssl-dev libcurl4-openssl-dev  gdal-bin proj-bin libgdal-dev libproj-dev
+#--------------------------------------------------------------------------------------------------
 
+install.packages("httr")
+install.packages("shinycssloaders")
+install.packages("devtools")
+install.packages("tmaptools")
+install.packages("tmap")
+install.packages("leaflet")
+install.packages("jsonlite", dependencies=TRUE, INSTALL_opts = c('--no-lock'))
+install.packages("rgdal", dependencies=TRUE, INSTALL_opts = c('--no-lock'))
