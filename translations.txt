@@ -106,7 +106,7 @@
   <p>Last update: 2020-04-15. Maintainer: Yuri Tani Utsunomiya. Source: <a href='https://covid.saude.gov.br/'>DATASUS</a></p></li>
   <li><p align='justify'><strong>Regions and provinces of Italy</strong>.</p>
   <p align='justify'><a href='https://github.com/adamtaiti/SARS-CoV-2/blob/master/example_data/italy_region_province.xls?raw=true'>italy_region_province.xls</a></p>
-  <p>Last update: 2020-04-10. Maintainer: Marco Milanesi. Source: <a href='https://github.com/pcm-dpc/COVID-19'>Dipartimento della Protezione Civile</a></p></li>
+  <p>Last update: 2020-04-15. Maintainer: Marco Milanesi. Source: <a href='https://github.com/pcm-dpc/COVID-19'>Dipartimento della Protezione Civile</a></p></li>
 </ul>"
 "sidebarhome","English","Home"
 "sidebarworldwide","English","Worldwide"
@@ -244,7 +244,7 @@
   <p>Última atualização: 2020-04-15. Mantenedor: Yuri Tani Utsunomiya. Fonte: <a href='https://covid.saude.gov.br/'>DATASUS</a></p></li>
   <li><p align='justify'><strong>Regiões e territórios da Itália</strong>.</p>
   <p align='justify'><a href='https://github.com/adamtaiti/SARS-CoV-2/blob/master/example_data/italy_region_province.xls?raw=true'>italy_region_province.xls</a></p>
-  <p>Última atualização: 2020-04-10. Mantenedor: Marco Milanesi. Fonte: <a href='https://github.com/pcm-dpc/COVID-19'>Dipartimento della Protezione Civile</a></p></li>
+  <p>Última atualização: 2020-04-15. Mantenedor: Marco Milanesi. Fonte: <a href='https://github.com/pcm-dpc/COVID-19'>Dipartimento della Protezione Civile</a></p></li>
 </ul>"
 "sidebarhome","Português","Home"
 "sidebarworldwide","Português","Mundial"
@@ -382,7 +382,7 @@
   <p>Ultima attualizzazione: 2020-04-15. Manutentore: Yuri Tani Utsunomiya. Fonte: <a href='https://covid.saude.gov.br/'>DATASUS</a></p></li>
   <li><p align='justify'><strong>Regioni e province italiane</strong>.</p>
   <p align='justify'><a href='https://github.com/adamtaiti/SARS-CoV-2/blob/master/example_data/italy_region_province.xls?raw=true'>italy_region_province.xls</a></p>
-  <p>Ultimo aggiornamento: 2020-04-10. Manutentore: Marco Milanesi. Fonte: <a href='https://github.com/pcm-dpc/COVID-19'>Dipartimento della Protezione Civile</a></p></li>
+  <p>Ultimo aggiornamento: 2020-04-15. Manutentore: Marco Milanesi. Fonte: <a href='https://github.com/pcm-dpc/COVID-19'>Dipartimento della Protezione Civile</a></p></li>
 </ul>"
 "sidebarhome","Italiano","Home"
 "sidebarworldwide","Italiano","Mondiale"
@@ -521,7 +521,7 @@
   <p>Última actualización: 2020-04-15. Donante de los datos: Yuri Tani Utsunomiya. Fuente: <a href='https://covid.saude.gov.br/'>DATASUS</a></p></li>
   <li><p align='justify'><strong>Regiones y provincias de Italia</strong>.</p>
   <p align='justify'><a href='https://github.com/adamtaiti/SARS-CoV-2/blob/master/example_data/italy_region_province.xls?raw=true'>italy_region_province.xls</a></p>
-  <p>Última actualización: 2020-04-10. Donante de los datos: Marco Milanesi. Fuente: <a href='https://github.com/pcm-dpc/COVID-19'>Dipartimento della Protezione Civile</a></p></li>
+  <p>Última actualización: 2020-04-15. Donante de los datos: Marco Milanesi. Fuente: <a href='https://github.com/pcm-dpc/COVID-19'>Dipartimento della Protezione Civile</a></p></li>
 </ul>"
 "sidebarhome","Español","Inicio"
 "sidebarworldwide","Español","Mundial"
