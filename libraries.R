@@ -22,3 +22,4 @@ if(!require("spData")) library(spData, quietly = T, verbose = F, warn.conflicts 
 if(!require("spDataLarge")) library(spDataLarge, quietly = T, verbose = F, warn.conflicts = F) # object world
 if(!require("sf")) library(sf, quietly = T, verbose = F, warn.conflicts = F)
 if(!require("tidyverse")) library(tidyverse, quietly = T, verbose = F, warn.conflicts = F)
+if(!require("DT")) library(DT, quietly = T, verbose = F, warn.conflicts = F)

@@ -32,6 +32,11 @@
 "pnextday","English","Prevalence next day"
 "cnextday","English","New cases next day"
 "realdata","English","Real data"
+"selmapview","English","Display"
+"leafletdates","English","Epidemiologica week"
+"selmapview1","English","Prevalence"
+"selmapview2","English","Prevalence per million inhabitants"
+"selmapview3","English","Weekly cases"
 "tmodel","English","Theoretical model (does not reflect trend in data)"
 "help","English","<h1><strong>Understanding the plots</strong></h1><br>
 <h3>The behavior of the prevalence of COVID-19 over time is decomposed into three graphs:</h3>
@@ -100,15 +105,12 @@
 </ul>"
 "download","English","<h1><strong>Download example data</strong></h1>
 <br>
-<p align='justify'>Here we provide example data sets for download and subsequent use in the 'Local' section of the application. These are official case reports from specific countries, territories or regions. For each set, you will find a link for downloading, the date of the last update, the name of the maintainer (volunteer individual which is kindly gathering the data and formatting them) and the source (the original maintainer of the data, which is typically a website linked to local governments).</p>
-<ul>
-  <li><p align='justify'><strong>States and regions of Brazil</strong>.</p>
-  <p align='justify'><a href='https://github.com/adamtaiti/SARS-CoV-2/blob/master/example_data/brazil_state_region.xls?raw=true'>brazil_state_region.xls</a></p>
-  <p>Last update: 2020-04-14. Maintainer: Yuri Tani Utsunomiya. Source: <a href='https://covid.saude.gov.br/'>DATASUS</a></p></li>
-  <li><p align='justify'><strong>Regions and provinces of Italy</strong>.</p>
-  <p align='justify'><a href='https://github.com/adamtaiti/SARS-CoV-2/blob/master/example_data/italy_region_province.xls?raw=true'>italy_region_province.xls</a></p>
-  <p>Last update: 2020-04-10. Maintainer: Marco Milanesi. Source: <a href='https://github.com/pcm-dpc/COVID-19'>Dipartimento della Protezione Civile</a></p></li>
-</ul>"
+<p align='justify'>Here we provide example data sets for download and subsequent use in the 'Local' section of the application. These are official case reports from specific countries, territories or regions. For each set, you will find a link for downloading, the date of the last update, the name of the maintainer (volunteer individual which is kindly gathering the data and formatting them) and the source (the original maintainer of the data, which is typically a website linked to local governments).</p>"
+"datasetcol","English","Dataset"
+"filecol","English","File"
+"maintainercol","English","Maintainer"
+"updatedcol","English","Updated"
+"sourcecol","English","Source"
 "sidebarhome","English","Home"
 "sidebarworldwide","English","Worldwide"
 "sidebarbycountry","English","by Country"
@@ -171,6 +173,11 @@
 "pnextday","Português","Prevalência no dia seguinte"
 "cnextday","Português","Novos casos no dia seguinte"
 "realdata","Português","Dados reais"
+"selmapview","Português","Exibir"
+"leafletdates","Português","Semana epidemiológica"
+"selmapview1","Português","Prevalência"
+"selmapview2","Português","Prevalência por milhão de habitantes"
+"selmapview3","Português","Casos semanais"
 "tmodel","Português","Modelo teórico (não reflete tendências nos dados)"
 "help","Português","<h1><strong>Entendendo os gráficos</strong></h1><br>
 <h3>O comportamento da prevalência de COVID-19 ao longo do tempo é decomposto em três gráficos:</h3>
@@ -239,15 +246,12 @@
 </ul>"
 "download","Português","<h1><strong>Download de dados de exemplo</strong></h1>
 <br>
-<p align='justify'>Aqui fornecemos alguns conjuntos de dados de exemplo, os quais podem ser baixados e subsequentemente utilizados na aba 'Local' do aplicativo. Estes são dados oficiais de países, territórios ou regiões específicas. Para cada conjunto, você encontrará o link para download, a data da última atualização, o nome do mantenedor (indivíduo que gentilmente se voluntariou para reunir e formatar os dados) e a fonte (o mantenedor original dos dados, tipicamente ligado a sítios de governos locais).</p>
-<ul>
-  <li><p align='justify'><strong>Estados e Regiões do Brasil</strong>.</p>
-  <p align='justify'><a href='https://github.com/adamtaiti/SARS-CoV-2/blob/master/example_data/brazil_state_region.xls?raw=true'>brazil_state_region.xls</a></p>
-  <p>Última atualização: 2020-04-14. Mantenedor: Yuri Tani Utsunomiya. Fonte: <a href='https://covid.saude.gov.br/'>DATASUS</a></p></li>
-  <li><p align='justify'><strong>Regiões e territórios da Itália</strong>.</p>
-  <p align='justify'><a href='https://github.com/adamtaiti/SARS-CoV-2/blob/master/example_data/italy_region_province.xls?raw=true'>italy_region_province.xls</a></p>
-  <p>Última atualização: 2020-04-10. Mantenedor: Marco Milanesi. Fonte: <a href='https://github.com/pcm-dpc/COVID-19'>Dipartimento della Protezione Civile</a></p></li>
-</ul>"
+<p align='justify'>Aqui fornecemos alguns conjuntos de dados de exemplo, os quais podem ser baixados e subsequentemente utilizados na aba 'Local' do aplicativo. Estes são dados oficiais de países, territórios ou regiões específicas. Para cada conjunto, você encontrará o link para download, a data da última atualização, o nome do mantenedor (indivíduo que gentilmente se voluntariou para reunir e formatar os dados) e a fonte (o mantenedor original dos dados, tipicamente ligado a sítios de governos locais).</p>"
+"datasetcol","Português","Dados"
+"filecol","Português","Arquivo"
+"maintainercol","Português","Mantenedor"
+"updatedcol","Português","Atualizado"
+"sourcecol","Português","Fonte"
 "sidebarhome","Português","Home"
 "sidebarworldwide","Português","Mundial"
 "sidebarbycountry","Português","por País"
@@ -310,6 +314,11 @@
 "pnextday","Italiano","Prevalenza di domani"
 "cnextday","Italiano","Nuovi casi di domani"
 "realdata","Italiano","Dati reali"
+"selmapview","Italiano","Mostrare"
+"leafletdates","Italiano","Settimana epidemiologica"
+"selmapview1","Italiano","Prevalenza"
+"selmapview2","Italiano","Prevalenza per milione di abitanti"
+"selmapview3","Italiano","Casi settimanali"
 "tmodel","Italiano","Modello teorico (non riflette l'andamento dei dati)"
 "help","Italiano","<h1><strong>Comprendendo i grafici</strong></h1><br>
 <h3>Il comportamento della prevalenza del virus COVID-19 nel tempo può essere suddiviso in tre grafici:</h3>
@@ -378,15 +387,12 @@
 </ul>"
 "download","Italiano","<h1><strong>Scarica i dati di esempio</strong></h1>
 <br>
-<p align='justify'>Qui forniamo dati di esempio, che possono essere scaricati e utilizzati nella sezione 'Locale' dell'applicazione. Questi sono dati ufficiali di stati, territori o regioni specifiche. Per ogni set troverai il link per il download, la data dell'ultimo aggiornamento, il nome del responsabile per il mantenimento (persona che si è gentilmente offerta come volontario per raccogliere e formattare i dati) e la fonte (il fornitore originale dei dati, che in genere è un sito web collegato alle amministrazioni locali).</p>
-<ul>
-  <li><p align='justify'><strong>Stati e regioni del Brasile</strong>.</p>
-  <p align='justify'><a href='https://github.com/adamtaiti/SARS-CoV-2/blob/master/example_data/brazil_state_region.xls?raw=true'>brazil_state_region.xls</a></p>
-  <p>Ultima attualizzazione: 2020-04-14. Manutentore: Yuri Tani Utsunomiya. Fonte: <a href='https://covid.saude.gov.br/'>DATASUS</a></p></li>
-  <li><p align='justify'><strong>Regioni e province italiane</strong>.</p>
-  <p align='justify'><a href='https://github.com/adamtaiti/SARS-CoV-2/blob/master/example_data/italy_region_province.xls?raw=true'>italy_region_province.xls</a></p>
-  <p>Ultimo aggiornamento: 2020-04-10. Manutentore: Marco Milanesi. Fonte: <a href='https://github.com/pcm-dpc/COVID-19'>Dipartimento della Protezione Civile</a></p></li>
-</ul>"
+<p align='justify'>Qui forniamo dati di esempio, che possono essere scaricati e utilizzati nella sezione 'Locale' dell'applicazione. Questi sono dati ufficiali di stati, territori o regioni specifiche. Per ogni set troverai il link per il download, la data dell'ultimo aggiornamento, il nome del responsabile per il mantenimento (persona che si è gentilmente offerta come volontario per raccogliere e formattare i dati) e la fonte (il fornitore originale dei dati, che in genere è un sito web collegato alle amministrazioni locali).</p>"
+"datasetcol","Italiano","Dati"
+"filecol","Italiano","File"
+"maintainercol","Italiano","Manutentore"
+"updatedcol","Italiano","Attualizzazione"
+"sourcecol","Italiano","Fonte"
 "sidebarhome","Italiano","Home"
 "sidebarworldwide","Italiano","Mondiale"
 "sidebarbycountry","Italiano","per Stato"
@@ -448,6 +454,11 @@
 "pnextday","Español","Prevalencia esperada mañana"
 "cnextday","Español","Nuevos casos esperados mañana"
 "realdata","Español","Datos reales"
+"selmapview","Español","Mostrar"
+"leafletdates","Español","Semana epidemiológica"
+"selmapview1","Español","Prevalencia"
+"selmapview2","Español","Prevalencia por millón de habitantes"
+"selmapview3","Español","Casos semanales"
 "tmodel","Español","Modelo teórico (No refleja las tendencias de los datos reales)"
 "help","Español","<h1><strong>Entendiendo los gráficos</strong></h1><br>
 <h3>El comportamiento de la prevalencia de COVID-19 a través del tiempo se descompone en tres gráficos:</h3>
@@ -517,15 +528,12 @@
 </ul>"
 "download","Español","<h1><strong>Descarga los datos de ejemplo</strong></h1>
 <br>
-<p align='justify'>Aquí ponemos a disposición bases de datos de ejemplo para descargar y utilizar en la sección 'Local' de la aplicación. Estos son reportes de casos oficiales de países, regiones o territorios particulares. Para cada base de datos, encontrará un vínculo de descarga, la fecha de la última actualización, el nombre del donante de los datos (individuo voluntario que recolectó y dió formato a los datos) y la fuente original (orígen de los datos, que suelen ser los sitios web oficiales de entidades gubernamentales).</p>
-<ul>
-  <li><p align='justify'><strong>Estados y regiones de Brasil</strong>.</p>
-  <p align='justify'><a href='https://github.com/adamtaiti/SARS-CoV-2/blob/master/example_data/brazil_state_region.xls?raw=true'>brazil_state_region.xls</a></p>
-  <p>Última actualización: 2020-04-14. Donante de los datos: Yuri Tani Utsunomiya. Fuente: <a href='https://covid.saude.gov.br/'>DATASUS</a></p></li>
-  <li><p align='justify'><strong>Regiones y provincias de Italia</strong>.</p>
-  <p align='justify'><a href='https://github.com/adamtaiti/SARS-CoV-2/blob/master/example_data/italy_region_province.xls?raw=true'>italy_region_province.xls</a></p>
-  <p>Última actualización: 2020-04-10. Donante de los datos: Marco Milanesi. Fuente: <a href='https://github.com/pcm-dpc/COVID-19'>Dipartimento della Protezione Civile</a></p></li>
-</ul>"
+<p align='justify'>Aquí ponemos a disposición bases de datos de ejemplo para descargar y utilizar en la sección 'Local' de la aplicación. Estos son reportes de casos oficiales de países, regiones o territorios particulares. Para cada base de datos, encontrará un vínculo de descarga, la fecha de la última actualización, el nombre del donante de los datos (individuo voluntario que recolectó y dió formato a los datos) y la fuente original (orígen de los datos, que suelen ser los sitios web oficiales de entidades gubernamentales).</p>"
+"datasetcol","Español","Datos"
+"filecol","Español","Ficha"
+"maintainercol","Español","Donante"
+"updatedcol","Español","Actualización"
+"sourcecol","Español","Fuente"
 "sidebarhome","Español","Inicio"
 "sidebarworldwide","Español","Mundial"
 "sidebarbycountry","Español","por País"

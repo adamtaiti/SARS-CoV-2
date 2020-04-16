@@ -35,13 +35,17 @@ tabItem(
         fluidRow(
           column(width = 4,
                  selectInput(
-                   inputId = "selmapview", label = "Display",width = "100%",
-                   choices = c("Prevalence","Prevalence per million habitants","Weekly cases")
+                   inputId = "selmapview", label = translate$text[which(translate$item == "selmapview" & translate$language == lang)],
+                   width = "100%",
+                   choices = c("Prevalence","Prevalence per million inhabitants","Weekly cases")
+                   # choices = c(translate$text[which(translate$item == "selmapview1" & translate$language == lang)],
+                   #             translate$text[which(translate$item == "selmapview2" & translate$language == lang)],
+                   #             translate$text[which(translate$item == "selmapview3" & translate$language == lang)])
                  )
           ),
           column(width = 8,
                  sliderInput(inputId = "leafletdates",width = "100%",
-                             label = "Epidemiological week:",
+                             label = translate$text[which(translate$item == "leafletdates" & translate$language == lang)],
                              min = min(weeks$week), 
                              max = max(weeks$week),value = min(weeks$week),step = 1,
                              animate = T, ticks = T)

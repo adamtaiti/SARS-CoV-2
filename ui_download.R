@@ -5,8 +5,10 @@
 ##### Contact: adamtaiti@gmail.com
 ##### Description: user interface for the 'Download' page
 
-tabItem(tabName = "download",
-        fluidPage(
-          HTML(translate$text[which(translate$item == "download" & translate$language == lang)])
-        )
+tabItem(
+  tabName = "download",
+  fluidPage(
+    fluidRow(HTML(translate$text[which(translate$item == "download" & translate$language == lang)])),
+    fluidRow(dataTableOutput(outputId = "downloadtable"))
+  )
 )

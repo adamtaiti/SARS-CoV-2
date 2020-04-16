@@ -348,7 +348,7 @@ locr <- function(x,y,offset){
 
 # Filter data
 getrealdata <- function(realdata, country, smooth, hmmclass){
-  if(is.null(realdata)){
+  if(is.null(realdata) | is.null(country)){
     return(NULL)
   } else {
     df <- realdata[which(realdata$`Countries and territories` == country),]
@@ -1070,7 +1070,7 @@ hmm <- function(df, acc.cutoff=5){
 }
 
 # Epidemiological week
-weeks<-function(df){
+weeks<-function(df, pallete){
   # Map unique territories
   countries <- unique(df$`Countries and territories`)
   dates <- sort(unique(df$DateRep))
@@ -1178,29 +1178,13 @@ weeks<-function(df){
   weeks$ccases.million<-1e6*weeks$ccases/weeks$Pop_Data.2018
   weeks$cdeaths.million<-1e6*weeks$cdeaths/weeks$Pop_Data.2018
   
-  weeks$`Countries and territories`[which(weeks$`Countries and territories`=="United States of America")]<-"United States"
-  weeks$`Countries and territories`[which(weeks$`Countries and territories`=="Russia")]<-"Russian Federation"
-  weeks$`Countries and territories`[which(weeks$`Countries and territories`=="Cote dIvoire")]<-"Côte d'Ivoire"
-  weeks$`Countries and territories`[which(weeks$`Countries and territories`=="Congo")]<-"Republic of the Congo"
-  weeks$`Countries and territories`[which(weeks$`Countries and territories`=="United Republic of Tanzania")]<-"Tanzania"
-  weeks$`Countries and territories`[which(weeks$`Countries and territories`=="North Macedonia")]<-"Macedonia"
-  weeks$`Countries and territories`[which(weeks$`Countries and territories`=="South Korea")]<-"Republic of Korea"
-  weeks$`Countries and territories`[which(weeks$`Countries and territories`=="Laos")]<-"Lao PDR"
-  weeks$`Countries and territories`[which(weeks$`Countries and territories`=="Czechia")]<-"Czech Republic"
-  
-  weeks<-weeks[order(weeks$Cases),]
-  weeks$Cases.log <- log10(weeks$Cases)
-  weeks$Cases.log[which(weeks$Cases.log<0)]<-0
-  
-  weeks<-weeks[order(weeks$ccases),]
-  weeks$ccases.log <- log10(weeks$ccases)
+  weeks$ccases.log<-log10(weeks$ccases)
+  weeks$ccases.million.log<-log10(weeks$ccases.million)
+  weeks$Cases.log<-log10(weeks$Cases)
   weeks$ccases.log[which(weeks$ccases.log<0)]<-0
-  
-  weeks<-weeks[order(weeks$ccases.million),]
-  weeks$ccases.million.log <- log10(weeks$ccases.million)
   weeks$ccases.million.log[which(weeks$ccases.million.log<0)]<-0
-  
-  pallete<-colorRamp(c('white', '#ff1e1e'))
+  weeks$Cases.log[which(weeks$Cases.log<0)]<-0
+  # pallete<-colorRamp(c('green','yellow', '#ff1e1e'))
   
   pal <- colorNumeric(palette = pallete, domain=c(min(weeks$Cases.log),max(weeks$Cases.log)))
   weeks$color_Cases<-pal(weeks$Cases.log)
@@ -1221,6 +1205,17 @@ weeks<-function(df){
     weeks$color_ccases.million[which(is.na(weeks$color_ccases.million) | weeks$color_ccases.million=="#FFFFFF")]<-"none"
   }
 
+  weeks$`Countries and territories`[which(weeks$`Countries and territories`=="United States of America")]<-"United States"
+  weeks$`Countries and territories`[which(weeks$`Countries and territories`=="Russia")]<-"Russian Federation"
+  weeks$`Countries and territories`[which(weeks$`Countries and territories`=="Cote dIvoire")]<-"Côte d'Ivoire"
+  weeks$`Countries and territories`[which(weeks$`Countries and territories`=="Congo")]<-"Republic of the Congo"
+  weeks$`Countries and territories`[which(weeks$`Countries and territories`=="United Republic of Tanzania")]<-"Tanzania"
+  weeks$`Countries and territories`[which(weeks$`Countries and territories`=="North Macedonia")]<-"Macedonia"
+  weeks$`Countries and territories`[which(weeks$`Countries and territories`=="South Korea")]<-"Republic of Korea"
+  weeks$`Countries and territories`[which(weeks$`Countries and territories`=="Laos")]<-"Lao PDR"
+  weeks$`Countries and territories`[which(weeks$`Countries and territories`=="Czechia")]<-"Czech Republic"
+  weeks<-weeks[-which(weeks$`Countries and territories`=="San Marino" | weeks$`Countries and territories`=="Holy See" | weeks$`Countries and territories`=="Andorra"),]
+  
   return(weeks)
 }
 
