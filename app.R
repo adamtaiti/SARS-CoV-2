@@ -4,7 +4,7 @@
 ##### Written by: Adam Taiti Harth Utsunomiya
 ##### Contact: adamtaiti@gmail.com
 ##### Description: main script to run the COVID-19 accelerometer app
-library(shinytest)
+
 # Required libraries -----------------------------------------------------------------------------------------------------
 source("libraries.R")
 source("functions.R")

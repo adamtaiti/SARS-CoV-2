@@ -25,7 +25,11 @@ install.packages("HMM")
 #--------------------------------------------------------------------------------------------------
 # > sudo apt install libssl-dev libcurl4-openssl-dev  gdal-bin proj-bin libgdal-dev libproj-dev
 #--------------------------------------------------------------------------------------------------
-
+install.packages("sf")
+install.packages("spData")
+install.packages("spDataLarge")
+install.packages("DT")
+install.packages("tidyverse")
 install.packages("httr")
 install.packages("shinycssloaders")
 install.packages("devtools")
