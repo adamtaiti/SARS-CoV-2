@@ -6,7 +6,7 @@ output$downloadtable<-renderDT(
       mutate(source = paste0("<a href='", link_source,"' target='_blank'>", source,"</a>"))
     
     sourcedata<-sourcedata[,c(lang,"file","maintainer","updated","source")]
-    sourcedata$updated<-as.Date(sourcedata$updated, origin="1900-01-01")
+    
     colnames(sourcedata)<-c("Dataset","File","Maintainer","Updated","Source")
     colnames(sourcedata)<-c(translate$text[which(translate$item == "datasetcol" & translate$language == lang)],
                             translate$text[which(translate$item == "filecol" & translate$language == lang)],
