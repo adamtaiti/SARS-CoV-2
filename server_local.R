@@ -18,7 +18,7 @@ output$lexdata_growth_acceleration<-renderPlotly({
 })
 
 observeEvent(input$loadfile,{
-  dflocal<-getfile(file = input$loadfile)
+  dflocal<-getfile(file = input$loadfile, session = session$token)
   dflocal2 <- dflocal
   if(ncol(dflocal) > 2){
     output$partitioncol <- renderUI({

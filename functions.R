@@ -421,15 +421,17 @@ f2 <- function(x,a,k,i){
 }
 
 # Get input file from user
-getfile <- function(file){
+getfile <- function(file, session){
   inFile <- file
   if(is.null(inFile)){
     return(NULL)
   } else {
     ext <- tools::file_ext(inFile$name)
     if(ext %in% c("xls", "xlsx")){
-      file.rename(from = inFile$datapath, to = paste(inFile$datapath, ext, sep="."))
-      df <- read_excel(paste(inFile$datapath, ext, sep="."), 1)
+      file.copy(from = inFile$datapath, to = paste0("./temp/",session,".",ext), overwrite = T)
+      #file.rename(from = inFile$datapath, to = paste(inFile$datapath, ext, sep="."))
+      #df <- read_excel(paste(inFile$datapath, ext, sep="."), 1)
+      df <- read_excel(paste0("./temp/",session,".",ext), 1)
       colnames(df)[1:2] <- c("DateRep", "Cases")
       df <- as.data.frame(df)
       df$DateRep <- as.Date(df$DateRep)

@@ -23,18 +23,21 @@ pallete<-colorRamp(c('white','yellow', '#ff1e1e'))
 
 #Get code for user interface ---------------------------------------------------------------------------------------------
 header <- dashboardHeaderPlus(
-  title = "COVID-19", 
-  left_menu = tagList(
-    dropdownBlock(
-      id = "selectlanguage",
-      title = "Select language",
-      icon = "language",
-      selectInput(inputId = "lt",label = "",choices = langchoices, selected = langchoices[1]))
-  )
+  title = "COVID-19"
+  #, 
+  #left_menu = tagList(
+  #  dropdownBlock(
+  #    id = "selectlanguage",
+  #    title = "Select language",
+  #    icon = "language",
+  #    selectInput(inputId = "lt",label = "",choices = langchoices, selected = "English"))
+  #)
 )
 
-sidebar <- dashboardSidebar(withSpinner(sidebarMenuOutput("sidebarmenu")), collapsed = FALSE, disable = FALSE)
+sidebar <- dashboardSidebar(withSpinner(sidebarMenuOutput("sidebarmenu")), collapsed = T, disable = F)
 body <- dashboardBody(
+  #tags$head(includeHTML("./google-analytics.html")),
+  tags$head(includeScript("google-analytics.js")),
   useShinyalert(),
   tags$head(tags$style(
     HTML(".tab-content a {color:#3d3ec1; font-weight:700;}
@@ -54,23 +57,39 @@ ui <- dashboardPage(
 
 #Get code for server reaction --------------------------------------------------------------------------------------------
 server <- function(input, output, session) {
+  
   tablelang<-read.csv(file = "example_data/languages.csv", header = T, sep = ";")
   
-  # Clicking button
-  observeEvent(input$lt,{
-    
-    # Define language
-    lang <- input$lt
+  # Get real data
+  realdata <- connection()
   
-    # Get real data
-    realdata <- connection()
-    
-    # Get epidemiological week
-    weeks <- weeks(realdata, pallete)
-    
-    names(worldmap)[2]<-"Countries and territories"
-    map_centre = st_centroid(worldmap %>% filter(`Countries and territories` == "Tunisia")) %>% 
-      st_coordinates()
+  # Get epidemiological week
+  weeks <- weeks(realdata, pallete)
+  names(worldmap)[2]<-"Countries and territories"
+  
+  # Get map centroid
+  map_centre = st_centroid(worldmap %>% filter(`Countries and territories` == "Tunisia")) %>% 
+    st_coordinates()
+  
+  # Update language button
+  observeEvent(input$language,{
+    updateActionButton(session = session, inputId = "enter",label = translate$text[which(translate$item == "enter" & translate$language == input$language)])
+  })
+  
+  # Initialize page
+  output$dashboardbody <- renderUI({
+    source(file.path("./", "ui_language.R"),  local = TRUE)$value
+  })
+  
+  # Clicking button
+  observeEvent(input$enter,{
+    # Clear interface
+    shinyjs::removeClass(selector = "body", class = "sidebar-collapse")
+    #shinyjs::removeClass(selector = "body", class = "sidebar-disable")
+
+    # Define language
+    #lang <- input$lt
+    lang <- input$language
     
     real <- reactive(getrealdata(realdata=realdata,
                                  country=input$selcountry,
@@ -97,6 +116,11 @@ server <- function(input, output, session) {
     
   })
   
+  session$onSessionEnded(function(){
+    if(file.exists(paste0("./temp/",session$token,"*"))){
+      file.remove(paste0("./temp/",session$token,"*"))
+    }
+  })
 }
 
 #Launch app
