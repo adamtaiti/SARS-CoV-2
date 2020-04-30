@@ -33,7 +33,7 @@
 "cnextday","English","New cases next day"
 "realdata","English","Real data"
 "selmapview","English","Display"
-"leafletdates","English","Epidemiologica week"
+"leafletdates","English","Epidemiological week"
 "selmapview1","English","Prevalence"
 "selmapview2","English","Prevalence per million inhabitants"
 "selmapview3","English","Weekly cases"
