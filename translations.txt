@@ -18,8 +18,8 @@
   <li><p align='justify'><strong>Source</strong>: Link to our GitHub repository containing the source code of this app.</p></li>
 </ul>
 <h3><strong>Reference</strong></h3>
-<p align='justify'>The article describing the methodology used here is currently under peer-review. A preprint of an earlier draft can be accessed at medRxiv:</p>
-<p align='justify'>Utsunomiya YT, Utsunomiya ATH, Torrecilha RBP, Paulan SC, Milanesi M, Garcia JF <br> Growth rate and acceleration analysis of the COVID-19 pandemic reveals the effect of public health measures in real time. <br> doi: <a href='https://doi.org/10.1101/2020.03.30.20047688'>https://doi.org/10.1101/2020.03.30.20047688</a></p>
+<p align='justify'>The article describing the methodology used here can be accessed at:</p>
+<p align='justify'>Utsunomiya YT, Utsunomiya ATH, Torrecilha RBP, Paulan SC, Milanesi M, Garcia JF (2020) <br> Growth rate and acceleration analysis of the COVID-19 pandemic reveals the effect of public health measures in real time. <br> Frontiers in Medicine 7:247 <br> doi: <a href='https://doi.org/10.3389/fmed.2020.00247'>https://doi.org/10.3389/fmed.2020.00247</a></p>
 <h3><strong>Contact us</strong></h3>
 <p align='justify'>If you have any suggestions for improving the application or would like to report a bug, please send an email to <code>adamtaiti@gmail.com</code>.</p>
 <p align='justify'>The translation of this page to English was kindly brought to you by <strong>Yuri Tani Utsunomiya</strong>.</p>"
@@ -159,8 +159,8 @@
   <li><p align='justify'><strong>Fonte</strong>: Link para o nosso repositório do GitHub contendo o código fonte deste aplicativo.</p></li>
 </ul>
 <h3><strong>Referência</strong></h3>
-<p align='justify'>O artigo que descreve a metodologia empregada neste aplicativo está atualmente sob revisão por pares. Um 'preprint' de uma versão inicial do manuscrito pode ser acessado no medRxiv:</p>
-<p align='justify'>Utsunomiya YT, Utsunomiya ATH, Torrecilha RBP, Paulan SC, Milanesi M, Garcia JF <br> Growth rate and acceleration analysis of the COVID-19 pandemic reveals the effect of public health measures in real time. <br> doi: <a href='https://doi.org/10.1101/2020.03.30.20047688'>https://doi.org/10.1101/2020.03.30.20047688</a></p>
+<p align='justify'>O artigo que descreve a metodologia empregada neste aplicativo pode ser acessado em:</p>
+<p align='justify'>Utsunomiya YT, Utsunomiya ATH, Torrecilha RBP, Paulan SC, Milanesi M, Garcia JF (2020) <br> Growth rate and acceleration analysis of the COVID-19 pandemic reveals the effect of public health measures in real time. <br> Frontiers in Medicine 7:247 <br> doi: <a href='https://doi.org/10.3389/fmed.2020.00247'>https://doi.org/10.3389/fmed.2020.00247</a></p>
 <h3><strong>Contato</strong></h3>
 <p align='justify'>Se você tem sugestões para melhorar o nosso aplicativo, ou gostaria de relatar algum mal-funcionamento, mande um e-mail para <code>adamtaiti@gmail.com</code>.</p>
 <p align='justify'>A tradução desta página para o Português foi gentilmente oferecida por <strong>Yuri Tani Utsunomiya</strong>.</p>"
@@ -300,8 +300,8 @@
   <li><p align='justify'><strong>Risorse</strong>: Link al nostro repository di GitHub contenente il codice sorgente di questa applicazione.</p></li>
 </ul>
 <h3><strong>Riferimenti</strong></h3>
-<p align='justify'>L'articolo che descrive la metodologia utilizzata nell'applicazione qui presentata è ora in fase di revisione (peer-review). È possibile accedere a una versione pre-stampa presso medRxiv:</p>
-<p align='justify'>Utsunomiya YT, Utsunomiya ATH, Torrecilha RBP, Paulan SC, Milanesi M, Garcia JF <br> Growth rate and acceleration analysis of the COVID-19 pandemic reveals the effect of public health measures in real time. <br> doi: <a href='https://doi.org/10.1101/2020.03.30.20047688'>https://doi.org/10.1101/2020.03.30.20047688</a></p>
+<p align='justify'>L'articolo che descrive la metodologia utilizzata nell'applicazione:</p>
+<p align='justify'>Utsunomiya YT, Utsunomiya ATH, Torrecilha RBP, Paulan SC, Milanesi M, Garcia JF (2020) <br> Growth rate and acceleration analysis of the COVID-19 pandemic reveals the effect of public health measures in real time. <br> Frontiers in Medicine 7:247 <br> doi: <a href='https://doi.org/10.3389/fmed.2020.00247'>https://doi.org/10.3389/fmed.2020.00247</a></p>
 <h3><strong>Contattaci</strong></h3>
 <p align='justify'>Se hai suggerimenti su come migliorare l'applicazione o desideri segnalarci un bug, invia un'email a <code>adamtaiti@gmail.com</code>.</p>
 <p align='justify'>La traduzione di questa pagina in italiano è stata gentilmente offerta da <strong>Marco Milanesi</strong>.</p>"
@@ -440,8 +440,8 @@
   <li><p align='justify'><strong>Fuente</strong>: Link al repositorio de GitHub que contiene el código fuente de esta aplicación.</p></li>
 </ul>
 <h3><strong>Referencia</strong></h3>
-<p align='justify'>El artículo que describe la metodología utilizada se encuentra actualmente bajo revisión por pares para publicación. El documento preliminar puede ser descargado en medRxiv:</p>
-<p align='justify'>Utsunomiya YT, Utsunomiya ATH, Torrecilha RBP, Paulan SC, Milanesi M, Garcia JF <br> Growth rate and acceleration analysis of the COVID-19 pandemic reveals the effect of public health measures in real time. <br> doi: <a href='https://doi.org/10.1101/2020.03.30.20047688'>https://doi.org/10.1101/2020.03.30.20047688</a></p>
+<p align='justify'>El artículo que describe la metodología utilizada puede ser descargada en:</p>
+<p align='justify'>Utsunomiya YT, Utsunomiya ATH, Torrecilha RBP, Paulan SC, Milanesi M, Garcia JF (2020) <br> Growth rate and acceleration analysis of the COVID-19 pandemic reveals the effect of public health measures in real time. <br> Frontiers in Medicine 7:247 <br> doi: <a href='https://doi.org/10.3389/fmed.2020.00247'>https://doi.org/10.3389/fmed.2020.00247</a></p>
 <h3><strong>Contáctenos</strong></h3>
 <p align='justify'>Si tienes cualquier sugerencia para mejorar la aplicación o quieres reportar un problema, por favor escríbenos al correo electrónico <code>adamtaiti@gmail.com</code>.</p>
 <p align='justify'>La traducción de esta página a Español fue realizada por <strong>Ana María Pérez O'Brien</strong>.</p>"
