@@ -10,7 +10,12 @@ source("libraries.R")
 source("functions.R")
 
 # Pre-sets for the environment -------------------------------------------------------------------------------------------
-options(shiny.maxRequestSize = 5*(1024^2))
+# Obs: configured for uploads of up to 10Mb
+# For larger files, set shiny.maxRequestSize to the desired upper bound
+# It may be furhter necessary to enter /etc/nginx/nginx.conf
+# After Basic settings, add client_max_body_size 10M;
+# Then restart nginx with $sudo service nginx restart
+options(shiny.maxRequestSize = 10*(1024^2))
 translate <- read.table(file = "translations.txt", header = T, sep = ",", stringsAsFactors = F)
 langchoices<-unique(sort(translate$language))
 lang <- "English"#NULL
