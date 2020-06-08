@@ -19,12 +19,17 @@ connection <- function(){
         #read the Dataset sheet into “R”. The dataset will be called "data".
         realdata <- read.csv(file)
         
-        names(realdata)<-c("DateRep","Day","Month","Year","Cases","Deaths","Countries and territories","GeoId","Code","Pop_Data.2018")
+        names(realdata)<-c("DateRep","Day","Month","Year","Cases","Deaths","Countries and territories","GeoId","Code","Pop_Data.2018", "Continent")
         
         realdata$DateRep<-as.Date(realdata$DateRep, format = "%d/%m/%Y")
+        realdata$Cases<-abs(realdata$Cases)
         realdata<-realdata[order(realdata$DateRep),]
         realdata$`Countries and territories`<-gsub(pattern = "_", replacement = " ", x = realdata$`Countries and territories`)
         
+        # #exclude countries
+        # excountries <- "Brazil"
+        # realdata <- realdata[which(realdata$`Countries and territories` %in% excountries == FALSE),]
+
         return(realdata)
         
       } else{
@@ -44,12 +49,16 @@ connection <- function(){
         #read the Dataset sheet into “R”. The dataset will be called "data".
         realdata <- read.csv(file)
         
-        names(realdata)<-c("DateRep","Day","Month","Year","Cases","Deaths","Countries and territories","GeoId","Code","Pop_Data.2018")
+        names(realdata)<-c("DateRep","Day","Month","Year","Cases","Deaths","Countries and territories","GeoId","Code","Pop_Data.2018","Continent")
         
         realdata$DateRep<-as.Date(realdata$DateRep, format = "%d/%m/%Y")
         realdata<-realdata[order(realdata$DateRep),]
         realdata$`Countries and territories`<-gsub(pattern = "_", replacement = " ", x = realdata$`Countries and territories`)
         
+        # #exclude countries
+        # excountries <- "Brazil"
+        # realdata <- realdata[which(realdata$`Countries and territories` %in% excountries == FALSE),]
+
         return(realdata)
       }
     },
