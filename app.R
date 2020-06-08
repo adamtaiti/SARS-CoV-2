@@ -51,7 +51,7 @@ body <- dashboardBody(
          span.label.label-danger {opacity: 0; background-color:#d9534f00!important;}"))
     ),
   withSpinner(uiOutput("dashboardbody"))
-)
+  )
 ui <- dashboardPage(
   title = "Covid-19 Accelerometer",
   header = header,
@@ -91,7 +91,7 @@ server <- function(input, output, session) {
     # Clear interface
     shinyjs::removeClass(selector = "body", class = "sidebar-collapse")
     #shinyjs::removeClass(selector = "body", class = "sidebar-disable")
-
+    
     # Define language
     #lang <- input$lt
     lang <- input$language
@@ -100,6 +100,11 @@ server <- function(input, output, session) {
                                  country=input$selcountry,
                                  smooth = input$smoothrange,
                                  hmmclass = input$hmmrange))
+    
+    # # Alert
+    # shinyalert(title = translate$text[which(translate$item == "welcomewarn" & translate$language == lang)],
+    #            text = translate$text[which(translate$item == "welcomewarnmsg" & translate$language == lang)],
+    #            type = "warning")
     
     # Render sidebarmenu
     output$sidebarmenu <- renderMenu({
