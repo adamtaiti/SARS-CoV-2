@@ -10,12 +10,12 @@
 <h3><strong>How to use</strong></h3>
 <p align='justify'>Here we provided an easy and acessible way to interpretate the dissemination of COVID-19 via the following tabs:</p>
 <ul>
-  <li><p align='justify'><strong>Worldwide</strong>: Overview of the worldwide cases, deaths and countries affected.</p></li>
-  <li><p align='justify'><strong>Country</strong>: Presents growth curve, growth rate and growth acceleration for any selectable country contained in the ECDC data.</p></li>
-  <li><p align='justify'><strong>Local</strong>: Allows user to upload their own data to visualize the growth curve, growth rate and growth acceleration of specific states, provinces, cities or aggregate data from arbitrary territory definitions. <em>It is necessary for the user to create an excel spreadsheet containing two columns, namely <strong>date ('YYYY-mm-dd')</strong> and <strong>ncases (number of cases)</strong>. The interface also allows the user to provide additional columns (optional) to partition the data further by sub-regions </em>.</p></li>
-  <li><p align='justify'><strong>Downloads</strong>: Contains example data to be used in the 'Local' tab, which are essentially official data from specific countries, territories or regions.</p></li>
-  <li><p align='justify'><strong>Help</strong>: Provides details on how to interpret the growth graphs, as well as on the methodology used.</p></li>
-  <li><p align='justify'><strong>Source</strong>: Link to our GitHub repository containing the source code of this app.</p></li>
+<li><p align='justify'><strong>Worldwide</strong>: Overview of the worldwide cases, deaths and countries affected.</p></li>
+<li><p align='justify'><strong>Country</strong>: Presents growth curve, growth rate and growth acceleration for any selectable country contained in the ECDC data.</p></li>
+<li><p align='justify'><strong>Local</strong>: Allows user to upload their own data to visualize the growth curve, growth rate and growth acceleration of specific states, provinces, cities or aggregate data from arbitrary territory definitions. <em>It is necessary for the user to create an excel spreadsheet containing two columns, namely <strong>date ('YYYY-mm-dd')</strong> and <strong>ncases (number of cases)</strong>. The interface also allows the user to provide additional columns (optional) to partition the data further by sub-regions </em>.</p></li>
+<li><p align='justify'><strong>Downloads</strong>: Contains example data to be used in the 'Local' tab, which are essentially official data from specific countries, territories or regions.</p></li>
+<li><p align='justify'><strong>Help</strong>: Provides details on how to interpret the growth graphs, as well as on the methodology used.</p></li>
+<li><p align='justify'><strong>Source</strong>: Link to our GitHub repository containing the source code of this app.</p></li>
 </ul>
 <h3><strong>Reference</strong></h3>
 <p align='justify'>The article describing the methodology used here can be accessed at:</p>
@@ -41,67 +41,67 @@
 "help","English","<h1><strong>Understanding the plots</strong></h1><br>
 <h3>The behavior of the prevalence of COVID-19 over time is decomposed into three graphs:</h3>
 <ul>
-  <li>
-    <p align='justify'><strong>Growth curve - total number of cases</strong></p>
-    <p align='justify'>In this graph, each point represents the cummulative number of cases in a given day. The fitted curve is approximated by moving regression and corresponds to a smoothed trend obtained from the points. The whole graph can be interpreted as the evolution of prevalence over time. Theoretical standard growth curves are typically sigmoid ('S'-shaped), but the dynamics of COVID-19 prevalence in practice may deviate substantially from that shape. In an analogy to a moving car, the growth curve could be interpreted as the travaled distance over time. For the car, we would measure growth in meters (m) or kilometers (km), whereas for prevalence growth is measured in total number of cases.</p>
-  </li>
-  <li>
-    <p align='justify'><strong>Growth rate - new cases per day</strong></p>
-    <p align='justify'>This curve reveals the instanteneous rate of change in number of new cases over time. It is usually bell-shaped, with its peak corresponding to maximum growth. The growth rate is technically defined as the first order derivative of the growth curve, and in the moving car analogy is equivalent to speed. For the car, we would measure growth rate in meters per second (m/s) or kilometers per hour (km/h), while for prevalence we measure growth rate in cases per day (cases/day).</p>
-  <li>
-    <p align='justify'><strong>Growth acceleration - new cases per day per day</strong></p>
-    <p align='justify'>This graph shows how the growth rate changes over time, and it is technically the second order derivative of the growth curve. It consists of combinations of two bell-shaped curves: the first one with a peak and the second with a valley. The peak indicates the maximum acceleration and is the point where acceleration starts descending towards zero. The moment when acceleration is exactly zero coincides with the inflection of growth curve, which marks the beginning of growth deceleration (i.e., negative acceleration). The latter corresponds to the entire concave section of the curve, but the very bottom of the valley indicates that the prevalence is moving towards stagnation. Back to the car, we would measure acceleration in meters per second squared (m/s²) or kilometers per hour squared (km/h²), while for prevalence we express it in cases per day squared (cases/day²). When acceleration is rising, it is analagous to pressing the accelerator pedal. When it is declining, it is equivalent to releasing the accelerator pedal. When acceleration is negative, then it is similar to hitting the brakes.</p>
-  </li>
-  <li>
-    <p align='justify'>These three graphs are estimated using the Moving Regression (MR) technique. MR relies on a single free parameter, namely the 'smooth factor', which represents the number of neighbouring days to be used to estimate growth rate and acceleration for each day. This parameter does not have an optimal value, and therefore should be tested by the user.</p>
-  </li>
+<li>
+<p align='justify'><strong>Growth curve - total number of cases</strong></p>
+<p align='justify'>In this graph, each point represents the cummulative number of cases in a given day. The fitted curve is approximated by moving regression and corresponds to a smoothed trend obtained from the points. The whole graph can be interpreted as the evolution of prevalence over time. Theoretical standard growth curves are typically sigmoid ('S'-shaped), but the dynamics of COVID-19 prevalence in practice may deviate substantially from that shape. In an analogy to a moving car, the growth curve could be interpreted as the travaled distance over time. For the car, we would measure growth in meters (m) or kilometers (km), whereas for prevalence growth is measured in total number of cases.</p>
+</li>
+<li>
+<p align='justify'><strong>Growth rate - new cases per day</strong></p>
+<p align='justify'>This curve reveals the instanteneous rate of change in number of new cases over time. It is usually bell-shaped, with its peak corresponding to maximum growth. The growth rate is technically defined as the first order derivative of the growth curve, and in the moving car analogy is equivalent to speed. For the car, we would measure growth rate in meters per second (m/s) or kilometers per hour (km/h), while for prevalence we measure growth rate in cases per day (cases/day).</p>
+<li>
+<p align='justify'><strong>Growth acceleration - new cases per day per day</strong></p>
+<p align='justify'>This graph shows how the growth rate changes over time, and it is technically the second order derivative of the growth curve. It consists of combinations of two bell-shaped curves: the first one with a peak and the second with a valley. The peak indicates the maximum acceleration and is the point where acceleration starts descending towards zero. The moment when acceleration is exactly zero coincides with the inflection of growth curve, which marks the beginning of growth deceleration (i.e., negative acceleration). The latter corresponds to the entire concave section of the curve, but the very bottom of the valley indicates that the prevalence is moving towards stagnation. Back to the car, we would measure acceleration in meters per second squared (m/s²) or kilometers per hour squared (km/h²), while for prevalence we express it in cases per day squared (cases/day²). When acceleration is rising, it is analagous to pressing the accelerator pedal. When it is declining, it is equivalent to releasing the accelerator pedal. When acceleration is negative, then it is similar to hitting the brakes.</p>
+</li>
+<li>
+<p align='justify'>These three graphs are estimated using the Moving Regression (MR) technique. MR relies on a single free parameter, namely the 'smooth factor', which represents the number of neighbouring days to be used to estimate growth rate and acceleration for each day. This parameter does not have an optimal value, and therefore should be tested by the user.</p>
+</li>
 </ul>
 <br>
 <h3>The dynamics of COVID-19 is complex and may vary greatly across regions. However, the pandemic evolves by combination of five distinguishable stages:</h3>
 <ul>
-  <li>
-    <p align='justify'><strong>The lagging stage (Green)</strong>.</p>
-    <p align='justify'>This corresponds to the beginning of the outbreak or disease importation, where the number of cases are low and increase only marginally every day.</p>
-  </li>
-  <li>
-    <p align='justify'><strong>The exponential stage (Red)</strong>.</p>
-    <p align='justify'>Growth is accelerated and the number of new cases increase rapidly every day.</p>
-  </li>
-  <li>
-    <p align='justify'><strong>The deceleration stage (Yellow)</strong>.</p>
-    <p align='justify'>This is a hopeful phase, where the number of new cases reduces day-by-day.</p>
-  </li>
-  <li>
-    <p align='justify'><strong>The stationary stage (Blue)</strong>.</p>
-    <p align='justify'>Characterized by stagnation of the prevalence with sporadic new cases occurring each day. This is the stage everyone wants to reach.</p>
-  </li>
-  <li>
-    <p align='justify'><strong>The linear stage (Purple)</strong>.</p>
-    <p align='justify'>This is an atypical phase, characterized by constant growth. This stage may happen when the deceleration phase does not deepen enough to produce a stationary phase.</p>
-  </li>
-  <li><p align='justify'>These five stages are predicted by a Hidden Markov Model (HMM). The HMM implemented here also has a free parameter named 'HMM classifier', which is the acceleration threshold (in thousands of cases/day²) that distinguishes the lagging stage from any other growth stage. As for the MR "smooth factor", this parameter should be tuned by the user since it does not have an optimal value.</p></p>
-  </li>
+<li>
+<p align='justify'><strong>The lagging stage (Green)</strong>.</p>
+<p align='justify'>This corresponds to the beginning of the outbreak or disease importation, where the number of cases are low and increase only marginally every day.</p>
+</li>
+<li>
+<p align='justify'><strong>The exponential stage (Red)</strong>.</p>
+<p align='justify'>Growth is accelerated and the number of new cases increase rapidly every day.</p>
+</li>
+<li>
+<p align='justify'><strong>The deceleration stage (Yellow)</strong>.</p>
+<p align='justify'>This is a hopeful phase, where the number of new cases reduces day-by-day.</p>
+</li>
+<li>
+<p align='justify'><strong>The stationary stage (Blue)</strong>.</p>
+<p align='justify'>Characterized by stagnation of the prevalence with sporadic new cases occurring each day. This is the stage everyone wants to reach.</p>
+</li>
+<li>
+<p align='justify'><strong>The linear stage (Purple)</strong>.</p>
+<p align='justify'>This is an atypical phase, characterized by constant growth. This stage may happen when the deceleration phase does not deepen enough to produce a stationary phase.</p>
+</li>
+<li><p align='justify'>These five stages are predicted by a Hidden Markov Model (HMM). The HMM implemented here also has a free parameter named 'HMM classifier', which is the acceleration threshold (in thousands of cases/day²) that distinguishes the lagging stage from any other growth stage. As for the MR "smooth factor", this parameter should be tuned by the user since it does not have an optimal value.</p></p>
+</li>
 </ul>
 <br>
 <h3 align='justify'>Users are encouraged to pay attention to the dates near stage transitions, as they may be related to events that had an impact on disease dynamics. Was any public health measure implemented or discontinued? Do these dates coincide with big government announcements?</h3>
 <br>
 <h3>Below we exemplify possible scenarios for the evolution of a COVID-19 epidemic within a country or territory.</h3>
 <ul>
-  <li>
-    <p align='justify'><strong>lagging -> exponential -> deceleration -> stationary</strong></p>
-    <p align='justify'>This is the expected scenario for most countries. The disease is introduced, grows exponentially, decelerates thanks to effective control measures and then become stationary.</p>
-  </li>
-  <li>
-    <p align='justify'><strong>lagging -> exponential -> deceleration -> stationary -> exponential -> deceleration -> stationary</strong></p>
-    <p align='justify'>Reaching a stationary growth does not guarantee indefinite control. The disease can grow again, for example by re-introduction of the disease via importation.</p>
-  </li>
-  <li>
-    <p align='justify'><strong>lagging -> N*(exponential -> deceleration) -> stationary</strong></p>
-    <p align='justify'>A country that is decelerating could accelerate again, generating multiple cycles of exponential and deceleration stages. This could result from relaxing control measures when deceleration is perceived.</p>
-  </li>
-  <li>
-    <p align='justify'>Apart from these three likely scenarios, we anticipate that more complex permutations of these stages may take place in the evolution of some countries.</strong></p>
-  </li>
+<li>
+<p align='justify'><strong>lagging -> exponential -> deceleration -> stationary</strong></p>
+<p align='justify'>This is the expected scenario for most countries. The disease is introduced, grows exponentially, decelerates thanks to effective control measures and then become stationary.</p>
+</li>
+<li>
+<p align='justify'><strong>lagging -> exponential -> deceleration -> stationary -> exponential -> deceleration -> stationary</strong></p>
+<p align='justify'>Reaching a stationary growth does not guarantee indefinite control. The disease can grow again, for example by re-introduction of the disease via importation.</p>
+</li>
+<li>
+<p align='justify'><strong>lagging -> N*(exponential -> deceleration) -> stationary</strong></p>
+<p align='justify'>A country that is decelerating could accelerate again, generating multiple cycles of exponential and deceleration stages. This could result from relaxing control measures when deceleration is perceived.</p>
+</li>
+<li>
+<p align='justify'>Apart from these three likely scenarios, we anticipate that more complex permutations of these stages may take place in the evolution of some countries.</strong></p>
+</li>
 </ul>"
 "download","English","<h1><strong>Download example data</strong></h1>
 <br>
@@ -135,6 +135,8 @@
 "error","English","Error!"
 "notenoughdata","English","There is not enough data to display!"
 "extensionxls","English","The file must have '.xlsx' or '.xls' extension!"
+"welcomewarn","English","Warning"
+"welcomewarnmsg","English","Data from Brazil are currently unavailable in the country tab. For data collected up to June 4th 2020 please use the Download menu."
 "predprevalence","English","<br>Predicted prevalence: "
 "obsprevalence","English","<br>Observed prevalence: "
 "newcases","English","<br>New cases: "
@@ -151,12 +153,12 @@
 <h3><strong>Como utilizar</strong></h3>
 <p align='justify'>Aqui provemos uma maneira fácil e acessível de interpretar a disseminação da COVID-19 por meio das seguintes opções:</p>
 <ul>
-  <li><p align='justify'><strong>Mundial</strong>: Sumário geral dos casos confirmados, número de mortos e número de países afetados ao redor do mundo.</p></li>
-  <li><p align='justify'><strong>País</strong>: Apresenta as curvas de crescimento bruto, taxa de crescimento e aceleração para qualquer país selecionável do conjunto de dados do ECDC.</p></li>
-  <li><p align='justify'><strong>Local</strong>: Permite ao usuário carregar seus próprios dados para visualizar as curvas de estados, províncias, cidades ou até mesmo dados agregados de forma arbitrária. <em>É necessário que o usuário crie uma planilha de Excel contendo as colunas <strong>date ('YYYY-mm-dd')</strong> e <strong>ncases (number of cases)</strong>. A interface também permite ao usuário a inclusão de colunas adicionais (opcional) para dividir os dados por sub-regiões</em>.</p></li>
-    <li><p align='justify'><strong>Downloads</strong>: Contém conjuntos de dados de exemplo para utilizar na aba 'Local', como dados oficiais de países, territórios ou regiões específicas.</p></li>
-  <li><p align='justify'><strong>Ajuda</strong>: Fornece detalhes sobre como interpretar os gráficos de crescimento, bem como sobre a metodologia utilizada pelo aplicativo.</p></li>
-  <li><p align='justify'><strong>Fonte</strong>: Link para o nosso repositório do GitHub contendo o código fonte deste aplicativo.</p></li>
+<li><p align='justify'><strong>Mundial</strong>: Sumário geral dos casos confirmados, número de mortos e número de países afetados ao redor do mundo.</p></li>
+<li><p align='justify'><strong>País</strong>: Apresenta as curvas de crescimento bruto, taxa de crescimento e aceleração para qualquer país selecionável do conjunto de dados do ECDC.</p></li>
+<li><p align='justify'><strong>Local</strong>: Permite ao usuário carregar seus próprios dados para visualizar as curvas de estados, províncias, cidades ou até mesmo dados agregados de forma arbitrária. <em>É necessário que o usuário crie uma planilha de Excel contendo as colunas <strong>date ('YYYY-mm-dd')</strong> e <strong>ncases (number of cases)</strong>. A interface também permite ao usuário a inclusão de colunas adicionais (opcional) para dividir os dados por sub-regiões</em>.</p></li>
+<li><p align='justify'><strong>Downloads</strong>: Contém conjuntos de dados de exemplo para utilizar na aba 'Local', como dados oficiais de países, territórios ou regiões específicas.</p></li>
+<li><p align='justify'><strong>Ajuda</strong>: Fornece detalhes sobre como interpretar os gráficos de crescimento, bem como sobre a metodologia utilizada pelo aplicativo.</p></li>
+<li><p align='justify'><strong>Fonte</strong>: Link para o nosso repositório do GitHub contendo o código fonte deste aplicativo.</p></li>
 </ul>
 <h3><strong>Referência</strong></h3>
 <p align='justify'>O artigo que descreve a metodologia empregada neste aplicativo pode ser acessado em:</p>
@@ -182,67 +184,67 @@
 "help","Português","<h1><strong>Entendendo os gráficos</strong></h1><br>
 <h3>O comportamento da prevalência de COVID-19 ao longo do tempo é decomposto em três gráficos:</h3>
 <ul>
-  <li>
-    <p align='justify'><strong>Curva de crescimento bruto - número total de casos</strong></p>
-    <p align='justify'>Neste gráfico, cada ponto representa o número de casos acumulados até a respectiva data. A curva ajustada aos pontos é aproximada por meio da técnica de regressão móvel, e corresponde à tendência suavizada dos pontos. O gráfico como um todo pode ser interpretado como a evolução da prevalência da doença ao longo do tempo. Curvas de crescimento teóricas são tipicamente sigmóides (formato de 'S'), no entanto na prática a dinâmica da prevalência da COVID-19 pode desviar substancialmente deste formato. Em uma analogia com os automóveis, a curva de crescimento bruto pode ser interpretada como a distância percorrida por um automóvel ao longo do tempo. Para um automóvel, o crescimento seria medido em metros (m) ou quilômetros (km), enquanto que o crescimento da prevalência é medido em número total de casos.</p>
-  </li>
-  <li>
-    <p align='justify'><strong>Taxa de crescimento - novos casos por dia</strong></p>
-    <p align='justify'>Esta curva revela a taxa de mudança instantânea no número de casos ao longo do tempo. Ela geralmente tem formato de sino, com seu pico correspondendo ao ponto de máximo crescimento. A taxa de crescimento é tecnicamente definida como a derivada de primeira ordem da curva de crescimento bruto, e na analogia do automóvel seria equivalente à velocidade. Para o automóvel, mediríamos a taxa de crescimento em metros por segundo (m/s) ou em quilômetros por hora (km/h), enquanto que para a prevalência a taxa de crescimento é medida em casos por dia (casos/dia).</p>
-  <li>
-    <p align='justify'><strong>Aceleração - novos casos por dia por dia</strong></p>
-    <p align='justify'>Este gráfico mostra como a taxa de crescimento muda ao longo do tempo, e é tecnicamente definida como a derivada de segunda ordem da curva de crescimento bruto. Ele consiste na combinação de duas curvas em formato de sino: a primeira com um pico e a segunda com um vale. O pico indica o ponto de máxima aceleração, a partir do qual a aceleração começa a declinar em direção a zero. O momento no qual a aceleração é exatamente igual a zero marca o ponto de inflexão da curva de crescimento bruto, que por sua vez representa o início da desaceleração do crescimento (i.e., aceleração passa a ser negativa). A desaceleração corresponde à secção côncava da curva, e o ponto mais baixo do vale indica que a prevalência está iniciando seu processo de estagnação. De volta ao automóvel, medimos a aceleração em metros por segundo ao quadrado (m/s²) ou quilômetros por hora ao quadrado (km/h²), enquanto que para a prevalência ela é expressa em casos por dia ao quadrado (casos/dia²). Quando a aceleração está aumentando, seria análogo a pisar no pedal do acelerador. Quando ela está declinando, seria o equivalente a remover o pé do pedal do acelerador. Finalmente, quando a aceleração passa a ser negativa, temos algo similar a pisar no freio.</p>
-  </li>
-  <li>
-    <p align='justify'>Estes três gráficos são estimados por meio da técnica de Regressão Móvel (MR - Moving Regression). A MR é dependente de um único parâmetro livre, denominado de 'fator de suavização', o qual representa o número de dias vizinhos utilizados para a estimativa da taxa de cresimento e da aceleração de cada dia. Este parâmetro não possui um valor ótimo, portanto o mesmo deve ser testado pelo usuário até que se atinja um bom ajuste dos dados.</p>
-  </li>
+<li>
+<p align='justify'><strong>Curva de crescimento bruto - número total de casos</strong></p>
+<p align='justify'>Neste gráfico, cada ponto representa o número de casos acumulados até a respectiva data. A curva ajustada aos pontos é aproximada por meio da técnica de regressão móvel, e corresponde à tendência suavizada dos pontos. O gráfico como um todo pode ser interpretado como a evolução da prevalência da doença ao longo do tempo. Curvas de crescimento teóricas são tipicamente sigmóides (formato de 'S'), no entanto na prática a dinâmica da prevalência da COVID-19 pode desviar substancialmente deste formato. Em uma analogia com os automóveis, a curva de crescimento bruto pode ser interpretada como a distância percorrida por um automóvel ao longo do tempo. Para um automóvel, o crescimento seria medido em metros (m) ou quilômetros (km), enquanto que o crescimento da prevalência é medido em número total de casos.</p>
+</li>
+<li>
+<p align='justify'><strong>Taxa de crescimento - novos casos por dia</strong></p>
+<p align='justify'>Esta curva revela a taxa de mudança instantânea no número de casos ao longo do tempo. Ela geralmente tem formato de sino, com seu pico correspondendo ao ponto de máximo crescimento. A taxa de crescimento é tecnicamente definida como a derivada de primeira ordem da curva de crescimento bruto, e na analogia do automóvel seria equivalente à velocidade. Para o automóvel, mediríamos a taxa de crescimento em metros por segundo (m/s) ou em quilômetros por hora (km/h), enquanto que para a prevalência a taxa de crescimento é medida em casos por dia (casos/dia).</p>
+<li>
+<p align='justify'><strong>Aceleração - novos casos por dia por dia</strong></p>
+<p align='justify'>Este gráfico mostra como a taxa de crescimento muda ao longo do tempo, e é tecnicamente definida como a derivada de segunda ordem da curva de crescimento bruto. Ele consiste na combinação de duas curvas em formato de sino: a primeira com um pico e a segunda com um vale. O pico indica o ponto de máxima aceleração, a partir do qual a aceleração começa a declinar em direção a zero. O momento no qual a aceleração é exatamente igual a zero marca o ponto de inflexão da curva de crescimento bruto, que por sua vez representa o início da desaceleração do crescimento (i.e., aceleração passa a ser negativa). A desaceleração corresponde à secção côncava da curva, e o ponto mais baixo do vale indica que a prevalência está iniciando seu processo de estagnação. De volta ao automóvel, medimos a aceleração em metros por segundo ao quadrado (m/s²) ou quilômetros por hora ao quadrado (km/h²), enquanto que para a prevalência ela é expressa em casos por dia ao quadrado (casos/dia²). Quando a aceleração está aumentando, seria análogo a pisar no pedal do acelerador. Quando ela está declinando, seria o equivalente a remover o pé do pedal do acelerador. Finalmente, quando a aceleração passa a ser negativa, temos algo similar a pisar no freio.</p>
+</li>
+<li>
+<p align='justify'>Estes três gráficos são estimados por meio da técnica de Regressão Móvel (MR - Moving Regression). A MR é dependente de um único parâmetro livre, denominado de 'fator de suavização', o qual representa o número de dias vizinhos utilizados para a estimativa da taxa de cresimento e da aceleração de cada dia. Este parâmetro não possui um valor ótimo, portanto o mesmo deve ser testado pelo usuário até que se atinja um bom ajuste dos dados.</p>
+</li>
 </ul>
 <br>
 <h3>A dinâmica da COVID-19 é complexa e pode variar muito de região para região. Entretanto, a pandemia parece evoluir por meio da combinação de cinco estágios distintos:</h3>
 <ul>
-  <li>
-    <p align='justify'><strong>Fase lenta (Verde)</strong>.</p>
-    <p align='justify'>Corresponde ao início do surto ou da importação da doença, no qual o número de casos é baixo e aumenta de forma marginal todos os dias.</p>
-  </li>
-  <li>
-    <p align='justify'><strong>Fase exponencial (Vermelho)</strong>.</p>
-    <p align='justify'>O crescimento está acelerado e o número de casos aumenta rapidamente todos os dias.</p>
-  </li>
-  <li>
-    <p align='justify'><strong>Fase de desaceleração (Amarelo)</strong>.</p>
-    <p align='justify'>Esta é uma fase que traz esperanças, na qual o número de casos se reduz dia após dia.</p>
-  </li>
-  <li>
-    <p align='justify'><strong>Fase estacionária (Azul)</strong>.</p>
-    <p align='justify'>Caracterizada pela estagnação da prevalência, com novos casos ocorrendo de forma esporádica a cada dia. Este é o estágio que todos nós queremos atingir.</p>
-  </li>
-  <li>
-    <p align='justify'><strong>Fase linear (Roxo)</strong>.</p>
-    <p align='justify'>Esta é uma fase atípica, caracterizada por crescimento constante. Este estágio pode ocorrer, por exemplo, quando a fase de desaceleração não produz um vale suficientemente profundo para conter o crescimento da doença, causando a não-formação da desejada fase estacionária.</p>
-  </li>
-  <li><p align='justify'>Estes cinco estágios são preditos por meio de um Modelo de Cadeia Oculta de Markov (HMM - Hidden Markov Model). O HMM foi implementado aqui também na dependência de um parâmetro livro, chamado de 'classificador HMM', que consiste em um limiar de aceleração (medido em milhares de casos/dia²) para distinguir a fase lenta das demais fases de crescimento. Assim como explicado para o 'fator de suavização' da MR, este parâmetero deve ser ajustado pelo usuário.</p></p>
-  </li>
+<li>
+<p align='justify'><strong>Fase lenta (Verde)</strong>.</p>
+<p align='justify'>Corresponde ao início do surto ou da importação da doença, no qual o número de casos é baixo e aumenta de forma marginal todos os dias.</p>
+</li>
+<li>
+<p align='justify'><strong>Fase exponencial (Vermelho)</strong>.</p>
+<p align='justify'>O crescimento está acelerado e o número de casos aumenta rapidamente todos os dias.</p>
+</li>
+<li>
+<p align='justify'><strong>Fase de desaceleração (Amarelo)</strong>.</p>
+<p align='justify'>Esta é uma fase que traz esperanças, na qual o número de casos se reduz dia após dia.</p>
+</li>
+<li>
+<p align='justify'><strong>Fase estacionária (Azul)</strong>.</p>
+<p align='justify'>Caracterizada pela estagnação da prevalência, com novos casos ocorrendo de forma esporádica a cada dia. Este é o estágio que todos nós queremos atingir.</p>
+</li>
+<li>
+<p align='justify'><strong>Fase linear (Roxo)</strong>.</p>
+<p align='justify'>Esta é uma fase atípica, caracterizada por crescimento constante. Este estágio pode ocorrer, por exemplo, quando a fase de desaceleração não produz um vale suficientemente profundo para conter o crescimento da doença, causando a não-formação da desejada fase estacionária.</p>
+</li>
+<li><p align='justify'>Estes cinco estágios são preditos por meio de um Modelo de Cadeia Oculta de Markov (HMM - Hidden Markov Model). O HMM foi implementado aqui também na dependência de um parâmetro livro, chamado de 'classificador HMM', que consiste em um limiar de aceleração (medido em milhares de casos/dia²) para distinguir a fase lenta das demais fases de crescimento. Assim como explicado para o 'fator de suavização' da MR, este parâmetero deve ser ajustado pelo usuário.</p></p>
+</li>
 </ul>
 <br>
 <h3 align='justify'>Recomendamos que os usuários se atentem às datas vizinhas às transições de fases, uma vez que as mesmas podem estar relacionadas a eventos que tiveram impacto na dinâmica da doença. Houve a implementação ou descontinuação de alguma medida de saúde pública? Estas datas coincidem com algum grande pronunciamento do governo?</h3>
 <br>
 <h3>Abaixo exemplificamos alguns possível cenários para a evolução da epidemia de COVID-19 epidemic em um dado país ou território.</h3>
 <ul>
-  <li>
-    <p align='justify'><strong>lenta -> exponencial -> desaceleração -> estacionária</strong></p>
-    <p align='justify'>Este é o cenário esperado para a maioria dos países. A doença é introduzida, cresce exponencialmente, desacelera graças a medidas efetivas de controle e, finalmente, estagna.</p>
-  </li>
-  <li>
-    <p align='justify'><strong>lenta -> exponencial -> desaceleração -> estacionária -> exponencial -> desaceleração -> estacionária</strong></p>
-    <p align='justify'>O alcance de uma fase estacionária não garante controle da doença por tempo indeterminado. A doença pode crescer novamente, por exemplo através da re-introdução da mesma via importação.</p>
-  </li>
-  <li>
-    <p align='justify'><strong>lenta -> N*(exponencial -> desaceleração) -> estacionária</strong></p>
-    <p align='justify'>O país que está desacelerando pode voltar a acelerar, gerando múltiplos ciclos de fases exponenciais e de desaceleração. Isto pode resultar do relaxamento de medidas de controle em um cenário otimista de desaceleração.</p>
-  </li>
-  <li>
-    <p align='justify'>Além destes três cenários, antecipamos que permutações mais complexas destas fases podem ocorrer durante a evolução da prevalência da doença em alguns países.</strong></p>
-  </li>
+<li>
+<p align='justify'><strong>lenta -> exponencial -> desaceleração -> estacionária</strong></p>
+<p align='justify'>Este é o cenário esperado para a maioria dos países. A doença é introduzida, cresce exponencialmente, desacelera graças a medidas efetivas de controle e, finalmente, estagna.</p>
+</li>
+<li>
+<p align='justify'><strong>lenta -> exponencial -> desaceleração -> estacionária -> exponencial -> desaceleração -> estacionária</strong></p>
+<p align='justify'>O alcance de uma fase estacionária não garante controle da doença por tempo indeterminado. A doença pode crescer novamente, por exemplo através da re-introdução da mesma via importação.</p>
+</li>
+<li>
+<p align='justify'><strong>lenta -> N*(exponencial -> desaceleração) -> estacionária</strong></p>
+<p align='justify'>O país que está desacelerando pode voltar a acelerar, gerando múltiplos ciclos de fases exponenciais e de desaceleração. Isto pode resultar do relaxamento de medidas de controle em um cenário otimista de desaceleração.</p>
+</li>
+<li>
+<p align='justify'>Além destes três cenários, antecipamos que permutações mais complexas destas fases podem ocorrer durante a evolução da prevalência da doença em alguns países.</strong></p>
+</li>
 </ul>"
 "download","Português","<h1><strong>Download de dados de exemplo</strong></h1>
 <br>
@@ -276,6 +278,8 @@
 "error","Português","Erro!"
 "notenoughdata","Português","Não há dados suficientes para mostrar!"
 "extensionxls","Português","A extensão do arquivo tem que ser '.xlsx' ou '.xls'!"
+"welcomewarn","Português","Atenção"
+"welcomewarnmsg","Português","Os dados do Brasil estão temporariamente indisponíveis na aba por País. Para dados coletados até 4 de Junho de 2020, por favor utilize o menu Downloads."
 "predprevalence","Português","<br>Prevalência predita: "
 "obsprevalence","Português","<br>Prevalência observada: "
 "newcases","Português","<br>Novos casos: "
@@ -292,12 +296,12 @@
 <h3><strong>Come usarla</strong></h3>
 <p align='justify'>Qui forniamo un modo semplice e di facile accesso per interpretare la diffusione del COVID-19 attraverso le seguenti schede:</p>
 <ul>
-  <li><p align='justify'><strong>Mondiale</strong>: Panoramica del numero di casi confermati, decessi e di paesi colpiti a livello mondiale.</p></li>
-  <li><p align='justify'><strong>Stati</strong>: Mostra la curva di crescita, il tasso di crescita e l'accelerazione nei paesi presenti nei dati dell'ECDC.</p></li>
-  <li><p align='justify'><strong>Locale</strong>: Consente all'utente di caricare i propri dati per la visualizzazione della curva di crescita, il tasso di crescita e l'accelerazione di stati, province, città o dati aggregati dall'utente in modo arbitrario. <em>È necessario che l'utente crei un foglio di calcolo Excel contenete le colonne <strong>date ('AAAA-mm-gg')</strong> e <strong>ncases (numero di casi)</strong>. L'interfaccia inoltre permette all'utente di fornire delle colonne addizionali (opzionale) per suddividere i dati per sotto regioni</em>.</p></li>
-  <li><p align='justify'><strong>Downloads</strong>: Contiene dati di esempio da utilizzare nella scheda 'Locale', che sono essenzialmente dati ufficiali provenienti da specifici paesi, territori o regioni.</p></li>
-  <li><p align='justify'><strong>Aiuto</strong>: Fornisce dettagli su come interpretare i grafici di crescita, nonché sulla metodologia utilizzata.</p></li>
-  <li><p align='justify'><strong>Risorse</strong>: Link al nostro repository di GitHub contenente il codice sorgente di questa applicazione.</p></li>
+<li><p align='justify'><strong>Mondiale</strong>: Panoramica del numero di casi confermati, decessi e di paesi colpiti a livello mondiale.</p></li>
+<li><p align='justify'><strong>Stati</strong>: Mostra la curva di crescita, il tasso di crescita e l'accelerazione nei paesi presenti nei dati dell'ECDC.</p></li>
+<li><p align='justify'><strong>Locale</strong>: Consente all'utente di caricare i propri dati per la visualizzazione della curva di crescita, il tasso di crescita e l'accelerazione di stati, province, città o dati aggregati dall'utente in modo arbitrario. <em>È necessario che l'utente crei un foglio di calcolo Excel contenete le colonne <strong>date ('AAAA-mm-gg')</strong> e <strong>ncases (numero di casi)</strong>. L'interfaccia inoltre permette all'utente di fornire delle colonne addizionali (opzionale) per suddividere i dati per sotto regioni</em>.</p></li>
+<li><p align='justify'><strong>Downloads</strong>: Contiene dati di esempio da utilizzare nella scheda 'Locale', che sono essenzialmente dati ufficiali provenienti da specifici paesi, territori o regioni.</p></li>
+<li><p align='justify'><strong>Aiuto</strong>: Fornisce dettagli su come interpretare i grafici di crescita, nonché sulla metodologia utilizzata.</p></li>
+<li><p align='justify'><strong>Risorse</strong>: Link al nostro repository di GitHub contenente il codice sorgente di questa applicazione.</p></li>
 </ul>
 <h3><strong>Riferimenti</strong></h3>
 <p align='justify'>L'articolo che descrive la metodologia utilizzata nell'applicazione:</p>
@@ -323,67 +327,67 @@
 "help","Italiano","<h1><strong>Comprendendo i grafici</strong></h1><br>
 <h3>Il comportamento della prevalenza del virus COVID-19 nel tempo può essere suddiviso in tre grafici:</h3>
 <ul>
-  <li>
-    <p align='justify'><strong>Curva di crescita - numero totale di casi</strong></p>
-    <p align='justify'>In questo grafico, ogni punto rappresenta il numero cumulativo di casi in un determinato giorno. La curva di interpolazione dei punti è stata ottenuta utilizzando la tecnica della regressione mobile e corrisponde all'andamento interpolato dei punti. L'intero grafico può essere interpretato come l'evoluzione della prevalenza nel tempo. Le curve di crescita teoriche sono tipicamente delle sigmoidi (a forma di 'S'), tuttavia la dinamica della prevalenza del COVID-19 può deviare sostanzialmente da questa forma. In una analogia con le automobili, la curva di crescita può essere interpretata come la distanza percorsa da un'automobile nel tempo. Se si parla di automobili, la crescita è misurata in metri (m) o chilometri (km), mentre nel caso della crescita della prevalenza questa è misurata in numero totale di casi.</p>
-  </li>
-  <li>
-    <p align='justify'><strong>Tasso di crescita - nuovi casi al giorno</strong></p>
-    <p align='justify'>Questa curva mostra il tasso di variazione istantaneo del numero di casi nel tempo. È generalmente a forma di campana e il picco corrisponde al punto di massima crescita. Il tasso di crescita è tecnicamente definito come la derivata di primo grado della curva di crescita, e nell'analogia con l'automobile è pari alla velocità. Per l'automobile, misureremmo il tasso di crescita in metri al secondo (m/s) o in chilometri all'ora (km/h), mentre per la prevalenza il tasso di crescita è misurato in casi al giorno (casi/giorno).</p>
-  <li>
-    <p align='justify'><strong>Accelerazione della crescita - nuovi casi al giorno al giorno</strong></p>
-    <p align='justify'>Questo grafico mostra come il tasso di crescita cambia nel tempo ed è tecnicamente definito come la derivata di secondo grado della curva di crescita. Consiste nella combinazione di due curve a campana: la prima con un picco e la seconda con una valle. Il picco indica il punto di massima accelerazione e il punto in cui l'accelerazione inizia a diminuire e scendere verso lo zero. Il momento in cui l'accelerazione è esattamente uguale a zero segna il punto di flesso della curva di crescita, che a sua volta rappresenta l'inizio del rallentamento della crescita, ovvero l'accelerazione diventa negativa.</p>
-  </li>
-  <li>
-    <p align='justify'>Questi tre grafici sono ottenuti utilizzando la tecnica della regressione mobile (MR - Moving Regression). MR si basa su un solo parametro libero, chiamato 'fattore di interpolazione', che rappresenta il numero di giorni adiacenti utilizzati per stimare il tasso di crescita e l'accelerazione di ogni giorno</p>
-  </li>
+<li>
+<p align='justify'><strong>Curva di crescita - numero totale di casi</strong></p>
+<p align='justify'>In questo grafico, ogni punto rappresenta il numero cumulativo di casi in un determinato giorno. La curva di interpolazione dei punti è stata ottenuta utilizzando la tecnica della regressione mobile e corrisponde all'andamento interpolato dei punti. L'intero grafico può essere interpretato come l'evoluzione della prevalenza nel tempo. Le curve di crescita teoriche sono tipicamente delle sigmoidi (a forma di 'S'), tuttavia la dinamica della prevalenza del COVID-19 può deviare sostanzialmente da questa forma. In una analogia con le automobili, la curva di crescita può essere interpretata come la distanza percorsa da un'automobile nel tempo. Se si parla di automobili, la crescita è misurata in metri (m) o chilometri (km), mentre nel caso della crescita della prevalenza questa è misurata in numero totale di casi.</p>
+</li>
+<li>
+<p align='justify'><strong>Tasso di crescita - nuovi casi al giorno</strong></p>
+<p align='justify'>Questa curva mostra il tasso di variazione istantaneo del numero di casi nel tempo. È generalmente a forma di campana e il picco corrisponde al punto di massima crescita. Il tasso di crescita è tecnicamente definito come la derivata di primo grado della curva di crescita, e nell'analogia con l'automobile è pari alla velocità. Per l'automobile, misureremmo il tasso di crescita in metri al secondo (m/s) o in chilometri all'ora (km/h), mentre per la prevalenza il tasso di crescita è misurato in casi al giorno (casi/giorno).</p>
+<li>
+<p align='justify'><strong>Accelerazione della crescita - nuovi casi al giorno al giorno</strong></p>
+<p align='justify'>Questo grafico mostra come il tasso di crescita cambia nel tempo ed è tecnicamente definito come la derivata di secondo grado della curva di crescita. Consiste nella combinazione di due curve a campana: la prima con un picco e la seconda con una valle. Il picco indica il punto di massima accelerazione e il punto in cui l'accelerazione inizia a diminuire e scendere verso lo zero. Il momento in cui l'accelerazione è esattamente uguale a zero segna il punto di flesso della curva di crescita, che a sua volta rappresenta l'inizio del rallentamento della crescita, ovvero l'accelerazione diventa negativa.</p>
+</li>
+<li>
+<p align='justify'>Questi tre grafici sono ottenuti utilizzando la tecnica della regressione mobile (MR - Moving Regression). MR si basa su un solo parametro libero, chiamato 'fattore di interpolazione', che rappresenta il numero di giorni adiacenti utilizzati per stimare il tasso di crescita e l'accelerazione di ogni giorno</p>
+</li>
 </ul>
 <br>
 <h3>La dinamica del COVID-19 è complessa e può variare notevolmente tra le regioni. Tuttavia, la pandemia sembra evolversi seguendo la combinazione di cinque fasi distinte:</h3>
 <ul>
-  <li>
-    <p align='justify'><strong>Fase lenta (Verde)</strong>.</p>
-    <p align='justify'>Questa fase corrisponde all'inizio dell'epidemia o all'importazione della malattia. In questa fase il numero di casi è basso e aumenta solo in modo marginale tutti i giorni.</p>
-  </li>
-  <li>
-    <p align='justify'><strong>Fase esponenziale (Rosso)</strong>.</p>
-    <p align='justify'>La crescita è in accelerazione e il numero di nuovi casi aumenta rapidamente ogni giorno.</p>
-  </li>
-  <li>
-    <p align='justify'><strong>La fase di rallentamento (Giallo)</strong>.</p>
-    <p align='justify'>Questa è una fase di speranza, dove il numero di nuovi casi si riduce di giorno in giorno.</p>
-  </li>
-  <li>
-    <p align='justify'><strong>Fase stazionaria (Blu)</strong>.</p>
-    <p align='justify'>Caratterizzata dalla stagnazione della prevalenza, con nuovi casi sporadici ogni giorno. Questo è il palcoscenico che tutti vogliono raggiungere.</p>
-  </li>
-  <li>
-    <p align='justify'><strong>Fase lineare (Viola)</strong>.</p>
-    <p align='justify'>Questa è una fase atipica, caratterizzata da una crescita costante. Questo stadio può verificarsi, per esempio, quando la fase di rallentamento non produce una valle abbastanza profonda in grado di contenere la crescita della malattia, facendo sì che la fase stazionaria non si crei.</p>
-  </li>
-  <li><p align='justify'>Queste cinque fasi sono previste da un modello nascosto di Markov (HMM - Hidden Markov Model). L'HMM qui implementato ha un parametro nominato 'classificatore HMM' che consiste in una soglia di accelerazione (in migliaia di casi/giorno²) per distinguere la fase lenta dalle altre fasi di crescimento. Come già spiegato per il 'fattore di interpolazione' di MR, questo parametro può essere modificato dall'utente.</p></p>
-  </li>
+<li>
+<p align='justify'><strong>Fase lenta (Verde)</strong>.</p>
+<p align='justify'>Questa fase corrisponde all'inizio dell'epidemia o all'importazione della malattia. In questa fase il numero di casi è basso e aumenta solo in modo marginale tutti i giorni.</p>
+</li>
+<li>
+<p align='justify'><strong>Fase esponenziale (Rosso)</strong>.</p>
+<p align='justify'>La crescita è in accelerazione e il numero di nuovi casi aumenta rapidamente ogni giorno.</p>
+</li>
+<li>
+<p align='justify'><strong>La fase di rallentamento (Giallo)</strong>.</p>
+<p align='justify'>Questa è una fase di speranza, dove il numero di nuovi casi si riduce di giorno in giorno.</p>
+</li>
+<li>
+<p align='justify'><strong>Fase stazionaria (Blu)</strong>.</p>
+<p align='justify'>Caratterizzata dalla stagnazione della prevalenza, con nuovi casi sporadici ogni giorno. Questo è il palcoscenico che tutti vogliono raggiungere.</p>
+</li>
+<li>
+<p align='justify'><strong>Fase lineare (Viola)</strong>.</p>
+<p align='justify'>Questa è una fase atipica, caratterizzata da una crescita costante. Questo stadio può verificarsi, per esempio, quando la fase di rallentamento non produce una valle abbastanza profonda in grado di contenere la crescita della malattia, facendo sì che la fase stazionaria non si crei.</p>
+</li>
+<li><p align='justify'>Queste cinque fasi sono previste da un modello nascosto di Markov (HMM - Hidden Markov Model). L'HMM qui implementato ha un parametro nominato 'classificatore HMM' che consiste in una soglia di accelerazione (in migliaia di casi/giorno²) per distinguere la fase lenta dalle altre fasi di crescimento. Come già spiegato per il 'fattore di interpolazione' di MR, questo parametro può essere modificato dall'utente.</p></p>
+</li>
 </ul>
 <br>
 <h3 align='justify'>Raccomandiamo agli utenti di prestare attenzione alle date vicine ai cambi di fase, poiché potrebbero essere correlate ad eventi che hanno avuto un impatto sulla dinamica della malattia. È stata implementata o interrotta una misura di sanità pubblica? Queste date coincidono con qualche importante annuncio del governo?</h3>
 <br>
 <h3>Di seguito vengono esemplificati possibili scenari per l'evoluzione dell'epidemia di COVID-19 all'interno di un paese o territorio.</h3>
 <ul>
-  <li>
-    <p align='justify'><strong>lenta -> esponenziale -> rallentamento -> stazionaria</strong></p>
-    <p align='justify'>Questo è lo scenario previsto per la maggior parte degli Stati. La malattia viene introdotta, cresce esponenzialmente, rallenta grazie a misure di controllo efficaci e, infine, raggiunge la fase stazionaria.</p>
-  </li>
-  <li>
-    <p align='justify'><strong>lenta -> esponenziale -> rallentamento -> stazionaria -> esponenziale -> rallentamento -> stazionaria</strong></p>
-    <p align='justify'>Il raggiungimento della fase stazionaria non garantisce il controllo della malattia indefinitamente. La malattia può crescere di nuovo, per esempio con la reintroduzione della stessa attraverso le importazioni.</p>
-  </li>
-  <li>
-    <p align='justify'><strong>lenta -> N*(esponenziale -> rallentamento) -> stazionaria</strong></p>
-    <p align='justify'>Uno Stato che sta rallentando potrebbe accelerare di nuovo, generando più cicli di fase esponenziale / fase di rallentamento. Ciò potrebbe derivare dall'allentamento delle misure di controllo quando viene percepito la decelerazione.</p>
-  </li>
-  <li>
-    <p align='justify'>Oltre a questi tre scenari, prevediamo che, in alcuni Stati, durante l'evoluzione della prevalenza della malattia, possano verificarsi permutazioni più complesse di queste fasi.</strong></p>
-  </li>
+<li>
+<p align='justify'><strong>lenta -> esponenziale -> rallentamento -> stazionaria</strong></p>
+<p align='justify'>Questo è lo scenario previsto per la maggior parte degli Stati. La malattia viene introdotta, cresce esponenzialmente, rallenta grazie a misure di controllo efficaci e, infine, raggiunge la fase stazionaria.</p>
+</li>
+<li>
+<p align='justify'><strong>lenta -> esponenziale -> rallentamento -> stazionaria -> esponenziale -> rallentamento -> stazionaria</strong></p>
+<p align='justify'>Il raggiungimento della fase stazionaria non garantisce il controllo della malattia indefinitamente. La malattia può crescere di nuovo, per esempio con la reintroduzione della stessa attraverso le importazioni.</p>
+</li>
+<li>
+<p align='justify'><strong>lenta -> N*(esponenziale -> rallentamento) -> stazionaria</strong></p>
+<p align='justify'>Uno Stato che sta rallentando potrebbe accelerare di nuovo, generando più cicli di fase esponenziale / fase di rallentamento. Ciò potrebbe derivare dall'allentamento delle misure di controllo quando viene percepito la decelerazione.</p>
+</li>
+<li>
+<p align='justify'>Oltre a questi tre scenari, prevediamo che, in alcuni Stati, durante l'evoluzione della prevalenza della malattia, possano verificarsi permutazioni più complesse di queste fasi.</strong></p>
+</li>
 </ul>"
 "download","Italiano","<h1><strong>Scarica i dati di esempio</strong></h1>
 <br>
@@ -417,6 +421,8 @@
 "error","Italiano","Errore!"
 "notenoughdata","Italiano","Non ci sono dati sufficienti da mostrare!"
 "extensionxls","Italiano","Il file deve avere l'estensione '.xlsx' o '.xls'!"
+"welcomewarn","Italiano","Attenzione"
+"welcomewarnmsg","Italiano","I dati dal Brasile non sono attualmente disponibili nel menu per Stato. Per i dati al 4 giugno 2020, utilizzare il menu Download."
 "predprevalence","Italiano","<br>Prevalenza prevista: "
 "obsprevalence","Italiano","<br>Prevalenza osservata: "
 "newcases","Italiano","<br>Nuovi casi: "
@@ -432,12 +438,12 @@
 <h3><strong>¿Cómo usarlo?</strong></h3>
 <p align='justify'>Aquí proveemos una forma fácil y accesible de interpretar la diseminación de COVID-19 por medio de las siguientes opciones:</p>
 <ul>
-  <li><p align='justify'><strong>Mundial</strong>: Resumen global de casos confirmados, muertes y países afectados.</p></li>
-  <li><p align='justify'><strong>País</strong>: Presenta la curva de crecimiento, tasa de crecimiento y aceleración de crecimiento para cualquiera de los países seleccionados incluído en la base de datos de la ECDC.</p></li>
-  <li><p align='justify'><strong>Local</strong>: Permite al usuario subir sus propios datos para visualizar la curva de crecimiento, tasa de crecimiento y aceleración de crecimiento de estados, provincias, regiones, ciudades o agregados de datos de territorios definidos por el usuario. <em>Es necesario que el usuario cree una hoja de excel con dos columnas: <strong>fecha ('AAAA-mm-dd')</strong> y <strong>casos (número de casos)</strong>. La interfaz permite al usuario proveer columnas adicionales (opcional) para delimitar los datos por subregiones </em>.</p></li>
-  <li><p align='justify'><strong>Descargas</strong>: Contiene ejemplos de datos para ser usados en la opción 'Local', derivados de datos oficiales de algunos países, territorios y regiones.</p></li>
-  <li><p align='justify'><strong>Ayuda</strong>: Provee detalles de como interpretar los gráficos de crecimiento, así como sobre la metodología utilizada.</p></li>
-  <li><p align='justify'><strong>Fuente</strong>: Link al repositorio de GitHub que contiene el código fuente de esta aplicación.</p></li>
+<li><p align='justify'><strong>Mundial</strong>: Resumen global de casos confirmados, muertes y países afectados.</p></li>
+<li><p align='justify'><strong>País</strong>: Presenta la curva de crecimiento, tasa de crecimiento y aceleración de crecimiento para cualquiera de los países seleccionados incluído en la base de datos de la ECDC.</p></li>
+<li><p align='justify'><strong>Local</strong>: Permite al usuario subir sus propios datos para visualizar la curva de crecimiento, tasa de crecimiento y aceleración de crecimiento de estados, provincias, regiones, ciudades o agregados de datos de territorios definidos por el usuario. <em>Es necesario que el usuario cree una hoja de excel con dos columnas: <strong>fecha ('AAAA-mm-dd')</strong> y <strong>casos (número de casos)</strong>. La interfaz permite al usuario proveer columnas adicionales (opcional) para delimitar los datos por subregiones </em>.</p></li>
+<li><p align='justify'><strong>Descargas</strong>: Contiene ejemplos de datos para ser usados en la opción 'Local', derivados de datos oficiales de algunos países, territorios y regiones.</p></li>
+<li><p align='justify'><strong>Ayuda</strong>: Provee detalles de como interpretar los gráficos de crecimiento, así como sobre la metodología utilizada.</p></li>
+<li><p align='justify'><strong>Fuente</strong>: Link al repositorio de GitHub que contiene el código fuente de esta aplicación.</p></li>
 </ul>
 <h3><strong>Referencia</strong></h3>
 <p align='justify'>El artículo que describe la metodología utilizada puede ser descargada en:</p>
@@ -463,68 +469,68 @@
 "help","Español","<h1><strong>Entendiendo los gráficos</strong></h1><br>
 <h3>El comportamiento de la prevalencia de COVID-19 a través del tiempo se descompone en tres gráficos:</h3>
 <ul>
-  <li>
-    <p align='justify'><strong>Curva de crecimiento - número total de casos</strong></p>
-    <p align='justify'>En este gráfico cada punto representa el número acumulado de casos en un día dado. La curva ajustada a los puntos es aproximada por medio de la técnica de regresión móvil (RM) y corresponde a la tendencia suavizada de los puntos. La gráfica completa puede ser interpretada como la evolución de la prevalencia a través del tiempo. Las curvas de crecimiento teóricas son típicamente sigmoidales (en forma de 'S'), pero las dinámicas de la prevalencia de COVID-19 en la práctica se pueden desviar sustancialmente de esa forma. Haciendo una analogía con un carro en movimiento, la curva de crecimiento puede ser interpretada como la distancia recorrida por el carro en el tiempo. Para el caso del carro, mediríamos el crecimiento en metros (m) o kilómetros (km), mientras que para el crecimiento de la prevalencia se mide el número total de casos.</p>
-  </li>
-  <li>
-    <p align='justify'><strong>Tasa de crecimiento - nuevos casos por día</strong></p>
-    <p align='justify'>Esta curva revela la tasa instantánea de cambio en el número de casos a través del tiempo. Usualmente tiene forma de campana, con el pico correspondiendo al punto de máximo crecimiento. La tasa de crecimiento se define técnicamente como la derivada de primer orden de la curva de crecimiento, y en la analogía del carro en movimiento sería equivalente a la velocidad. Para el carro, mediríamos la tasa de crecimiento en metros por segundo (m/s) o kilómetros por hora (km/h), mientras que para la prevalencia medimos la tasa de crecimiento en casos por día (casos/día).</p>
-  </li>  
-  <li>
-    <p align='justify'><strong>Aceleración del crecimiento - nuevos casos por día por día</strong></p>
-    <p align='justify'>Este gráfico muestra como la tasa de crecimiento cambia a través del tiempo, y es técnicamente la derivada de segundo orden de la curva de crecimiento. Consiste en la combinación de dos curvas en forma de campana: la primera con un pico, y la segunda con un valle. El pico indica la aceleración máxima y es el punto donde la aceleración empieza a descender hacia el cero. El momento cuando la aceleración es exactamente cero, coincide con el punto de inflexión de la curva de crecimiento, lo que marca el inicio de la desaceleración del crecimiento (p.ej., aceleración negativa). Este último corresponde a la totalidad de la sección cóncava de la curva, pero el fondo del valle indica que la prevalencia se está moviendo hacia un estancamiento. Volviendo a la analogía del carro, mediríamos la aceleración en metros por segundos al cuadrado (m/s²) o kilómetros por horas al cuadrado (km/h²), mientras que para la prevalencia la expresamos en casos por día al cuadrado (casos/día²). Cuando la aceleración se está elevando, esto es análogo a pisar el pedal del acelerador en el carro. Cuando esta declinando, es equivalente a liberar el pie del acelerador. Cuando la aceleración es negativa, entonces es similar a pisar el pedal del freno.</p>
-  </li>
-  <li>
-    <p align='justify'>Estos tres gráficos son estimadas usando la técnica de Regresión Móvil (RM). La RM depende de un solo parámetro libre, denominado 'factor de suavización', que representa el número de días cercanos que deben ser usados para estimar la tasa de crecimiento y aceleración de cada día. Este parámetro no tiene un valor óptimo, y por lo tanto debe ser evaluado por el usuario.</p>
-  </li>
+<li>
+<p align='justify'><strong>Curva de crecimiento - número total de casos</strong></p>
+<p align='justify'>En este gráfico cada punto representa el número acumulado de casos en un día dado. La curva ajustada a los puntos es aproximada por medio de la técnica de regresión móvil (RM) y corresponde a la tendencia suavizada de los puntos. La gráfica completa puede ser interpretada como la evolución de la prevalencia a través del tiempo. Las curvas de crecimiento teóricas son típicamente sigmoidales (en forma de 'S'), pero las dinámicas de la prevalencia de COVID-19 en la práctica se pueden desviar sustancialmente de esa forma. Haciendo una analogía con un carro en movimiento, la curva de crecimiento puede ser interpretada como la distancia recorrida por el carro en el tiempo. Para el caso del carro, mediríamos el crecimiento en metros (m) o kilómetros (km), mientras que para el crecimiento de la prevalencia se mide el número total de casos.</p>
+</li>
+<li>
+<p align='justify'><strong>Tasa de crecimiento - nuevos casos por día</strong></p>
+<p align='justify'>Esta curva revela la tasa instantánea de cambio en el número de casos a través del tiempo. Usualmente tiene forma de campana, con el pico correspondiendo al punto de máximo crecimiento. La tasa de crecimiento se define técnicamente como la derivada de primer orden de la curva de crecimiento, y en la analogía del carro en movimiento sería equivalente a la velocidad. Para el carro, mediríamos la tasa de crecimiento en metros por segundo (m/s) o kilómetros por hora (km/h), mientras que para la prevalencia medimos la tasa de crecimiento en casos por día (casos/día).</p>
+</li>  
+<li>
+<p align='justify'><strong>Aceleración del crecimiento - nuevos casos por día por día</strong></p>
+<p align='justify'>Este gráfico muestra como la tasa de crecimiento cambia a través del tiempo, y es técnicamente la derivada de segundo orden de la curva de crecimiento. Consiste en la combinación de dos curvas en forma de campana: la primera con un pico, y la segunda con un valle. El pico indica la aceleración máxima y es el punto donde la aceleración empieza a descender hacia el cero. El momento cuando la aceleración es exactamente cero, coincide con el punto de inflexión de la curva de crecimiento, lo que marca el inicio de la desaceleración del crecimiento (p.ej., aceleración negativa). Este último corresponde a la totalidad de la sección cóncava de la curva, pero el fondo del valle indica que la prevalencia se está moviendo hacia un estancamiento. Volviendo a la analogía del carro, mediríamos la aceleración en metros por segundos al cuadrado (m/s²) o kilómetros por horas al cuadrado (km/h²), mientras que para la prevalencia la expresamos en casos por día al cuadrado (casos/día²). Cuando la aceleración se está elevando, esto es análogo a pisar el pedal del acelerador en el carro. Cuando esta declinando, es equivalente a liberar el pie del acelerador. Cuando la aceleración es negativa, entonces es similar a pisar el pedal del freno.</p>
+</li>
+<li>
+<p align='justify'>Estos tres gráficos son estimadas usando la técnica de Regresión Móvil (RM). La RM depende de un solo parámetro libre, denominado 'factor de suavización', que representa el número de días cercanos que deben ser usados para estimar la tasa de crecimiento y aceleración de cada día. Este parámetro no tiene un valor óptimo, y por lo tanto debe ser evaluado por el usuario.</p>
+</li>
 </ul>
 <br>
 <h3>Las dinámicas del COVID-19 son complejas y pueden variar enormemente entre regiones. Sin embargo, las pandemias evolucionan mediante el desarrollo de cinco fases distinguibles:</h3>
 <ul>
-  <li>
-    <p align='justify'><strong>La fase lenta (Verde)</strong>.</p>
-    <p align='justify'>Esta corresponde al inicio del brote o la importación de la enfermedad, cuando el número de casos es bajo y se incrementa solo de manera ligera cada día.</p>
-  </li>
-  <li>
-    <p align='justify'><strong>La fase exponencial (Rojo)</strong>.</p>
-    <p align='justify'>El crecimiento se acelera y el número de casos nuevos se incrementa rápidamente cada día.</p>
-  </li>
-  <li>
-    <p align='justify'><strong>La fase de desaceleración (Amarillo)</strong>.</p>
-    <p align='justify'>Esta es una fase esperanzadora, cuando el número de casos nuevos reduce día tras día.</p>
-  </li>
-  <li>
-    <p align='justify'><strong>La fase estacionaria (Azul)</strong>.</p>
-    <p align='justify'>Caracterizada por el estancamiento de la prevalencia con casos nuevos ocurriendo esporádicamente cada día. Esta es la fase que todos quieren lograr.</p>
-  </li>
-  <li>
-    <p align='justify'><strong>La fase linear (Violeta)</strong>.</p>
-    <p align='justify'>Esta es una fase atípica caracterizada por crecimiento constante. Esta fase puede ocurrir cuando la fase de desaceleración no se profundiza lo suficiente para lograr alcanzar la fase estacionaria.</p>
-  </li>
-  <li><p align='justify'>Estas cinco fases son estimadas mediante un modelo oculto de Markov (HMM por sus siglas en Inglés). El HMM implementado aquí también tiene un parámetro libre denominado 'Clasificador HMM', que es el umbral límite de aceleración (en miles de casos/día²) que distingue la fase estacionaria de cualquier otra fase de crecimiento. Igual que para el factor de suavización en la RM, este parámetro deberá ser ajustado por el usuario ya que no tiene un valor óptimo.</p></p>
-  </li>
+<li>
+<p align='justify'><strong>La fase lenta (Verde)</strong>.</p>
+<p align='justify'>Esta corresponde al inicio del brote o la importación de la enfermedad, cuando el número de casos es bajo y se incrementa solo de manera ligera cada día.</p>
+</li>
+<li>
+<p align='justify'><strong>La fase exponencial (Rojo)</strong>.</p>
+<p align='justify'>El crecimiento se acelera y el número de casos nuevos se incrementa rápidamente cada día.</p>
+</li>
+<li>
+<p align='justify'><strong>La fase de desaceleración (Amarillo)</strong>.</p>
+<p align='justify'>Esta es una fase esperanzadora, cuando el número de casos nuevos reduce día tras día.</p>
+</li>
+<li>
+<p align='justify'><strong>La fase estacionaria (Azul)</strong>.</p>
+<p align='justify'>Caracterizada por el estancamiento de la prevalencia con casos nuevos ocurriendo esporádicamente cada día. Esta es la fase que todos quieren lograr.</p>
+</li>
+<li>
+<p align='justify'><strong>La fase linear (Violeta)</strong>.</p>
+<p align='justify'>Esta es una fase atípica caracterizada por crecimiento constante. Esta fase puede ocurrir cuando la fase de desaceleración no se profundiza lo suficiente para lograr alcanzar la fase estacionaria.</p>
+</li>
+<li><p align='justify'>Estas cinco fases son estimadas mediante un modelo oculto de Markov (HMM por sus siglas en Inglés). El HMM implementado aquí también tiene un parámetro libre denominado 'Clasificador HMM', que es el umbral límite de aceleración (en miles de casos/día²) que distingue la fase estacionaria de cualquier otra fase de crecimiento. Igual que para el factor de suavización en la RM, este parámetro deberá ser ajustado por el usuario ya que no tiene un valor óptimo.</p></p>
+</li>
 </ul>
 <br>
 <h3 align='justify'>Se recomienda a los usuarios prestar atención a las fechas cercanas a los periodos de transición entre fases, ya que estas pueden estar relacionadas con eventos que tuvieron un impacto en las dinámicas de la enfermedad. Considerar si se implentó o descontinuo alguna medida de salud pública en estas fechas. Así mismo si existen coincidencias entre estas fechas y los anuncions públicos masivos o decisiones gubernamentales importantes</h3>
 <br>
 <h3>A continuación se dan como ejemplo algunos posibles escenarios para la evolución de la epidemia de COVID-19 en cualquier país o región.</h3>
 <ul>
-  <li>
-    <p align='justify'><strong>lenta -> exponencial -> desaceleración -> estacionaria</strong></p>
-    <p align='justify'>Este es el escenario esperado en la mayoría de países. La enfermedad es introducida, crece de manera exponencial, desacelera gracias al uso de medidas efectivas de control y luego se convierte en estacionaria.</p>
-  </li>
-  <li>
-    <p align='justify'><strong>lenta -> exponencial -> desaceleración -> estacionaria -> exponencial -> desaceleración -> estacionaria</strong></p>
-    <p align='justify'>Lograr un crecimiento estacionario no garantiza control indefinido. La enfermedad puede crecer de nuevo, por ejemplo por re-introducción mediante importación.</p>
-  </li>
-  <li>
-    <p align='justify'><strong>lenta -> N*(exponencial -> desaceleración) -> estacionaria</strong></p>
-    <p align='justify'>Un país que está en fase de desaceleración puede acelerar de nuevo, generando múltiples ciclos de fases exponenciales y de desaceleración. Esto puede resultar del relajamiento de medidas de control cuando se percibe la fase de desaceleración.</p>
-  </li>
-  <li>
-    <p align='justify'>Aparte de estos tres posibles escenarios, anticipamos que permutaciónes más complejas de estas fases puedan presentarse durante la evolución de la enfermedad en algunos países.</strong></p>
-  </li>
+<li>
+<p align='justify'><strong>lenta -> exponencial -> desaceleración -> estacionaria</strong></p>
+<p align='justify'>Este es el escenario esperado en la mayoría de países. La enfermedad es introducida, crece de manera exponencial, desacelera gracias al uso de medidas efectivas de control y luego se convierte en estacionaria.</p>
+</li>
+<li>
+<p align='justify'><strong>lenta -> exponencial -> desaceleración -> estacionaria -> exponencial -> desaceleración -> estacionaria</strong></p>
+<p align='justify'>Lograr un crecimiento estacionario no garantiza control indefinido. La enfermedad puede crecer de nuevo, por ejemplo por re-introducción mediante importación.</p>
+</li>
+<li>
+<p align='justify'><strong>lenta -> N*(exponencial -> desaceleración) -> estacionaria</strong></p>
+<p align='justify'>Un país que está en fase de desaceleración puede acelerar de nuevo, generando múltiples ciclos de fases exponenciales y de desaceleración. Esto puede resultar del relajamiento de medidas de control cuando se percibe la fase de desaceleración.</p>
+</li>
+<li>
+<p align='justify'>Aparte de estos tres posibles escenarios, anticipamos que permutaciónes más complejas de estas fases puedan presentarse durante la evolución de la enfermedad en algunos países.</strong></p>
+</li>
 </ul>"
 "download","Español","<h1><strong>Descarga los datos de ejemplo</strong></h1>
 <br>
@@ -558,6 +564,8 @@
 "error","Español","Error!"
 "notenoughdata","Español","No existe suficiente información para graficar!"
 "extensionxls","Español","El archivo debe tener una extensión '.xlsx' o '.xls'!"
+"welcomewarn","Español","Atención"
+"welcomewarnmsg","Español","Los datos de Brasil no están disponibles actualmente en lo menú por País. Para los datos recopilados hasta el 4 de junio de 2020, utilice el menú Descargar."
 "predprevalence","Español","<br>Prevalencia estimada: "
 "obsprevalence","Español","<br>Prevalencia observada: "
 "newcases","Español","<br>Nuevos casos: "
