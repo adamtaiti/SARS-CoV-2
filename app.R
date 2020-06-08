@@ -1,6 +1,6 @@
 ##### File: app.R
 ##### License: GPLv3 or later
-##### Modification date: 05 Apr 2020
+##### Modification date: 08 Jun 2020
 ##### Written by: Adam Taiti Harth Utsunomiya
 ##### Contact: adamtaiti@gmail.com
 ##### Description: main script to run the COVID-19 accelerometer app
