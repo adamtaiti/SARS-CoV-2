@@ -1,6 +1,6 @@
 ##### File: functions.R
 ##### License: GPLv3 or later
-##### Modification date: 05 Apr 2020
+##### Modification date: 11 Jan 2021
 ##### Written by: Adam Taiti Harth Utsunomiya
 ##### Contact: adamtaiti@gmail.com
 ##### Description: auxiliary functions for the COVID-19 app
@@ -17,19 +17,20 @@ connection <- function(){
       if(file.exists(file)){
         
         #read the Dataset sheet into “R”. The dataset will be called "data".
-        realdata <- read.csv(file)
+        realdata <- read.csv(file, stringsAsFactors = F)
+        #realdata <- realdata[,1:11]  
         
         names(realdata)<-c("DateRep","Day","Month","Year","Cases","Deaths","Countries and territories","GeoId","Code","Pop_Data.2018", "Continent")
-        
-        realdata$DateRep<-as.Date(realdata$DateRep, format = "%d/%m/%Y")
-        realdata$Cases<-abs(realdata$Cases)
+        realdata$DateRep <- as.Date(realdata$DateRep, format = "%Y-%m-%d")        
+        #realdata$DateRep<-as.Date(realdata$DateRep, format = "%d/%m/%Y")
         realdata<-realdata[order(realdata$DateRep),]
-        realdata$`Countries and territories`<-gsub(pattern = "_", replacement = " ", x = realdata$`Countries and territories`)
+        #realdata$`Countries and territories`<-gsub(pattern = "_", replacement = " ", x = realdata$`Countries and territories`)
         
         # #exclude countries
         # excountries <- "Brazil"
         # realdata <- realdata[which(realdata$`Countries and territories` %in% excountries == FALSE),]
-
+        # file<-paste0(getwd(),"/data/ecdc-",Sys.Date(),".csv")
+        
         return(realdata)
         
       } else{
@@ -41,24 +42,45 @@ connection <- function(){
           
         }
         #download the dataset from the ECDC website to a local temporary file
-        GET("https://opendata.ecdc.europa.eu/covid19/casedistribution/csv", authenticate(":", ":", type="ntlm"), write_disk(tf <- tempfile(fileext = ".csv")))
+        #GET("https://opendata.ecdc.europa.eu/covid19/casedistribution/csv", authenticate(":", ":", type="ntlm"), write_disk(tf <- tempfile(fileext = ".csv")))
         
-        command<-paste0("mv ",tf, " ",getwd(),"/data/ecdc-",Sys.Date(),".csv")
+        #command<-paste0("mv ",tf, " ",getwd(),"/data/ecdc-",Sys.Date(),".csv")
+        command <- "wget https://covid.ourworldindata.org/data/owid-covid-data.csv"
         system(command = command)
         
         #read the Dataset sheet into “R”. The dataset will be called "data".
-        realdata <- read.csv(file)
+        realdata <- read.csv("owid-covid-data.csv", na.strings = c("NA",""))
+        realdata$date <- as.Date(realdata$date, format = "%Y-%m-%d")
+        realdata$year <- as.integer(format(realdata$date,"%Y"))
+        realdata$month <- as.integer(format(realdata$date,"%m"))
+        realdata$day <- as.integer(format(realdata$date,"%d"))
+        realdata <- realdata[,c("date","day","month","year","new_cases","new_deaths","location","iso_code","iso_code","population","continent")]
         
         names(realdata)<-c("DateRep","Day","Month","Year","Cases","Deaths","Countries and territories","GeoId","Code","Pop_Data.2018","Continent")
         
         realdata$DateRep<-as.Date(realdata$DateRep, format = "%d/%m/%Y")
         realdata<-realdata[order(realdata$DateRep),]
-        realdata$`Countries and territories`<-gsub(pattern = "_", replacement = " ", x = realdata$`Countries and territories`)
+        realdata$Cases[which(realdata$Cases<0)] <- NA
+        realdata$Deaths[which(realdata$Deaths<0)] <- NA
+        realdata <- realdata[-which(is.na(realdata$Cases) | is.na(realdata$Pop_Data.2018) | is.na(realdata$Continent)),]
+        #realdata$Deaths[which(is.na(realdata$Deaths) | realdata$Deaths < 0)] <- 0
+        
+        
+        #realdata$`Countries and territories`<-gsub(pattern = "_", replacement = " ", x = realdata$`Countries and territories`)
         
         # #exclude countries
         # excountries <- "Brazil"
         # realdata <- realdata[which(realdata$`Countries and territories` %in% excountries == FALSE),]
-
+        write.csv(x = realdata, file = paste0(getwd(),"/data/ecdc-",Sys.Date(),".csv"), quote = F, row.names = F)
+        system("rm ./owid-covid-data.*")
+        
+        #read the Dataset sheet into “R”. The dataset will be called "data".
+        file<-paste0(getwd(),"/data/ecdc-",Sys.Date(),".csv")
+        realdata <- read.csv(file, stringsAsFactors = F)
+        names(realdata)<-c("DateRep","Day","Month","Year","Cases","Deaths","Countries and territories","GeoId","Code","Pop_Data.2018", "Continent")
+        realdata$DateRep <- as.Date(realdata$DateRep, format = "%Y-%m-%d")        
+        realdata<-realdata[order(realdata$DateRep),]
+        
         return(realdata)
       }
     },
@@ -100,7 +122,7 @@ ncases <- function(data){
   if(is.null(data)){
     return("none")
   } else{
-    return(sum(data$Cases))
+    return(sum(data$Cases,na.rm = T))
   }
 }
 
@@ -109,7 +131,7 @@ ndeaths <- function(data){
   if(is.null(data)){
     return("none")
   } else{
-    return(sum(data$Deaths))
+    return(sum(data$Deaths,na.rm = T))
   }
 }
 
@@ -1183,8 +1205,8 @@ weeks<-function(df, pallete){
   }
   
   weeks<-merge(pops[,-2], weeks, by = "Countries and territories")
-  code<-c("N/A")
-  weeks<-weeks[-which(weeks$Code=="N/A" | is.na(weeks$Pop_Data.2018)),]
+  # code<-c("N/A")
+  # weeks<-weeks[-which(weeks$Code=="N/A" | is.na(weeks$Pop_Data.2018)),]
   
   weeks$ccases.million<-1e6*weeks$ccases/weeks$Pop_Data.2018
   weeks$cdeaths.million<-1e6*weeks$cdeaths/weeks$Pop_Data.2018
@@ -1215,18 +1237,17 @@ weeks<-function(df, pallete){
   if(length(weeks$color_ccases.million[which(is.na(weeks$color_ccases.million) | weeks$color_ccases.million=="#FFFFFF")])>0){
     weeks$color_ccases.million[which(is.na(weeks$color_ccases.million) | weeks$color_ccases.million=="#FFFFFF")]<-"none"
   }
-
-  weeks$`Countries and territories`[which(weeks$`Countries and territories`=="United States of America")]<-"United States"
-  weeks$`Countries and territories`[which(weeks$`Countries and territories`=="Russia")]<-"Russian Federation"
-  weeks$`Countries and territories`[which(weeks$`Countries and territories`=="Cote dIvoire")]<-"Côte d'Ivoire"
-  weeks$`Countries and territories`[which(weeks$`Countries and territories`=="Congo")]<-"Republic of the Congo"
-  weeks$`Countries and territories`[which(weeks$`Countries and territories`=="United Republic of Tanzania")]<-"Tanzania"
-  weeks$`Countries and territories`[which(weeks$`Countries and territories`=="North Macedonia")]<-"Macedonia"
-  weeks$`Countries and territories`[which(weeks$`Countries and territories`=="South Korea")]<-"Republic of Korea"
-  weeks$`Countries and territories`[which(weeks$`Countries and territories`=="Laos")]<-"Lao PDR"
-  weeks$`Countries and territories`[which(weeks$`Countries and territories`=="Czechia")]<-"Czech Republic"
-  weeks<-weeks[-which(weeks$`Countries and territories`=="San Marino" | weeks$`Countries and territories`=="Holy See" | weeks$`Countries and territories`=="Andorra"),]
+  
+  # weeks$`Countries and territories`[which(weeks$`Countries and territories`=="United States of America")]<-"United States"
+  # weeks$`Countries and territories`[which(weeks$`Countries and territories`=="Russia")]<-"Russian Federation"
+  # weeks$`Countries and territories`[which(weeks$`Countries and territories`=="Cote dIvoire")]<-"Côte d'Ivoire"
+  # weeks$`Countries and territories`[which(weeks$`Countries and territories`=="Congo")]<-"Republic of the Congo"
+  # weeks$`Countries and territories`[which(weeks$`Countries and territories`=="United Republic of Tanzania")]<-"Tanzania"
+  # weeks$`Countries and territories`[which(weeks$`Countries and territories`=="North Macedonia")]<-"Macedonia"
+  # weeks$`Countries and territories`[which(weeks$`Countries and territories`=="South Korea")]<-"Republic of Korea"
+  # weeks$`Countries and territories`[which(weeks$`Countries and territories`=="Laos")]<-"Lao PDR"
+  # weeks$`Countries and territories`[which(weeks$`Countries and territories`=="Czechia")]<-"Czech Republic"
+  # weeks<-weeks[-which(weeks$`Countries and territories`=="San Marino" | weeks$`Countries and territories`=="Holy See" | weeks$`Countries and territories`=="Andorra"),]
   
   return(weeks)
 }
-
