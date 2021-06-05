@@ -15,8 +15,13 @@ source("functions.R")
 # It may be furhter necessary to enter /etc/nginx/nginx.conf
 # After Basic settings, add client_max_body_size 10M;
 # Then restart nginx with $sudo service nginx restart
+<<<<<<< HEAD
 options(shiny.maxRequestSize = 30*(1024^2))
 translate <- read.table(file = "translations2.txt", header = T, sep = ",", stringsAsFactors = F)
+=======
+options(shiny.maxRequestSize = 10*(1024^2))
+translate <- read.table(file = "translations.txt", header = T, sep = ",", stringsAsFactors = F)
+>>>>>>> 69c811e9cfb70e4c5180b7d133d09322f9488a00
 langchoices<-unique(sort(translate$language))
 lang <- "English"#NULL
 theme_set(theme_bw())
