@@ -1,6 +1,6 @@
 ##### File: app.R
 ##### License: GPLv3 or later
-##### Modification date: 05 Apr 2020
+##### Modification date: 08 Jun 2020
 ##### Written by: Adam Taiti Harth Utsunomiya
 ##### Contact: adamtaiti@gmail.com
 ##### Description: main script to run the COVID-19 accelerometer app
@@ -10,8 +10,13 @@ source("libraries.R")
 source("functions.R")
 
 # Pre-sets for the environment -------------------------------------------------------------------------------------------
-options(shiny.maxRequestSize = 5*(1024^2))
-translate <- read.table(file = "translations.txt", header = T, sep = ",", stringsAsFactors = F)
+# Obs: configured for uploads of up to 10Mb
+# For larger files, set shiny.maxRequestSize to the desired upper bound
+# It may be furhter necessary to enter /etc/nginx/nginx.conf
+# After Basic settings, add client_max_body_size 10M;
+# Then restart nginx with $sudo service nginx restart
+options(shiny.maxRequestSize = 30*(1024^2))
+translate <- read.table(file = "translations2.txt", header = T, sep = ",", stringsAsFactors = F)
 langchoices<-unique(sort(translate$language))
 lang <- "English"#NULL
 theme_set(theme_bw())
@@ -46,7 +51,7 @@ body <- dashboardBody(
          span.label.label-danger {opacity: 0; background-color:#d9534f00!important;}"))
     ),
   withSpinner(uiOutput("dashboardbody"))
-)
+  )
 ui <- dashboardPage(
   title = "Covid-19 Accelerometer",
   header = header,
@@ -83,10 +88,15 @@ server <- function(input, output, session) {
   
   # Clicking button
   observeEvent(input$enter,{
+    showModal(modalDialog(
+      title = "New data source!",
+      "ECDC has discontinued daily reports of COVID-19 cases, replacing them by weekly reports from December 17th 2020. Therefore, we have decided to use Johns Hopkins University as our new data source.", 
+      size = "l"
+    ))
     # Clear interface
     shinyjs::removeClass(selector = "body", class = "sidebar-collapse")
     #shinyjs::removeClass(selector = "body", class = "sidebar-disable")
-
+    
     # Define language
     #lang <- input$lt
     lang <- input$language
@@ -95,6 +105,11 @@ server <- function(input, output, session) {
                                  country=input$selcountry,
                                  smooth = input$smoothrange,
                                  hmmclass = input$hmmrange))
+    
+    # # Alert
+    # shinyalert(title = translate$text[which(translate$item == "welcomewarn" & translate$language == lang)],
+    #            text = translate$text[which(translate$item == "welcomewarnmsg" & translate$language == lang)],
+    #            type = "warning")
     
     # Render sidebarmenu
     output$sidebarmenu <- renderMenu({
@@ -125,3 +140,4 @@ server <- function(input, output, session) {
 
 #Launch app
 shinyApp(ui, server, options = "test.mode")
+
