@@ -5,17 +5,13 @@
 "welcome","English","<h1><strong>Welcome to the COVID-19 Accelerometer</strong></h1>
 <br>
 <p align='justify'>This application is designed to visualize the growth rate and acceleration of the COVID-19 pandemic</p>
-<p align='justify'>It automatically loads the latest report from the COVID-19 Data Repository by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University.</p>
-<p align='justify'><a href='https://github.com/owid/covid-19-data/tree/master/public/data'>https://github.com/owid/covid-19-data/tree/master/public/data</a></p>
+<p align='justify'>It automatically loads the latest cases reports from the European Center for Disease Prevention and Control (ECDC).</p>
+<p align='justify'><a href='https://opendata.ecdc.europa.eu/covid19/casedistribution/csv'>https://opendata.ecdc.europa.eu/covid19/casedistribution/csv</a></p>
 <h3><strong>How to use</strong></h3>
 <p align='justify'>Here we provided an easy and acessible way to interpretate the dissemination of COVID-19 via the following tabs:</p>
 <ul>
 <li><p align='justify'><strong>Worldwide</strong>: Overview of the worldwide cases, deaths and countries affected.</p></li>
-<<<<<<< HEAD
 <li><p align='justify'><strong>Country</strong>: Presents growth curve, growth rate and growth acceleration for any selectable country contained in the ECDC data.</p></li>
-=======
-<li><p align='justify'><strong>Country</strong>: Presents growth curve, growth rate and growth acceleration for any selectable country contained in the data set.</p></li>
->>>>>>> 69c811e9cfb70e4c5180b7d133d09322f9488a00
 <li><p align='justify'><strong>Local</strong>: Allows user to upload their own data to visualize the growth curve, growth rate and growth acceleration of specific states, provinces, cities or aggregate data from arbitrary territory definitions. <em>It is necessary for the user to create an excel spreadsheet containing two columns, namely <strong>date ('YYYY-mm-dd')</strong> and <strong>ncases (number of cases)</strong>. The interface also allows the user to provide additional columns (optional) to partition the data further by sub-regions </em>.</p></li>
 <li><p align='justify'><strong>Downloads</strong>: Contains example data to be used in the 'Local' tab, which are essentially official data from specific countries, territories or regions.</p></li>
 <li><p align='justify'><strong>Help</strong>: Provides details on how to interpret the growth graphs, as well as on the methodology used.</p></li>
@@ -152,17 +148,13 @@
 "welcome","Português","<h1><strong>Bem-vindo ao Acelerômetro da COVID-19</strong></h1>
 <br>
 <p align='justify'>Este aplicativo foi desenvolvido para a visualização da taxa de crescimento e da aceleração da pandemia de COVID-19</p>
-<p align='justify'>Ele carrega automaticamente os dados mais atuais de registro de casos do Center for Systems Science and Engineering (CSSE) at Johns Hopkins University.</p>
-<p align='justify'><a href='https://github.com/owid/covid-19-data/tree/master/public/data'>https://github.com/owid/covid-19-data/tree/master/public/data</a></p>
+<p align='justify'>Ele carrega automaticamente os dados mais atuais de registro de casos da European Center for Disease Prevention and Control (ECDC).</p>
+<p align='justify'><a href='https://opendata.ecdc.europa.eu/covid19/casedistribution/csv'>https://opendata.ecdc.europa.eu/covid19/casedistribution/csv</a></p>
 <h3><strong>Como utilizar</strong></h3>
 <p align='justify'>Aqui provemos uma maneira fácil e acessível de interpretar a disseminação da COVID-19 por meio das seguintes opções:</p>
 <ul>
 <li><p align='justify'><strong>Mundial</strong>: Sumário geral dos casos confirmados, número de mortos e número de países afetados ao redor do mundo.</p></li>
-<<<<<<< HEAD
 <li><p align='justify'><strong>País</strong>: Apresenta as curvas de crescimento bruto, taxa de crescimento e aceleração para qualquer país selecionável do conjunto de dados do ECDC.</p></li>
-=======
-<li><p align='justify'><strong>País</strong>: Apresenta as curvas de crescimento bruto, taxa de crescimento e aceleração para qualquer país selecionável do conjunto de dados.</p></li>
->>>>>>> 69c811e9cfb70e4c5180b7d133d09322f9488a00
 <li><p align='justify'><strong>Local</strong>: Permite ao usuário carregar seus próprios dados para visualizar as curvas de estados, províncias, cidades ou até mesmo dados agregados de forma arbitrária. <em>É necessário que o usuário crie uma planilha de Excel contendo as colunas <strong>date ('YYYY-mm-dd')</strong> e <strong>ncases (number of cases)</strong>. A interface também permite ao usuário a inclusão de colunas adicionais (opcional) para dividir os dados por sub-regiões</em>.</p></li>
 <li><p align='justify'><strong>Downloads</strong>: Contém conjuntos de dados de exemplo para utilizar na aba 'Local', como dados oficiais de países, territórios ou regiões específicas.</p></li>
 <li><p align='justify'><strong>Ajuda</strong>: Fornece detalhes sobre como interpretar os gráficos de crescimento, bem como sobre a metodologia utilizada pelo aplicativo.</p></li>
@@ -299,17 +291,13 @@
 "welcome","Italiano","<h1><strong>Benvenuti all'accelerometro del COVID-19</strong></h1>
 <br>
 <p align='justify'>Questa applicazione è progettata per visualizzare il tasso di crescita e l'accelerazione della pandemia di COVID-19</p>
-<p align='justify'>Carica automaticamente gli ultimi casi segnalati dal Centro Europeo per la Prevenzione e il Controllo delle malattie (CSSE - Center for Systems Science and Engineering at Johns Hopkins University.).</p>
-<p align='justify'><a href='https://github.com/owid/covid-19-data/tree/master/public/data'>https://github.com/owid/covid-19-data/tree/master/public/data</a></p>
+<p align='justify'>Carica automaticamente gli ultimi casi segnalati dal Centro Europeo per la Prevenzione e il Controllo delle malattie (ECDC - European Center for Disease Prevention and Control).</p>
+<p align='justify'><a href='https://opendata.ecdc.europa.eu/covid19/casedistribution/csv'>https://opendata.ecdc.europa.eu/covid19/casedistribution/csv</a></p>
 <h3><strong>Come usarla</strong></h3>
 <p align='justify'>Qui forniamo un modo semplice e di facile accesso per interpretare la diffusione del COVID-19 attraverso le seguenti schede:</p>
 <ul>
 <li><p align='justify'><strong>Mondiale</strong>: Panoramica del numero di casi confermati, decessi e di paesi colpiti a livello mondiale.</p></li>
-<<<<<<< HEAD
 <li><p align='justify'><strong>Stati</strong>: Mostra la curva di crescita, il tasso di crescita e l'accelerazione nei paesi presenti nei dati dell'ECDC.</p></li>
-=======
-<li><p align='justify'><strong>Stati</strong>: Mostra la curva di crescita, il tasso di crescita e l'accelerazione nei paesi presenti nei dati.</p></li>
->>>>>>> 69c811e9cfb70e4c5180b7d133d09322f9488a00
 <li><p align='justify'><strong>Locale</strong>: Consente all'utente di caricare i propri dati per la visualizzazione della curva di crescita, il tasso di crescita e l'accelerazione di stati, province, città o dati aggregati dall'utente in modo arbitrario. <em>È necessario che l'utente crei un foglio di calcolo Excel contenete le colonne <strong>date ('AAAA-mm-gg')</strong> e <strong>ncases (numero di casi)</strong>. L'interfaccia inoltre permette all'utente di fornire delle colonne addizionali (opzionale) per suddividere i dati per sotto regioni</em>.</p></li>
 <li><p align='justify'><strong>Downloads</strong>: Contiene dati di esempio da utilizzare nella scheda 'Locale', che sono essenzialmente dati ufficiali provenienti da specifici paesi, territori o regioni.</p></li>
 <li><p align='justify'><strong>Aiuto</strong>: Fornisce dettagli su come interpretare i grafici di crescita, nonché sulla metodologia utilizzata.</p></li>
@@ -445,17 +433,13 @@
 "welcome","Español","<h1><strong>Bienvenido al Acelerómetro de COVID-19</strong></h1>
 <br>
 <p align='justify'>Esta aplicación esta diseñada para visualizar la tasa de crecimiento y aceleración de la pandemia de COVID-19</p>
-<p align='justify'>Actualizando automáticamente los casos reportados de acuerdo con el Center for Systems Science and Engineering (CSSE) at Johns Hopkins University.</p>
-<p align='justify'><a href='https://github.com/owid/covid-19-data/tree/master/public/data'>https://github.com/owid/covid-19-data/tree/master/public/data</a></p>
+<p align='justify'>Actualizando automáticamente los casos reportados de acuerdo con el European Center for Disease Prevention and Control (ECDC).</p>
+<p align='justify'><a href='https://opendata.ecdc.europa.eu/covid19/casedistribution/csv'>https://opendata.ecdc.europa.eu/covid19/casedistribution/csv</a></p>
 <h3><strong>¿Cómo usarlo?</strong></h3>
 <p align='justify'>Aquí proveemos una forma fácil y accesible de interpretar la diseminación de COVID-19 por medio de las siguientes opciones:</p>
 <ul>
 <li><p align='justify'><strong>Mundial</strong>: Resumen global de casos confirmados, muertes y países afectados.</p></li>
-<<<<<<< HEAD
 <li><p align='justify'><strong>País</strong>: Presenta la curva de crecimiento, tasa de crecimiento y aceleración de crecimiento para cualquiera de los países seleccionados incluído en la base de datos de la ECDC.</p></li>
-=======
-<li><p align='justify'><strong>País</strong>: Presenta la curva de crecimiento, tasa de crecimiento y aceleración de crecimiento para cualquiera de los países seleccionados incluído en la base de datos.</p></li>
->>>>>>> 69c811e9cfb70e4c5180b7d133d09322f9488a00
 <li><p align='justify'><strong>Local</strong>: Permite al usuario subir sus propios datos para visualizar la curva de crecimiento, tasa de crecimiento y aceleración de crecimiento de estados, provincias, regiones, ciudades o agregados de datos de territorios definidos por el usuario. <em>Es necesario que el usuario cree una hoja de excel con dos columnas: <strong>fecha ('AAAA-mm-dd')</strong> y <strong>casos (número de casos)</strong>. La interfaz permite al usuario proveer columnas adicionales (opcional) para delimitar los datos por subregiones </em>.</p></li>
 <li><p align='justify'><strong>Descargas</strong>: Contiene ejemplos de datos para ser usados en la opción 'Local', derivados de datos oficiales de algunos países, territorios y regiones.</p></li>
 <li><p align='justify'><strong>Ayuda</strong>: Provee detalles de como interpretar los gráficos de crecimiento, así como sobre la metodología utilizada.</p></li>

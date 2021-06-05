@@ -1,6 +1,6 @@
 ##### File: functions.R
 ##### License: GPLv3 or later
-##### Modification date: 11 Jan 2021
+##### Modification date: 05 Apr 2020
 ##### Written by: Adam Taiti Harth Utsunomiya
 ##### Contact: adamtaiti@gmail.com
 ##### Description: auxiliary functions for the COVID-19 app
@@ -1251,8 +1251,5 @@ weeks<-function(df, pallete){
   
   return(weeks)
 }
-<<<<<<< HEAD
 
 
-=======
->>>>>>> 69c811e9cfb70e4c5180b7d133d09322f9488a00
